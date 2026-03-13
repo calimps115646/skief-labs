@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx astro:*)",
+      "Bash(npm run:*)",
+      "Bash(where node:*)",
+      "Bash(where npm:*)",
+      "Read(//c/Program Files/**)",
+      "Bash(cmd.exe /c \"cd /d E:\\\\Coding\\\\skief-labs && npm run build\")",
+      "Bash(powershell.exe -Command \"cd E:\\\\Coding\\\\skief-labs; npm run build 2>&1\")"
+    ]
+  }
+}

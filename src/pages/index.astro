@@ -1,11 +1,258 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <!-- HERO -->
+  <section class="bg-linen py-24 md:py-36 lg:py-44">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="heading-serif text-4xl md:text-6xl lg:text-7xl text-navy-900 mb-8">
+          More business.<br />Less busyness.
+        </h1>
+        <div class="space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl">
+          <p>Most growing B2B teams aren't held back by ambition. They're held back by friction.</p>
+          <p>Wrong data feeding the wrong people. Outbound that depends on discipline instead of systems. Manual work that compounds quietly until someone burns out.</p>
+          <p>Skief Labs removes that friction. We build the data and outbound systems that let your team focus on work that actually moves the business forward.</p>
+        </div>
+        <div class="mt-10">
+          <a href="/contact" class="btn-primary">Book a 30-minute discovery call</a>
+          <p class="text-navy-900/50 text-sm mt-3 italic">No pitch. No obligation. Just clarity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="section-dark py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-linen">
+            Your team is doing work the business should be doing for them.
+          </h2>
+        </div>
+        <div class="lg:col-span-7 space-y-5 text-linen/80 text-base md:text-lg leading-relaxed">
+          <p>As B2B companies grow, something predictable happens.</p>
+          <p>Tools multiply. Data fragments. Processes that worked at ten people start breaking at thirty. And somewhere along the way, your best people become the glue — manually researching, chasing, reconciling, compensating.</p>
+          <p>It functions. Until it doesn't.</p>
+          <p>The businesses we work with aren't failing. They're growing — and their systems haven't kept up. The cost is real: slower decisions, inconsistent outbound, senior time absorbed by work that shouldn't require senior people.</p>
+          <p class="text-linen font-semibold">Adding more software doesn't fix this.<br />Adding more people only delays it.</p>
+          <p>What changes things is replacing fragile, human-dependent effort with systems that work quietly in the background.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="bg-linen py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-xl mb-16">
+        <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-navy-900 mb-4">
+          Two problems.<br />Solved seriously.
+        </h2>
+        <p class="text-navy-900/70 text-base md:text-lg leading-relaxed">
+          We work on two specific things — and only these two.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <!-- Data Intelligence -->
+        <div class="bg-white rounded-lg p-8 md:p-10 border border-navy-900/5 hover:border-blue-500/30 transition-colors duration-300">
+          <h3 class="subhead-condensed text-sm text-blue-500 mb-3">Data Intelligence</h3>
+          <p class="text-navy-900 text-lg md:text-xl font-semibold mb-4 leading-snug">
+            The research, enrichment, and data pipelines your team currently does by hand — built as automated systems.
+          </p>
+          <p class="text-navy-900/70 text-base leading-relaxed mb-6">
+            Contacts found. Companies enriched. Signals tracked. Lists delivered clean, current, and ready to act on — without anyone spending a day building them.
+          </p>
+          <p class="text-navy-900/50 text-sm">
+            For marketing, HR, and growth teams where data quality determines the quality of everything downstream.
+          </p>
+        </div>
+
+        <!-- Sales Acceleration -->
+        <div class="bg-white rounded-lg p-8 md:p-10 border border-navy-900/5 hover:border-blue-500/30 transition-colors duration-300">
+          <h3 class="subhead-condensed text-sm text-blue-500 mb-3">Sales Acceleration</h3>
+          <p class="text-navy-900 text-lg md:text-xl font-semibold mb-4 leading-snug">
+            The outbound system your team should already have — designed, built, and operated by us.
+          </p>
+          <p class="text-navy-900/70 text-base leading-relaxed mb-6">
+            We fix the system. Then we run it.
+          </p>
+          <p class="text-navy-900/50 text-sm">
+            For B2B sales and growth teams who want pipeline that doesn't depend on heroics.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-navy-900/60 text-sm mt-8 max-w-2xl">
+        We don't do operations systems, general automation, or "digital transformation." We do these two things with the depth that comes from choosing to go narrow instead of wide.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHO THIS IS FOR -->
+  <section class="section-dark py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-linen mb-4">
+            This works best for a specific kind of company.
+          </h2>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-linen/80 text-base md:text-lg leading-relaxed mb-8">
+            B2B teams — typically 10 to 200 people — where:
+          </p>
+          <ul class="space-y-4 text-linen/80 text-base md:text-lg leading-relaxed">
+            <li class="flex items-start gap-3">
+              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span>Growth has outpaced the systems underneath it</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span>Manual effort increases faster than headcount</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span>Data lives in spreadsheets, inboxes, and people's heads</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span>Leadership wants outcomes, not another tool to manage</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span>There is no internal automation or RevOps function — by choice or reality</span>
+            </li>
+          </ul>
+          <p class="text-linen/60 text-base mt-8">
+            If your people are the glue holding your data or outbound together, that's the pattern we fix.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="bg-linen py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <h2 class="heading-serif text-3xl md:text-4xl text-navy-900 mb-16 text-center">
+        What clients say
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-white rounded-lg p-8 border border-navy-900/5">
+          <div class="text-blue-500 text-3xl mb-4 font-serif">"</div>
+          <p class="text-navy-900/80 text-base leading-relaxed mb-6">
+            Skief Labs exceeded client's goal of 40 deals, achieving over 60. They efficiently streamlined workflow and collaboration.
+          </p>
+          <div class="border-t border-navy-900/10 pt-4">
+            <p class="subhead-condensed text-xs text-navy-900">Oscar Varas</p>
+            <p class="text-navy-900/50 text-xs mt-1">CEO, Simplo Corp</p>
+          </div>
+          <div class="mt-3 inline-block bg-blue-500/10 text-blue-500 text-xs font-semibold px-3 py-1 rounded-full">
+            60+ deals closed
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-white rounded-lg p-8 border border-navy-900/5">
+          <div class="text-blue-500 text-3xl mb-4 font-serif">"</div>
+          <p class="text-navy-900/80 text-base leading-relaxed mb-6">
+            Skief Labs achieved a 94% open rate and booked 9 discovery calls in a 4-week campaign. They impressed with their expertise and professionalism.
+          </p>
+          <div class="border-t border-navy-900/10 pt-4">
+            <p class="subhead-condensed text-xs text-navy-900">Business Development Director</p>
+          </div>
+          <div class="mt-3 flex gap-2 flex-wrap">
+            <span class="inline-block bg-blue-500/10 text-blue-500 text-xs font-semibold px-3 py-1 rounded-full">94% open rate</span>
+            <span class="inline-block bg-blue-500/10 text-blue-500 text-xs font-semibold px-3 py-1 rounded-full">9 calls in 4 weeks</span>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-white rounded-lg p-8 border border-navy-900/5">
+          <div class="text-blue-500 text-3xl mb-4 font-serif">"</div>
+          <p class="text-navy-900/80 text-base leading-relaxed mb-6">
+            Skief Labs exceeded client expectations with increased leads and ROI. Their reliable communication and efficient workflow showcased their result-oriented approach.
+          </p>
+          <div class="border-t border-navy-900/10 pt-4">
+            <p class="subhead-condensed text-xs text-navy-900">Antoine Forest</p>
+            <p class="text-navy-900/50 text-xs mt-1">CEO, Marketing Company</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SKIEF LABS -->
+  <section class="section-dark py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-linen mb-8">
+          We are not an agency. Not a consultancy. Not a tool vendor.
+        </h2>
+        <p class="text-linen/80 text-base md:text-lg leading-relaxed mb-8">
+          We're a small firm that builds systems — and operates them when that's what the work requires.
+        </p>
+        <div class="space-y-6 text-linen/70 text-base md:text-lg leading-relaxed">
+          <p>Every engagement is led at a senior level.</p>
+          <p>Nothing is built before the problem is fully understood.</p>
+          <p>Everything is documented and handed over.</p>
+          <p>We say no when something shouldn't be built.</p>
+        </div>
+        <p class="text-linen text-lg md:text-xl mt-8 font-serif italic">
+          Restraint is part of the service.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WORK BEGINS -->
+  <section class="bg-linen py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-navy-900 mb-6">
+          One entry point. Always the same.
+        </h2>
+        <p class="text-navy-900/80 text-lg md:text-xl leading-relaxed mb-4">
+          A 30-minute discovery call.
+        </p>
+        <p class="text-navy-900/60 text-base leading-relaxed mb-4">
+          Not a pitch. Not a free audit. Not a commitment.
+        </p>
+        <p class="text-navy-900/70 text-base leading-relaxed mb-4">
+          A focused conversation to understand where friction is concentrated in your business — and whether we're the right people to remove it.
+        </p>
+        <p class="text-navy-900/70 text-base leading-relaxed mb-8">
+          Either way, you leave the call with more clarity than you arrived with.
+        </p>
+        <a href="/contact" class="btn-primary">Book a 30-minute discovery call</a>
+        <p class="text-navy-900/50 text-sm mt-3 italic">No pitch. No obligation. Just clarity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA LINKS -->
+  <section class="bg-linen pb-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <hr class="separator mb-12" />
+      <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-12 text-center">
+        <a href="/services" class="text-blue-500 hover:text-blue-600 btn-text text-sm transition-colors duration-200">
+          Explore our services →
+        </a>
+        <a href="/how-we-work" class="text-blue-500 hover:text-blue-600 btn-text text-sm transition-colors duration-200">
+          How we work →
+        </a>
+        <a href="/about" class="text-blue-500 hover:text-blue-600 btn-text text-sm transition-colors duration-200">
+          About Skief Labs →
+        </a>
+      </div>
+      <p class="text-center text-navy-900/40 text-sm mt-8 italic font-serif">
+        More business. Less busyness.
+      </p>
+    </div>
+  </section>
 </Layout>

@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/Logos/Primary/Linen.png';
+
+const navLinks = [
+  { label: 'Services', href: '/services' },
+  { label: 'How We Work', href: '/how-we-work' },
+  { label: 'Use Cases', href: '/use-cases' },
+  { label: 'About', href: '/about' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-navy-900">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-18 md:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex-shrink-0">
+        <Image
+          src={logo}
+          alt="Skief Labs"
+          class="h-6 md:h-7 w-auto"
+          widths={[120, 200]}
+        />
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'btn-text text-xs text-linen/80 hover:text-linen transition-colors duration-200',
+              { 'text-linen': currentPath === link.href || currentPath === link.href + '/' },
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href="/contact" class="btn-primary text-xs !py-2.5 !px-5">
+          Book a Call
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden text-linen p-2"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+          <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-t border-linen/10">
+    <div class="px-6 py-6 space-y-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'block btn-text text-sm text-linen/80 hover:text-linen transition-colors duration-200',
+            { 'text-linen': currentPath === link.href || currentPath === link.href + '/' },
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <div class="pt-4">
+        <a href="/contact" class="btn-primary text-xs inline-block">
+          Book a Call
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer for fixed nav -->
+<div class="h-18 md:h-20"></div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden');
+    hamburger?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    btn?.setAttribute('aria-expanded', String(!menu?.classList.contains('hidden')));
+  });
+</script>

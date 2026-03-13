@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import iconLogo from '../assets/Logos/Icon/Linen.png';
+
+const servicesLinks = [
+  { label: 'Data Intelligence', href: '/services' },
+  { label: 'Sales Acceleration', href: '/services' },
+  { label: 'Use Cases', href: '/use-cases' },
+];
+
+const companyLinks = [
+  { label: 'How We Work', href: '/how-we-work' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+];
+---
+
+<footer class="bg-navy-900 text-linen border-t border-linen/5 py-12">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 mb-12">
+      <!-- Left: Logo, description, LinkedIn -->
+      <div class="lg:w-auto">
+        <div class="mb-4">
+          <Image
+            src={iconLogo}
+            alt="Skief Labs"
+            class="h-10 w-auto opacity-70"
+            widths={[80, 120]}
+          />
+        </div>
+        <p class="text-linen/50 text-sm leading-relaxed max-w-md mb-2">
+          Data intelligence and sales acceleration systems for B2B companies.
+        </p>
+        <p class="text-linen/50 text-sm leading-relaxed mb-4 max-w-md italic font-serif">
+          More business. Less busyness.
+        </p>
+        <a
+          href="https://www.linkedin.com/company/skief-labs"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-500 hover:text-blue-600 text-sm transition-colors duration-200"
+        >
+          LinkedIn
+        </a>
+      </div>
+
+      <!-- Services -->
+      <div class="lg:w-auto">
+        <h4 class="subhead-condensed text-xs text-linen/40 mb-4">Services</h4>
+        <ul class="space-y-2">
+          {servicesLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="lg:w-auto">
+        <h4 class="subhead-condensed text-xs text-linen/40 mb-4">Company</h4>
+        <ul class="space-y-2">
+          {companyLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="lg:w-auto">
+        <h4 class="subhead-condensed text-xs text-linen/40 mb-4">Legal</h4>
+        <ul class="space-y-2">
+          {legalLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-linen/10 gap-4">
+      <p class="text-linen/30 text-xs">&copy; {new Date().getFullYear()} Skief Labs Corp.</p>
+      <p class="text-linen/30 text-xs">Miami, FL / St-Tropez, EU</p>
+    </div>
+  </div>
+</footer>
