@@ -3,41 +3,118 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <!-- HERO -->
-  <section class="bg-linen py-24 md:py-36 lg:py-44">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <h1 class="heading-serif text-4xl md:text-6xl lg:text-7xl text-navy-900 mb-8">
-          More business.<br />Less busyness.
-        </h1>
-        <div class="space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl">
-          <p>Most growing B2B teams aren't held back by ambition. They're held back by friction.</p>
-          <p>Wrong data feeding the wrong people. Outbound that depends on discipline instead of systems. Manual work that compounds quietly until someone burns out.</p>
-          <p>Skief Labs removes that friction. We build the data and outbound systems that let your team focus on work that actually moves the business forward.</p>
+  <!-- HERO WITH BACKGROUND IMAGE -->
+  <section id="hero-section" class="relative -mt-18 md:-mt-20 hero-section-flex">
+    <!-- Background Image -->
+    <div id="hero-bg" class="absolute inset-0 z-0 transition-opacity duration-700" style="opacity: 1;">
+      <img
+        src="/images/sk1.jpg"
+        alt=""
+        class="w-full h-full object-cover"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-navy-900/60"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="hero-layout items-center">
+        <!-- Left: Text -->
+        <div id="hero-text">
+          <h1 class="heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-linen mb-8 leading-[1.1]">
+            <span id="hero-title-line1" class="hero-text-split inline-block overflow-hidden">More business.</span><br />
+            <span id="hero-title-line2" class="hero-text-split text-neon italic inline-block overflow-hidden">Less busyness.</span>
+          </h1>
+          <!-- Desktop: hardcoded line breaks -->
+          <div id="hero-body" class="hero-fade-group" style="opacity: 0; transform: translateY(20px);">
+          <div id="hero-para-desktop" class="text-linen/80 text-[15px] leading-[1.7]" style="white-space: pre-line;">Most growing B2B teams aren't held back by ambition. They're held
+back by friction. Wrong data feeding the wrong people. Outbound
+that depends on discipline instead of systems. Manual work that
+compounds quietly until someone burns out.
+
+Skief Labs removes that friction. We build the data and outbound
+systems that let your team focus on work that actually moves the
+business forward.</div>
+          <!-- Mobile: natural flow (shown only on very small screens) -->
+          <div id="hero-para-mobile" class="text-linen/80 text-sm leading-[1.7]" style="display: none;">
+            <p class="mb-4">Most growing B2B teams aren't held back by ambition. They're held back by friction. Wrong data feeding the wrong people. Outbound that depends on discipline instead of systems. Manual work that compounds quietly until someone burns out.</p>
+            <p>Skief Labs removes that friction. We build the data and outbound systems that let your team focus on work that actually moves the business forward.</p>
+          </div>
+          <div class="mt-8 flex items-center gap-5 flex-wrap">
+            <a href="/contact" class="btn-primary inline-flex items-center gap-2 !text-[11px] !py-2.5 !px-5">
+              Book a 30-minute discovery call
+              <span class="btn-arrow">&rarr;</span>
+            </a>
+            <p class="text-linen/50 text-sm italic">No pitch. No obligation. Just clarity.</p>
+          </div>
+          </div><!-- end hero-body -->
         </div>
-        <div class="mt-10">
-          <a href="/contact" class="btn-primary">Book a 30-minute discovery call</a>
-          <p class="text-navy-900/50 text-sm mt-3 italic">No pitch. No obligation. Just clarity.</p>
+
+        <!-- Right: Visual Flow Cards with SVG arrows overlay -->
+        <div id="hero-cards" class="hero-fade-group hero-cards-wrapper relative" style="opacity: 0; transform: translateY(20px);">
+
+          <div class="hero-cards-inner relative" style="width: 550px; height: 490px;">
+            <!-- Card 1: Daily Friction -->
+            <div class="absolute bg-linen/95 backdrop-blur-sm rounded-lg px-6 py-4 text-center border border-navy-900/10 shadow-lg" style="width: 280px; height: 80px; top: 0; left: 30px; display: flex; flex-direction: column; justify-content: center;">
+              <p class="font-serif italic text-navy-900 text-2xl tracking-wide"><s>Daily Friction</s></p>
+              <p class="font-sans text-xs text-navy-900/50 mt-1 uppercase tracking-[0.08em] whitespace-nowrap">Fragile &middot; Human-Dependent</p>
+            </div>
+
+            <!-- Card 2: Built Systems -->
+            <div class="absolute bg-navy-800/90 backdrop-blur-sm rounded-lg px-6 py-4 text-center border border-linen/10 shadow-lg" style="width: 280px; height: 80px; top: 195px; left: 250px; display: flex; flex-direction: column; justify-content: center;">
+              <div class="absolute -top-3 left-4 bg-linen text-navy-900 text-[9px] font-semibold uppercase tracking-[0.1em] rounded text-center leading-none" style="padding: 4px 10px;">Transformation</div>
+              <p class="font-serif text-linen text-2xl tracking-wide">Built Systems</p>
+              <p class="font-sans text-xs text-linen/50 mt-1 uppercase tracking-[0.08em]">Data &middot; Outbound</p>
+            </div>
+
+            <!-- Card 3: Business Forward -->
+            <div class="absolute bg-linen/95 backdrop-blur-sm rounded-lg px-6 py-4 text-center border border-navy-900/10 shadow-lg" style="width: 280px; height: 80px; top: 390px; left: 60px; display: flex; flex-direction: column; justify-content: center;">
+              <p class="font-serif text-navy-900 text-2xl tracking-wide whitespace-nowrap">Business Forward</p>
+              <p class="font-sans text-xs text-navy-900/50 mt-1 uppercase tracking-[0.08em]">Focused &middot; Scalable</p>
+            </div>
+
+            <!-- SVG Arrows connecting the cards -->
+            <svg class="absolute inset-0 pointer-events-none" width="550" height="490" viewBox="0 0 550 490" fill="none" style="z-index: 1;">
+              <line x1="190" y1="82" x2="190" y2="132" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
+              <line x1="190" y1="132" x2="410" y2="132" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
+              <line x1="410" y1="132" x2="410" y2="185" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
+              <polygon points="405,183 410,195 415,183" fill="rgba(249,246,240,0.5)"/>
+
+              <line x1="370" y1="277" x2="370" y2="330" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
+              <line x1="370" y1="330" x2="200" y2="330" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
+              <line x1="200" y1="330" x2="200" y2="380" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
+              <polygon points="195,378 200,390 205,378" fill="rgba(249,246,240,0.5)"/>
+            </svg>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
 
   <!-- THE PROBLEM -->
-  <section class="section-dark py-24 md:py-32">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-        <div class="lg:col-span-5">
-          <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-linen">
-            Your team is doing work the business should be doing for them.
-          </h2>
-        </div>
-        <div class="lg:col-span-7 space-y-5 text-linen/80 text-base md:text-lg leading-relaxed">
+  <section id="problem-section" class="bg-linen py-24 md:py-32 reveal">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <!-- Section Label -->
+      <div class="inline-block border border-red-400 text-red-500 text-[10px] uppercase tracking-[0.2em] font-semibold px-4 py-1.5 rounded mb-8">
+        The Problem
+      </div>
+
+      <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-12 leading-[1.25] tracking-[-0.02em] max-w-3xl mx-auto">
+        Your team is doing work the business<br />should be doing for them.
+      </h2>
+
+      <!-- Content Card -->
+      <div class="bg-linen border-2 border-navy-900 rounded-lg p-8 md:p-12 text-left shadow-[6px_6px_0px_0px_rgba(0,18,51,1)]">
+        <div class="space-y-5 text-navy-900/80 text-base md:text-lg leading-relaxed">
           <p>As B2B companies grow, something predictable happens.</p>
           <p>Tools multiply. Data fragments. Processes that worked at ten people start breaking at thirty. And somewhere along the way, your best people become the glue — manually researching, chasing, reconciling, compensating.</p>
           <p>It functions. Until it doesn't.</p>
           <p>The businesses we work with aren't failing. They're growing — and their systems haven't kept up. The cost is real: slower decisions, inconsistent outbound, senior time absorbed by work that shouldn't require senior people.</p>
-          <p class="text-linen font-semibold">Adding more software doesn't fix this.<br />Adding more people only delays it.</p>
+          <p class="text-navy-900 font-bold">
+            Adding more software doesn't fix this.<br />
+            Adding more people only delays it.
+          </p>
           <p>What changes things is replacing fragile, human-dependent effort with systems that work quietly in the background.</p>
         </div>
       </div>
@@ -45,214 +122,654 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- WHAT WE DO -->
-  <section class="bg-linen py-24 md:py-32">
+  <section class="bg-linen py-24 md:py-32 reveal">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-xl mb-16">
-        <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-navy-900 mb-4">
-          Two problems.<br />Solved seriously.
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-4 leading-[1.25] tracking-[-0.02em]">
+          Two problems. Solved seriously.
         </h2>
-        <p class="text-navy-900/70 text-base md:text-lg leading-relaxed">
-          We work on two specific things — and only these two.
-        </p>
+        <p class="text-navy-900/70 text-base md:text-lg leading-relaxed" style="white-space: pre-line;">We don't do operations systems, general automation, or "digital transformation." We
+work on two specific things with the depth that comes from choosing to go narrow
+instead of wide.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 reveal">
         <!-- Data Intelligence -->
-        <div class="bg-white rounded-lg p-8 md:p-10 border border-navy-900/5 hover:border-blue-500/30 transition-colors duration-300">
-          <h3 class="subhead-condensed text-sm text-blue-500 mb-3">Data Intelligence</h3>
-          <p class="text-navy-900 text-lg md:text-xl font-semibold mb-4 leading-snug">
-            The research, enrichment, and data pipelines your team currently does by hand — built as automated systems.
+        <div class="service-card bg-linen rounded-lg p-8 md:p-10 border-2">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <p class="subhead-condensed text-xs text-black/70 mb-2">Service One</p>
+              <h3 class="font-serif text-2xl md:text-3xl text-black tracking-[-0.01em]">Data Intelligence</h3>
+            </div>
+            <!-- Database Icon -->
+            <svg class="w-12 h-12 flex-shrink-0 ml-4" viewBox="0 0 48 48" fill="none" stroke="#001233" stroke-width="2">
+              <ellipse cx="24" cy="10" rx="14" ry="5"/>
+              <path d="M10 10v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8"/>
+              <path d="M10 18v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8"/>
+              <path d="M10 26v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8"/>
+            </svg>
+          </div>
+
+          <p class="text-black/80 text-base leading-relaxed mb-8">
+            The data your team needs — built, enriched, and delivered automatically. We replace manual research with automated pipelines that run continuously in the background.
           </p>
-          <p class="text-navy-900/70 text-base leading-relaxed mb-6">
-            Contacts found. Companies enriched. Signals tracked. Lists delivered clean, current, and ready to act on — without anyone spending a day building them.
-          </p>
-          <p class="text-navy-900/50 text-sm">
-            For marketing, HR, and growth teams where data quality determines the quality of everything downstream.
-          </p>
+
+          <div class="space-y-6 mb-8">
+            <div>
+              <p class="font-bold text-black text-sm mb-1">Research & Scraping Pipelines</p>
+              <p class="text-black/60 text-sm leading-relaxed">Contacts and companies collected automatically from sources that matter, continuously refreshed.</p>
+            </div>
+            <div>
+              <p class="font-bold text-black text-sm mb-1">AI-Powered Enrichment</p>
+              <p class="text-black/60 text-sm leading-relaxed">Layer context, qualify records, and score outputs so lists are clean and ready to act on.</p>
+            </div>
+            <div>
+              <p class="font-bold text-black text-sm mb-1">Signal & Trigger Identification</p>
+              <p class="text-black/60 text-sm leading-relaxed">Track hiring, funding, and tech changes automatically to surface buying signals.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-6 border-t border-navy-900/20">
+            <p class="text-black/60 text-xs italic">System builds from $5,000</p>
+            <a href="/contact" class="font-bold text-black text-sm hover:text-blue-500 transition-colors duration-200 discuss-link">Discuss data needs <span class="discuss-arrow">&rarr;</span></a>
+          </div>
         </div>
 
         <!-- Sales Acceleration -->
-        <div class="bg-white rounded-lg p-8 md:p-10 border border-navy-900/5 hover:border-blue-500/30 transition-colors duration-300">
-          <h3 class="subhead-condensed text-sm text-blue-500 mb-3">Sales Acceleration</h3>
-          <p class="text-navy-900 text-lg md:text-xl font-semibold mb-4 leading-snug">
-            The outbound system your team should already have — designed, built, and operated by us.
+        <div class="service-card bg-linen rounded-lg p-8 md:p-10 border-2">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <p class="subhead-condensed text-xs text-black/70 mb-2">Service Two</p>
+              <h3 class="font-serif text-2xl md:text-3xl text-black tracking-[-0.01em]">Sales Acceleration</h3>
+            </div>
+            <!-- Rocket Icon -->
+            <svg class="w-12 h-12 flex-shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+              <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+            </svg>
+          </div>
+
+          <p class="text-black/80 text-base leading-relaxed mb-8">
+            More pipeline. Without more headcount. We fix the outbound system beneath the surface, then run it so your team focuses on conversations.
           </p>
-          <p class="text-navy-900/70 text-base leading-relaxed mb-6">
-            We fix the system. Then we run it.
-          </p>
-          <p class="text-navy-900/50 text-sm">
-            For B2B sales and growth teams who want pipeline that doesn't depend on heroics.
-          </p>
+
+          <div class="space-y-6 mb-8">
+            <div>
+              <p class="font-bold text-black text-sm mb-1">Outbound System Design</p>
+              <p class="text-black/60 text-sm leading-relaxed">Full targeting logic, data sources, and sequence architecture designed before a single message is sent.</p>
+            </div>
+            <div>
+              <p class="font-bold text-black text-sm mb-1">Done-For-You Operation</p>
+              <p class="text-black/60 text-sm leading-relaxed">Research, enrichment, personalization, sequencing, and inbox management — handled by us.</p>
+            </div>
+            <div>
+              <p class="font-bold text-black text-sm mb-1">Ongoing Optimization</p>
+              <p class="text-black/60 text-sm leading-relaxed">We monitor performance, adjust messaging, and refresh targeting continuously.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-6 border-t border-navy-900/20">
+            <p class="text-black/60 text-xs italic">Pilots from $10,000</p>
+            <a href="/contact" class="font-bold text-black text-sm hover:text-blue-500 transition-colors duration-200 discuss-link">Discuss outbound <span class="discuss-arrow">&rarr;</span></a>
+          </div>
         </div>
       </div>
 
-      <p class="text-navy-900/60 text-sm mt-8 max-w-2xl">
-        We don't do operations systems, general automation, or "digital transformation." We do these two things with the depth that comes from choosing to go narrow instead of wide.
-      </p>
+      <!-- A note on AI & Automation -->
+      <div class="max-w-3xl mx-auto mt-16 bg-linen rounded-lg p-8 text-center border-2 border-navy-900 shadow-[6px_6px_0px_0px_#001233]">
+        <p class="font-serif text-black text-lg mb-3"><span class="bg-neon px-2 py-0.5">A note on AI &amp; Automation</span></p>
+        <p class="text-black/70 text-sm leading-relaxed" style="white-space: pre-line;">You'll notice we don't list AI and automation as a service. That's intentional. AI and automation
+are how we build — not what we sell. The technology is never the point. The point is the outcome.</p>
+      </div>
     </div>
   </section>
 
   <!-- WHO THIS IS FOR -->
-  <section class="section-dark py-24 md:py-32">
+  <section class="bg-linen py-24 md:py-32 reveal">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-        <div class="lg:col-span-5">
-          <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-linen mb-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-6 leading-[1.25] tracking-[-0.02em]">
             This works best for a specific kind of company.
           </h2>
-        </div>
-        <div class="lg:col-span-7">
-          <p class="text-linen/80 text-base md:text-lg leading-relaxed mb-8">
+          <p class="text-navy-900/80 text-base md:text-lg leading-relaxed mb-8">
             B2B teams — typically 10 to 200 people — where:
           </p>
-          <ul class="space-y-4 text-linen/80 text-base md:text-lg leading-relaxed">
+          <ul class="space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed mb-8 reveal reveal-children">
             <li class="flex items-start gap-3">
-              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>Growth has outpaced the systems underneath it</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>Manual effort increases faster than headcount</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>Data lives in spreadsheets, inboxes, and people's heads</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>Leadership wants outcomes, not another tool to manage</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-neon mt-1.5 text-xs">●</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>There is no internal automation or RevOps function — by choice or reality</span>
             </li>
           </ul>
-          <p class="text-linen/60 text-base mt-8">
+          <p class="text-navy-900/60 text-base">
             If your people are the glue holding your data or outbound together, that's the pattern we fix.
           </p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOCIAL PROOF -->
-  <section class="bg-linen py-24 md:py-32">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <h2 class="heading-serif text-3xl md:text-4xl text-navy-900 mb-16 text-center">
-        What clients say
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Testimonial 1 -->
-        <div class="bg-white rounded-lg p-8 border border-navy-900/5">
-          <div class="text-blue-500 text-3xl mb-4 font-serif">"</div>
-          <p class="text-navy-900/80 text-base leading-relaxed mb-6">
-            Skief Labs exceeded client's goal of 40 deals, achieving over 60. They efficiently streamlined workflow and collaboration.
-          </p>
-          <div class="border-t border-navy-900/10 pt-4">
-            <p class="subhead-condensed text-xs text-navy-900">Oscar Varas</p>
-            <p class="text-navy-900/50 text-xs mt-1">CEO, Simplo Corp</p>
-          </div>
-          <div class="mt-3 inline-block bg-blue-500/10 text-blue-500 text-xs font-semibold px-3 py-1 rounded-full">
-            60+ deals closed
-          </div>
-        </div>
-
-        <!-- Testimonial 2 -->
-        <div class="bg-white rounded-lg p-8 border border-navy-900/5">
-          <div class="text-blue-500 text-3xl mb-4 font-serif">"</div>
-          <p class="text-navy-900/80 text-base leading-relaxed mb-6">
-            Skief Labs achieved a 94% open rate and booked 9 discovery calls in a 4-week campaign. They impressed with their expertise and professionalism.
-          </p>
-          <div class="border-t border-navy-900/10 pt-4">
-            <p class="subhead-condensed text-xs text-navy-900">Business Development Director</p>
-          </div>
-          <div class="mt-3 flex gap-2 flex-wrap">
-            <span class="inline-block bg-blue-500/10 text-blue-500 text-xs font-semibold px-3 py-1 rounded-full">94% open rate</span>
-            <span class="inline-block bg-blue-500/10 text-blue-500 text-xs font-semibold px-3 py-1 rounded-full">9 calls in 4 weeks</span>
-          </div>
-        </div>
-
-        <!-- Testimonial 3 -->
-        <div class="bg-white rounded-lg p-8 border border-navy-900/5">
-          <div class="text-blue-500 text-3xl mb-4 font-serif">"</div>
-          <p class="text-navy-900/80 text-base leading-relaxed mb-6">
-            Skief Labs exceeded client expectations with increased leads and ROI. Their reliable communication and efficient workflow showcased their result-oriented approach.
-          </p>
-          <div class="border-t border-navy-900/10 pt-4">
-            <p class="subhead-condensed text-xs text-navy-900">Antoine Forest</p>
-            <p class="text-navy-900/50 text-xs mt-1">CEO, Marketing Company</p>
-          </div>
+        <!-- Image with neon accent shadow -->
+        <div class="relative">
+          <img src="/images/sk2.jpg" alt="Team collaboration" class="w-full rounded-lg object-cover shadow-[8px_8px_0px_0px_#CFFF15]" style="min-height: 500px;" />
         </div>
       </div>
     </div>
   </section>
 
   <!-- WHY SKIEF LABS -->
-  <section class="section-dark py-24 md:py-32">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-linen mb-8">
-          We are not an agency. Not a consultancy. Not a tool vendor.
+  <section class="bg-linen py-24 md:py-32 reveal">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-6 leading-[1.25] tracking-[-0.02em]">
+          Why choose <span class="italic">Skief Labs</span>?
         </h2>
-        <p class="text-linen/80 text-base md:text-lg leading-relaxed mb-8">
-          We're a small firm that builds systems — and operates them when that's what the work requires.
+        <p class="text-navy-900/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-2">
+          We are not an agency. Not a consultancy. Not a tool vendor.
         </p>
-        <div class="space-y-6 text-linen/70 text-base md:text-lg leading-relaxed">
-          <p>Every engagement is led at a senior level.</p>
-          <p>Nothing is built before the problem is fully understood.</p>
-          <p>Everything is documented and handed over.</p>
-          <p>We say no when something shouldn't be built.</p>
+        <p class="text-navy-900/70 text-sm md:text-base leading-relaxed mx-auto" style="max-width: 46rem;"><span class="neon-underline">We're a small firm that builds systems — and operates them when that's what the work requires.</span></p>
+      </div>
+
+      <!-- Top row: 2 cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 reveal">
+        <!-- Senior-Led -->
+        <div class="why-card bg-linen rounded-lg p-8 md:p-10 border-2 text-center">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linen mx-auto">
+            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg text-navy-900 mb-3">Senior-Led</h3>
+          <p class="text-navy-900/60 text-base leading-relaxed">
+            Every engagement is led at a senior level.
+          </p>
         </div>
-        <p class="text-linen text-lg md:text-xl mt-8 font-serif italic">
-          Restraint is part of the service.
-        </p>
+
+        <!-- Fully Documented -->
+        <div class="why-card bg-linen rounded-lg p-8 md:p-10 border-2 text-center">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linen mx-auto">
+            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h16z"/>
+              <path d="m9 13 2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg text-navy-900 mb-3">Fully Documented</h3>
+          <p class="text-navy-900/60 text-base leading-relaxed">
+            Everything is documented and handed over.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom row: 2 cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-6 lg:mt-8 reveal">
+        <!-- Deep Understanding -->
+        <div class="why-card bg-linen rounded-lg p-8 md:p-10 border-2 text-center">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linen mx-auto">
+            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18h8"/>
+              <path d="M3 22h18"/>
+              <path d="M14 22a7 7 0 1 0 0-14h-1"/>
+              <path d="M9 14h2"/>
+              <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/>
+              <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg text-navy-900 mb-3">Deep Understanding</h3>
+          <p class="text-navy-900/60 text-base leading-relaxed">
+            Nothing is built before the problem is fully understood.
+          </p>
+        </div>
+
+        <!-- Strategic Restraint -->
+        <div class="why-card bg-linen rounded-lg p-8 md:p-10 border-2 text-center">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linen mx-auto">
+            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+              <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+              <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+              <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 13"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg text-navy-900 mb-3">Strategic Restraint</h3>
+          <p class="text-navy-900/60 text-base leading-relaxed">
+            We say no when something shouldn't be built. Restraint is part of the service.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF — carousel with arrows -->
+  <section class="bg-linen py-20 md:py-28 reveal">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 leading-[1.25] tracking-[-0.02em] mb-2">
+            What our clients said
+          </h2>
+          <p class="text-navy-900/60 text-base md:text-lg leading-relaxed">Real feedback from the teams we've worked with.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="testimonial-prev" class="carousel-arrow" aria-label="Previous">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button id="testimonial-next" class="carousel-arrow" aria-label="Next">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Carousel -->
+      <div class="relative">
+        <!-- Cards container -->
+        <div class="overflow-hidden">
+          <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out">
+            <!-- Card 1 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs exceeded client's goal of 40 deals, achieving over 60. They efficiently streamlined workflow and collaboration, communicating daily. Constant support and understanding contribute to a successful ongoing partnership.</p>
+                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy-900/10 pt-3">
+                  <p class="font-bold text-navy-900 text-sm">Oscar Varas</p>
+                  <p class="text-navy-900/50 text-xs mt-0.5">CEO, Simplo Corp</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs achieved a 94% open rate and booked 9 discovery calls in a 4-week campaign. They impressed the client with their expertise and professionalism through in-person meetings and communication via phone, text, and email.</p>
+                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy-900/10 pt-3">
+                  <p class="font-bold text-navy-900 text-sm">Business Development Director</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Since Skief Labs has joined the project, the campaign has been generating positive results. The team continuously meets all expectations, making the client satisfied with their performance. They are proactive and always available.</p>
+                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy-900/10 pt-3">
+                  <p class="font-bold text-navy-900 text-sm">Charles Delibes</p>
+                  <p class="text-navy-900/50 text-xs mt-0.5">Founder, Eat's a de</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs exceeded client expectations with increased leads and ROI. Their reliable communication, progress updates, and efficient workflow showcased their result-oriented approach in the partnership.</p>
+                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy-900/10 pt-3">
+                  <p class="font-bold text-navy-900 text-sm">Antoine Forest</p>
+                  <p class="text-navy-900/50 text-xs mt-0.5">CEO, Marketing Company</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs impresses client with their professionalism and understanding of project requirements, successfully boosting LinkedIn account and generating increased organic traffic and meetings with potential clients.</p>
+                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy-900/10 pt-3">
+                  <p class="font-bold text-navy-900 text-sm">CEO</p>
+                  <p class="text-navy-900/50 text-xs mt-0.5">Consulting Firm</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs stands out in outbound marketing, lead generation, and meeting client expectations. Their friendly and available approach, even across time zones, sets them apart. They excel in communication, responsiveness, and collaboration.</p>
+                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy-900/10 pt-3">
+                  <p class="font-bold text-navy-900 text-sm">Sales Development Lead</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs' team secured future partnerships with impressive performance and adherence to schedule. They smoothly managed workflow, delivering campaigns weekly, and their thoughtful suggestions and responsiveness stood out.</p>
+                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy-900/10 pt-3">
+                  <p class="font-bold text-navy-900 text-sm">Principal & Creative Director</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- HOW WORK BEGINS -->
-  <section class="bg-linen py-24 md:py-32">
+  <section class="bg-linen py-24 md:py-32 reveal">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="heading-serif text-3xl md:text-4xl lg:text-5xl text-navy-900 mb-6">
-          One entry point. Always the same.
-        </h2>
-        <p class="text-navy-900/80 text-lg md:text-xl leading-relaxed mb-4">
-          A 30-minute discovery call.
-        </p>
-        <p class="text-navy-900/60 text-base leading-relaxed mb-4">
-          Not a pitch. Not a free audit. Not a commitment.
-        </p>
-        <p class="text-navy-900/70 text-base leading-relaxed mb-4">
-          A focused conversation to understand where friction is concentrated in your business — and whether we're the right people to remove it.
-        </p>
-        <p class="text-navy-900/70 text-base leading-relaxed mb-8">
-          Either way, you leave the call with more clarity than you arrived with.
-        </p>
-        <a href="/contact" class="btn-primary">Book a 30-minute discovery call</a>
-        <p class="text-navy-900/50 text-sm mt-3 italic">No pitch. No obligation. Just clarity.</p>
+      <div class="cta-box rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-[38%_62%] bg-navy-900">
+        <!-- Left: Image -->
+        <div class="cta-image-col">
+          <img src="/images/sk3.jpg" alt="Discovery call" class="w-full h-full object-cover" />
+        </div>
+        <!-- Right: Content -->
+        <div class="flex flex-col justify-center px-8 py-12 md:px-12 md:py-16 text-center">
+          <h2 class="font-serif text-2xl md:text-[1.75rem] lg:text-[2rem] text-linen mb-4 leading-[1.25] tracking-[-0.02em]">
+            <span class="neon-underline">One entry point. Always the same.</span>
+          </h2>
+          <p class="text-linen/80 text-lg md:text-xl leading-relaxed mb-8 italic">
+            A 30-minute discovery call.
+          </p>
+          <p class="text-linen/60 text-base leading-relaxed mb-6">
+            Not a pitch. Not a free audit. Not a commitment.
+          </p>
+          <p class="text-linen/70 text-base leading-relaxed mb-6">
+            A focused conversation to understand where friction is concentrated in your business — and whether we're the right people to remove it.
+          </p>
+          <p class="text-linen/70 text-base leading-relaxed mb-10">
+            Either way, you leave the call with more clarity than you arrived with.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/contact" class="cta-book-btn btn-primary inline-flex items-center gap-2">
+              Book a 30-minute discovery call
+              <span class="cta-arrow text-lg inline-block transition-transform duration-300">→</span>
+            </a>
+            <p class="text-linen/50 text-sm italic">No pitch. No obligation. Just clarity.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER CTA LINKS -->
-  <section class="bg-linen pb-24">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <hr class="separator mb-12" />
-      <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-12 text-center">
-        <a href="/services" class="text-blue-500 hover:text-blue-600 btn-text text-sm transition-colors duration-200">
-          Explore our services →
-        </a>
-        <a href="/how-we-work" class="text-blue-500 hover:text-blue-600 btn-text text-sm transition-colors duration-200">
-          How we work →
-        </a>
-        <a href="/about" class="text-blue-500 hover:text-blue-600 btn-text text-sm transition-colors duration-200">
-          About Skief Labs →
-        </a>
-      </div>
-      <p class="text-center text-navy-900/40 text-sm mt-8 italic font-serif">
-        More business. Less busyness.
-      </p>
-    </div>
-  </section>
 </Layout>
+
+<script>
+  // Scale hero cards to fit available space
+  function scaleHeroCards() {
+    const wrapper = document.getElementById('hero-cards');
+    const inner = wrapper?.querySelector('.hero-cards-inner') as HTMLElement | null;
+    if (!wrapper || !inner) return;
+
+    const nativeWidth = 550;
+    const nativeHeight = 490;
+    const isMobile = window.innerWidth < 900; // stacked (1-column) layout
+
+    // Get available width — wrapper has min-width:0 + overflow:hidden
+    // so it respects the grid column width
+    const availableWidth = isMobile
+      ? (window.innerWidth - 64)  // viewport minus px-8 padding (32px each side)
+      : wrapper.clientWidth;
+
+    // Scale by width
+    const scaleByWidth = Math.min(availableWidth / nativeWidth, 1);
+
+    // On mobile, also constrain by height so cards stay compact
+    let scale = scaleByWidth;
+    if (isMobile) {
+      const maxCardHeight = Math.min(280, window.innerHeight * 0.35);
+      const scaleByHeight = maxCardHeight / nativeHeight;
+      scale = Math.min(scaleByWidth, scaleByHeight);
+    }
+
+    // Apply scale
+    if (scale < 1) {
+      inner.style.transform = `scale(${scale})`;
+      inner.style.height = `${nativeHeight}px`;
+      wrapper.style.height = `${nativeHeight * scale}px`;
+    } else {
+      inner.style.transform = 'scale(1)';
+      wrapper.style.height = `${nativeHeight}px`;
+    }
+
+    // Center cards on mobile
+    if (isMobile) {
+      const scaledWidth = nativeWidth * scale;
+      const leftOffset = Math.max(0, (availableWidth - scaledWidth) / 2);
+      inner.style.marginLeft = `${leftOffset}px`;
+    } else {
+      inner.style.marginLeft = '0';
+    }
+  }
+
+  // Hero entrance animation — letter-by-letter title, then fade in body + cards together
+  function splitTextToChars(el: HTMLElement) {
+    const text = el.textContent || '';
+    el.innerHTML = '';
+    text.split('').forEach((char, i) => {
+      const span = document.createElement('span');
+      span.className = char === ' ' ? 'hero-char hero-char-space' : 'hero-char';
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      // Stagger: 30ms per character, total ~0.8s for ~26 chars
+      span.style.animationDelay = `${0.3 + i * 0.03}s`;
+      el.appendChild(span);
+    });
+  }
+
+  window.addEventListener('load', () => {
+    scaleHeroCards();
+
+    // Split hero title lines into characters
+    const line1 = document.getElementById('hero-title-line1');
+    const line2 = document.getElementById('hero-title-line2');
+    if (line1) splitTextToChars(line1);
+    if (line2) {
+      // Line 2 starts after line 1 finishes — offset by line1 char count
+      const line1Len = line1 ? line1.querySelectorAll('.hero-char').length : 0;
+      const text = line2.textContent || '';
+      line2.innerHTML = '';
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = char === ' ' ? 'hero-char hero-char-space' : 'hero-char';
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.animationDelay = `${0.3 + (line1Len + i) * 0.03}s`;
+        line2.appendChild(span);
+      });
+    }
+
+    // Calculate when title animation finishes, then fade in body + cards together
+    const totalChars = (line1?.querySelectorAll('.hero-char').length || 0) + (line2?.querySelectorAll('.hero-char').length || 0);
+    const fadeInDelay = 300 + totalChars * 30 + 200; // after last char + 200ms buffer
+
+    setTimeout(() => {
+      document.querySelectorAll('.hero-fade-group').forEach(el => {
+        el.classList.add('hero-visible');
+      });
+    }, fadeInDelay);
+  });
+
+  // Scroll reveal — IntersectionObserver triggers .revealed class
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Re-scale cards on resize/zoom
+  window.addEventListener('resize', scaleHeroCards);
+
+  // Scroll-based hero fade out / problem fade in
+  // Uses getBoundingClientRect so it works correctly at any zoom level
+  const heroBg = document.getElementById('hero-bg');
+  const heroTextEl = document.getElementById('hero-text');
+  const heroCardsEl = document.getElementById('hero-cards');
+  const heroSection = document.getElementById('hero-section');
+  const problemSection = document.getElementById('problem-section');
+
+  function handleScroll() {
+    if (!heroSection || !problemSection) return;
+
+    const rect = heroSection.getBoundingClientRect();
+    const viewH = window.innerHeight;
+
+    const remaining = rect.bottom / viewH;
+
+    if (remaining >= 0.7) {
+      if (heroBg) heroBg.style.opacity = '1';
+      if (heroTextEl) heroTextEl.style.opacity = '1';
+      if (heroCardsEl) heroCardsEl.style.opacity = '1';
+      if (problemSection) problemSection.style.opacity = '0';
+    } else if (remaining <= 0.25) {
+      if (heroBg) heroBg.style.opacity = '0';
+      if (heroTextEl) heroTextEl.style.opacity = '0';
+      if (heroCardsEl) heroCardsEl.style.opacity = '0';
+      if (problemSection) problemSection.style.opacity = '1';
+    } else {
+      const progress = (0.7 - remaining) / (0.7 - 0.25);
+      if (heroBg) heroBg.style.opacity = String(1 - progress);
+      if (heroTextEl) heroTextEl.style.opacity = String(1 - progress);
+      if (heroCardsEl) heroCardsEl.style.opacity = String(1 - progress);
+      if (problemSection) problemSection.style.opacity = String(progress);
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  // Testimonial carousel — seamless infinite loop, auto-slides every 6s
+  const slider = document.getElementById('testimonial-slider') as HTMLElement | null;
+  const prevBtn = document.getElementById('testimonial-prev') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('testimonial-next') as HTMLButtonElement | null;
+
+  if (slider && prevBtn && nextBtn) {
+    const originalCount = slider.children.length; // 7 real slides
+    let currentIndex = 0;
+    let autoSlideTimer: ReturnType<typeof setInterval>;
+    let isTransitioning = false;
+
+    function getVisibleCount() {
+      const w = window.innerWidth;
+      if (w < 600) return 1;
+      if (w < 900) return 2;
+      return 3;
+    }
+
+    // Clone enough slides at the end to fill one visible set for seamless wrapping
+    function setupClones() {
+      // Remove any existing clones
+      slider!.querySelectorAll('[data-clone]').forEach(el => el.remove());
+      const visible = getVisibleCount();
+      for (let i = 0; i < visible; i++) {
+        const clone = slider!.children[i].cloneNode(true) as HTMLElement;
+        clone.setAttribute('data-clone', 'true');
+        slider!.appendChild(clone);
+      }
+    }
+
+    function slideWidthPercent() {
+      return 100 / getVisibleCount();
+    }
+
+    function moveTo(index: number, animate = true) {
+      if (!animate) {
+        slider!.style.transition = 'none';
+      } else {
+        slider!.style.transition = 'transform 0.5s ease-in-out';
+      }
+      const offset = index * slideWidthPercent();
+      slider!.style.transform = `translateX(-${offset}%)`;
+      if (!animate) {
+        // Force reflow so the non-animated jump applies instantly
+        slider!.offsetHeight;
+      }
+    }
+
+    function goNext() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      currentIndex++;
+      moveTo(currentIndex, true);
+    }
+
+    function goPrev() {
+      if (isTransitioning) return;
+      if (currentIndex <= 0) {
+        // Jump to the end (no animation), then animate one step back
+        currentIndex = originalCount;
+        moveTo(currentIndex, false);
+        requestAnimationFrame(() => {
+          currentIndex--;
+          isTransitioning = true;
+          moveTo(currentIndex, true);
+        });
+        return;
+      }
+      isTransitioning = true;
+      currentIndex--;
+      moveTo(currentIndex, true);
+    }
+
+    // When transition ends, check if we've gone past the real slides and silently reset
+    slider.addEventListener('transitionend', () => {
+      isTransitioning = false;
+      if (currentIndex >= originalCount) {
+        currentIndex = 0;
+        moveTo(0, false);
+      }
+    });
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = setInterval(goNext, 6000);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      goPrev();
+      resetAutoSlide();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      goNext();
+      resetAutoSlide();
+    });
+
+    // Pause auto-slide on hover
+    const carouselSection = slider.closest('section');
+    if (carouselSection) {
+      carouselSection.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
+      carouselSection.addEventListener('mouseleave', () => resetAutoSlide());
+    }
+
+    // Recalculate on resize
+    window.addEventListener('resize', () => {
+      setupClones();
+      if (currentIndex > originalCount) currentIndex = 0;
+      moveTo(currentIndex, false);
+    });
+
+    // Init
+    setupClones();
+    moveTo(0, false);
+    autoSlideTimer = setInterval(goNext, 6000);
+  }
+</script>

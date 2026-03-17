@@ -12,7 +12,7 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-navy-900">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-navy-900/30 backdrop-blur-sm">
   <div class="max-w-6xl mx-auto px-6 lg:px-8">
     <div class="flex items-center justify-between h-18 md:h-20">
       <!-- Logo -->
@@ -25,19 +25,23 @@ const currentPath = Astro.url.pathname;
         />
       </a>
 
-      <!-- Desktop Nav Links -->
-      <div class="hidden lg:flex items-center gap-8">
+      <!-- Desktop Nav Links (Centered) -->
+      <div class="nav-desktop-links items-center gap-8 absolute left-1/2 -translate-x-1/2">
         {navLinks.map((link) => (
           <a
             href={link.href}
             class:list={[
-              'btn-text text-xs text-linen/80 hover:text-linen transition-colors duration-200',
-              { 'text-linen': currentPath === link.href || currentPath === link.href + '/' },
+              'btn-text text-xs text-linen hover:text-white transition-colors duration-200 nav-link',
+              { 'text-white nav-link-active': currentPath === link.href || currentPath === link.href + '/' },
             ]}
           >
             {link.label}
           </a>
         ))}
+      </div>
+
+      <!-- Book a Call (Right) -->
+      <div class="nav-desktop-cta">
         <a href="/contact" class="btn-primary text-xs !py-2.5 !px-5">
           Book a Call
         </a>
@@ -46,7 +50,7 @@ const currentPath = Astro.url.pathname;
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-btn"
-        class="lg:hidden text-linen p-2"
+        class="nav-mobile-btn text-linen p-2"
         aria-label="Open menu"
         aria-expanded="false"
       >
@@ -58,21 +62,21 @@ const currentPath = Astro.url.pathname;
     </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-t border-linen/10">
-    <div class="px-6 py-6 space-y-4">
+  <!-- Mobile Menu (full screen overlay, transparent) -->
+  <div id="mobile-menu" class="hidden nav-mobile-menu">
+    <div class="px-8 pt-12 pb-8 space-y-6">
       {navLinks.map((link) => (
         <a
           href={link.href}
           class:list={[
-            'block btn-text text-sm text-linen/80 hover:text-linen transition-colors duration-200',
-            { 'text-linen': currentPath === link.href || currentPath === link.href + '/' },
+            'block text-linen/80 hover:text-white transition-colors duration-200 text-lg font-semibold tracking-wide nav-link',
+            { 'text-white nav-link-active': currentPath === link.href || currentPath === link.href + '/' },
           ]}
         >
           {link.label}
         </a>
       ))}
-      <div class="pt-4">
+      <div class="pt-6">
         <a href="/contact" class="btn-primary text-xs inline-block">
           Book a Call
         </a>
@@ -96,4 +100,6 @@ const currentPath = Astro.url.pathname;
     closeIcon?.classList.toggle('hidden');
     btn?.setAttribute('aria-expanded', String(!menu?.classList.contains('hidden')));
   });
+
+  // Nav stays transparent always
 </script>

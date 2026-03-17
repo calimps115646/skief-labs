@@ -7,7 +7,17 @@
       "Bash(where npm:*)",
       "Read(//c/Program Files/**)",
       "Bash(cmd.exe /c \"cd /d E:\\\\Coding\\\\skief-labs && npm run build\")",
-      "Bash(powershell.exe -Command \"cd E:\\\\Coding\\\\skief-labs; npm run build 2>&1\")"
+      "Bash(powershell.exe -Command \"cd E:\\\\Coding\\\\skief-labs; npm run build 2>&1\")",
+      "Bash(find /e/Coding/skief-labs -name *.json -path */src/* -o -name *.ts -path */src/*)",
+      "Bash(git checkout:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(node -e \"console.log\\(process.execPath\\)\")",
+      "Bash(ls node_modules/.bin/astro*)",
+      "Bash(npm install:*)",
+      "Bash(ls \"E:\\\\Coding\\\\skief-labs\\\\node_modules\\\\astro\"\" 2>&1 | head -5 && ls \"E:Codingskief-labsnode_modules.binastro \"*)",
+      "Bash(node -e \"console.log\\(require.resolve\\(''astro''\\)\\)\")",
+      "WebFetch(domain:www.skief.co)",
+      "WebFetch(domain:www.skieflabs.com)"
     ]
   }
 }

@@ -68,10 +68,11 @@ body {
 }
 
 .btn-text {
-  font-family: var(--font-button);
+  font-family: var(--font-sans);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 300;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-rendering: geometricPrecision;
 }
 
 /* Button styles */
@@ -81,18 +82,29 @@ body {
   color: var(--color-linen);
   padding: 0.75rem 1.75rem;
   border-radius: 0.375rem;
-  font-family: var(--font-button);
+  font-family: var(--font-sans);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 300;
-  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 0.75rem;
   text-decoration: none;
   transition: all 0.2s ease;
+  line-height: 1;
+  text-rendering: geometricPrecision;
 }
 
 .btn-primary:hover {
   background-color: var(--color-blue-600);
-  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(10, 96, 255, 0.35);
+}
+
+.btn-primary .btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .btn-arrow {
+  transform: translateX(4px);
 }
 
 .btn-secondary {
@@ -112,7 +124,306 @@ body {
 }
 
 .btn-secondary:hover {
-  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Nav link hover underline */
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-linen);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link-active::after {
+  width: 100%;
+}
+
+/* Navigation responsive - uses 900px breakpoint instead of Tailwind lg (1024px) so zoom doesn't break it */
+.nav-desktop-links {
+  display: none;
+}
+.nav-desktop-cta {
+  display: none;
+}
+.nav-mobile-btn {
+  display: block;
+}
+.nav-mobile-menu {
+  background-color: #001233;
+  min-height: 100vh;
+}
+
+@media (min-width: 900px) {
+  .nav-desktop-links {
+    display: flex;
+  }
+  .nav-desktop-cta {
+    display: block;
+  }
+  .nav-mobile-btn {
+    display: none;
+  }
+  .nav-mobile-menu {
+    display: none !important;
+  }
+}
+
+/* Hero section flex alignment */
+.hero-section-flex {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 5rem;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Desktop: fixed height, centered content, no overflow */
+@media (min-width: 900px) {
+  .hero-section-flex {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    align-items: center;
+    padding-top: 0;
+  }
+}
+
+/* Hero layout - uses CSS grid instead of Tailwind breakpoints so zoom doesn't break it */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Show two columns when viewport is at least 900px (works even when zoomed) */
+@media (min-width: 900px) {
+  .hero-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+/* Cards wrapper - always visible, scales down via JS to fit */
+.hero-cards-wrapper {
+  display: block;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* On small screens, cards appear below text, compact */
+@media (max-width: 899px) {
+  .hero-cards-wrapper {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  /* Reduce hero content spacing on mobile */
+  .hero-layout {
+    gap: 0.5rem;
+  }
+}
+
+/* Cards inner scales via JS to fit available space */
+.hero-cards-inner {
+  transform-origin: top left;
+}
+
+/* Paragraph toggle: show desktop version above 600px, mobile below */
+@media (max-width: 599px) {
+  #hero-para-desktop {
+    display: none !important;
+  }
+  #hero-para-mobile {
+    display: block !important;
+  }
+}
+
+/* Service card hover shadow */
+.service-card {
+  box-shadow: none;
+  border-color: rgba(0, 18, 51, 0.15);
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.service-card:hover {
+  border-color: #001233;
+  box-shadow: 8px 8px 0px 0px #001233;
+}
+
+/* Why card hover (same logic as service cards) */
+.why-card {
+  box-shadow: none;
+  border-color: rgba(0, 18, 51, 0.15);
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.why-card:hover {
+  border-color: #001233;
+  box-shadow: 8px 8px 0px 0px #001233;
+}
+
+/* Neon underline highlight */
+.neon-underline {
+  background-image: linear-gradient(to right, var(--color-neon), var(--color-neon));
+  background-position: 0 92%;
+  background-repeat: no-repeat;
+  background-size: 100% 0.12em;
+  padding-bottom: 2px;
+}
+
+/* Discuss link arrow hover animation */
+.discuss-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.discuss-link:hover .discuss-arrow {
+  transform: translateX(5px);
+}
+
+/* Testimonial carousel */
+.testimonial-slide {
+  flex-shrink: 0;
+  width: 33.333%;
+  padding: 0 0.625rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 899px) {
+  .testimonial-slide {
+    width: 50%;
+  }
+}
+
+@media (max-width: 599px) {
+  .testimonial-slide {
+    width: 100%;
+  }
+}
+
+.testimonial-card {
+  background-color: var(--color-linen);
+  border: 1px solid rgba(0, 18, 51, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  height: 100%;
+}
+
+/* Carousel arrow buttons — minimal, no border */
+.carousel-arrow {
+  background: none;
+  border: none;
+  color: var(--color-navy-900);
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+}
+
+.carousel-arrow:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* CTA button arrow animation */
+.cta-book-btn:hover .cta-arrow {
+  transform: translateX(5px);
+}
+
+/* CTA box with image */
+.cta-box {
+  min-height: 500px;
+}
+
+.cta-image-col {
+  min-height: 300px;
+}
+
+@media (min-width: 768px) {
+  .cta-image-col {
+    min-height: 500px;
+  }
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children inside a reveal group */
+.reveal-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-children.revealed > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
+.reveal-children.revealed > *:nth-child(2) { transition-delay: 0.12s; opacity: 1; transform: translateY(0); }
+.reveal-children.revealed > *:nth-child(3) { transition-delay: 0.24s; opacity: 1; transform: translateY(0); }
+.reveal-children.revealed > *:nth-child(4) { transition-delay: 0.36s; opacity: 1; transform: translateY(0); }
+.reveal-children.revealed > *:nth-child(5) { transition-delay: 0.48s; opacity: 1; transform: translateY(0); }
+.reveal-children.revealed > *:nth-child(6) { transition-delay: 0.6s; opacity: 1; transform: translateY(0); }
+
+/* Hero letter-by-letter animation */
+@keyframes charSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hero-text-split .hero-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: charSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Whitespace character — preserve spaces */
+.hero-char-space {
+  width: 0.3em;
+}
+
+/* Hero body + cards fade in together */
+.hero-fade-group {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+}
+
+.hero-fade-group.hero-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
 }
 
 /* Thin separator */
