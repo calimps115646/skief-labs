@@ -3,14 +3,14 @@ import { Image } from 'astro:assets';
 import iconLogo from '../assets/Logos/Icon/Linen.png';
 
 const servicesLinks = [
-  { label: 'Data Intelligence', href: '/services' },
-  { label: 'Sales Acceleration', href: '/services' },
+  { label: 'Data Intelligence', href: '/services#data-intelligence' },
+  { label: 'Sales Acceleration', href: '/services#sales-acceleration' },
   { label: 'Use Cases', href: '/use-cases' },
 ];
 
 const companyLinks = [
   { label: 'How We Work', href: '/how-we-work' },
-  { label: 'About', href: '/about' },
+  { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -58,7 +58,7 @@ const legalLinks = [
         <ul class="space-y-2">
           {servicesLinks.map((link) => (
             <li>
-              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200">
+              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200 footer-nav-link">
                 {link.label}
               </a>
             </li>
@@ -72,7 +72,7 @@ const legalLinks = [
         <ul class="space-y-2">
           {companyLinks.map((link) => (
             <li>
-              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200">
+              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200 footer-nav-link">
                 {link.label}
               </a>
             </li>
@@ -86,7 +86,7 @@ const legalLinks = [
         <ul class="space-y-2">
           {legalLinks.map((link) => (
             <li>
-              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200">
+              <a href={link.href} class="text-sm text-linen/60 hover:text-linen transition-colors duration-200 footer-nav-link">
                 {link.label}
               </a>
             </li>
@@ -102,3 +102,30 @@ const legalLinks = [
     </div>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll('.footer-nav-link').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const anchor = e.currentTarget as HTMLAnchorElement;
+      const url = new URL(anchor.href);
+      const hash = url.hash;
+      const targetPath = url.pathname.replace(/\/$/, '');
+      const currentPath = window.location.pathname.replace(/\/$/, '');
+
+      // If link has a hash and we're already on that page, smooth scroll
+      if (hash && targetPath === currentPath) {
+        e.preventDefault();
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, '', hash);
+        }
+      }
+      // If link points to current page without hash, scroll to top
+      else if (!hash && targetPath === currentPath) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>

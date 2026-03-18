@@ -276,6 +276,18 @@ body {
   box-shadow: 8px 8px 0px 0px #001233;
 }
 
+/* Build card hover (services page - What We Build boxes) */
+.build-card {
+  box-shadow: none;
+  border-color: rgba(0, 18, 51, 0.15);
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.build-card:hover {
+  border-color: #001233;
+  box-shadow: 8px 8px 0px 0px #001233;
+}
+
 /* Neon underline highlight */
 .neon-underline {
   background-image: linear-gradient(to right, var(--color-neon), var(--color-neon));
@@ -424,6 +436,56 @@ body {
   opacity: 1 !important;
   visibility: visible !important;
   transform: translateY(0) !important;
+}
+
+/* Page load animations (non-home pages) */
+@keyframes pageFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-animate {
+  opacity: 0;
+}
+
+.page-animate.page-loaded .page-hero-title {
+  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+.page-animate.page-loaded .page-hero-subtitle {
+  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.page-animate.page-loaded .page-hero-body {
+  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.page-animate.page-loaded .page-hero-cta {
+  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.7s;
+  opacity: 0;
+}
+
+.page-animate.page-loaded .page-hero-image {
+  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.page-animate.page-loaded {
+  opacity: 1;
 }
 
 /* Thin separator */

@@ -17,7 +17,8 @@
       "Bash(ls \"E:\\\\Coding\\\\skief-labs\\\\node_modules\\\\astro\"\" 2>&1 | head -5 && ls \"E:Codingskief-labsnode_modules.binastro \"*)",
       "Bash(node -e \"console.log\\(require.resolve\\(''astro''\\)\\)\")",
       "WebFetch(domain:www.skief.co)",
-      "WebFetch(domain:www.skieflabs.com)"
+      "WebFetch(domain:www.skieflabs.com)",
+      "WebFetch(domain:vetpulse.ai)"
     ]
   }
 }

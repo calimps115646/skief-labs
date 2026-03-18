@@ -7,14 +7,16 @@ import Layout from '../layouts/Layout.astro';
   <section class="bg-linen py-24 md:py-36">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="max-w-3xl">
-        <h1 class="heading-serif text-4xl md:text-6xl lg:text-7xl text-navy-900 mb-8">
+        <h1 class="page-hero-title heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-navy-900 mb-8 leading-[1.1] uppercase">
           If the friction is real, it's worth a conversation.
         </h1>
-        <p class="text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl mb-10">
+        <p class="page-hero-body text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl mb-10">
           Most teams reach out when something that used to work has stopped working at scale — and the manual workarounds are no longer sustainable. If that's where you are, this is the right next step.
         </p>
-        <a href="#book" class="btn-primary">Book a 30-minute discovery call</a>
-        <p class="text-navy-900/50 text-sm mt-3 italic">No pitch. No obligation. Just clarity.</p>
+        <div class="page-hero-cta">
+          <a href="#book" class="btn-primary">Book a 30-minute discovery call</a>
+          <p class="text-navy-900/50 text-sm mt-3 italic">No pitch. No obligation. Just clarity.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -24,7 +26,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <h2 class="heading-serif text-3xl md:text-4xl text-linen">
+          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-linen leading-[1.25] tracking-[-0.02em]">
             What this conversation is
           </h2>
         </div>
@@ -88,7 +90,7 @@ import Layout from '../layouts/Layout.astro';
   <section class="section-dark py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="max-w-3xl">
-        <h2 class="heading-serif text-3xl md:text-4xl text-linen mb-8">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-linen mb-8 leading-[1.25] tracking-[-0.02em]">
           What happens after the call
         </h2>
         <div class="space-y-4 text-linen/80 text-base md:text-lg leading-relaxed">
@@ -103,7 +105,7 @@ import Layout from '../layouts/Layout.astro';
   <!-- CALENDLY / CTA -->
   <section id="book" class="bg-linen py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
-      <h2 class="heading-serif text-3xl md:text-4xl text-navy-900 mb-8">
+      <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-8 leading-[1.25] tracking-[-0.02em]">
         Book your discovery call
       </h2>
       <p class="text-navy-900/70 text-base md:text-lg mb-10 max-w-xl mx-auto">
