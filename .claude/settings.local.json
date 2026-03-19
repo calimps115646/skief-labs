@@ -18,7 +18,9 @@
       "Bash(node -e \"console.log\\(require.resolve\\(''astro''\\)\\)\")",
       "WebFetch(domain:www.skief.co)",
       "WebFetch(domain:www.skieflabs.com)",
-      "WebFetch(domain:vetpulse.ai)"
+      "WebFetch(domain:vetpulse.ai)",
+      "Bash(npx --yes sharp-cli -i \"E:/Coding/skief-labs/src/assets/Logos/Icon/Navy.png\" -o \"E:/Coding/skief-labs/public/favicon-navy-32.png\" resize 32 32)",
+      "Bash(npx sharp-cli:*)"
     ]
   }
 }

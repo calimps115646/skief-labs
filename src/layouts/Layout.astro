@@ -9,7 +9,7 @@ interface Props {
 }
 
 const {
-  title = 'Skief Labs — Data Intelligence & Sales Acceleration for B2B',
+  title = 'Skief Labs',
   description = 'Skief Labs builds data intelligence and sales acceleration systems for B2B companies. Less friction. More pipeline. Systems that work.',
 } = Astro.props;
 ---
@@ -20,7 +20,25 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon-navy.png" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/png" href="/favicon-linen.png" media="(prefers-color-scheme: dark)" />
+    <script is:inline>
+      (function() {
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        function updateFavicon(dark) {
+          var href = dark ? '/favicon-linen.png' : '/favicon-navy.png';
+          var links = document.querySelectorAll('link[rel="icon"]');
+          links.forEach(function(link) { link.remove(); });
+          var link = document.createElement('link');
+          link.rel = 'icon';
+          link.type = 'image/png';
+          link.href = href + '?v=' + Date.now();
+          document.head.appendChild(link);
+        }
+        updateFavicon(mq.matches);
+        mq.addEventListener('change', function(e) { updateFavicon(e.matches); });
+      })();
+    </script>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
