@@ -133,7 +133,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- CALENDLY / CTA -->
-  <section id="book" class="bg-linen py-24 md:py-32">
+  <section id="book" class="py-24 md:py-32" style="background-color:#f9f6f0;">
     <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
       <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-8 leading-[1.25] tracking-[-0.02em]">
         Book your discovery call
@@ -142,9 +142,18 @@ import Layout from '../layouts/Layout.astro';
         Choose a time that works for you. The call takes 30 minutes.
       </p>
 
-      <!-- Calendly inline embed -->
-      <div class="calendly-inline-widget max-w-2xl mx-auto mb-10" data-url="https://calendly.com/skief/discovery-call?hide_gdpr_banner=1&background_color=faf8f5&text_color=001233&primary_color=3366FF" style="min-width:320px;height:700px;"></div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <!-- Cal.com inline embed -->
+      <div id="my-cal-inline" class="max-w-4xl mx-auto mb-10 rounded-lg border-2 border-navy-900 shadow-[6px_6px_0px_0px_rgba(0,18,51,1)]" style="min-width:320px;height:750px;overflow:auto;background-color:#f9f6f0;"></div>
+      <script type="text/javascript">
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://cal.eu/embed/embed.js", "init");
+        Cal("init", {origin:"https://cal.eu"});
+        Cal("inline", {
+          elementOrSelector:"#my-cal-inline",
+          calLink: "skief/intro",
+          layout: "column_view"
+        });
+        Cal("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-bg":"#f9f6f0","cal-bg-emphasis":"#f0ebe3","cal-bg-subtle":"#f9f6f0","cal-bg-muted":"#f9f6f0","cal-bg-inverted":"#001233","cal-border":"#d9d0c4","cal-border-subtle":"#e5ded4","cal-border-booker":"#d9d0c4","cal-text-emphasis":"#001233","cal-bg-info":"#f9f6f0"}},"styles":{"branding":{"brandColor":"#3366FF"}},"hideEventTypeDetails":false,"layout":"column_view"});
+      </script>
 
       <p class="text-navy-900/60 text-base">
         Or reach us directly: <a href="mailto:contact@skieflabs.com" class="text-blue-500 hover:text-blue-600 transition-colors duration-200">contact@skieflabs.com</a>

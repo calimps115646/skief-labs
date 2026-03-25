@@ -1,0 +1,640 @@
+<!-- Skief Labs AI Chat Widget -->
+<div id="skief-chat-widget">
+  <!-- Chat Toggle Button -->
+  <button id="chat-toggle" aria-label="Open chat" title="Ask us anything">
+    <!-- Chat icon -->
+    <svg id="chat-icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <!-- Close icon (hidden by default) -->
+    <svg id="chat-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <!-- Chat Window -->
+  <div id="chat-window" class="chat-hidden">
+    <!-- Header -->
+    <div id="chat-header">
+      <div id="chat-header-info">
+        <div id="chat-avatar">
+          <img src="/images/skief-neon-icon.png" alt="Skief" id="chat-avatar-img" />
+        </div>
+        <div>
+          <div id="chat-header-name">Skief Labs</div>
+          <div id="chat-header-status">AI Assistant</div>
+        </div>
+      </div>
+      <button id="chat-close-btn" aria-label="Close chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div id="chat-messages">
+      <div class="chat-msg chat-msg-bot">
+        <div class="chat-msg-avatar-small">
+          <img src="/images/skief-neon-icon.png" alt="" width="22" height="22" />
+        </div>
+        <div class="chat-msg-content">Hi! I'm the Skief Labs assistant. I can answer questions about our services, pricing, and how we work. What would you like to know?</div>
+      </div>
+    </div>
+
+    <!-- Suggested Questions -->
+    <div id="chat-suggestions">
+      <div class="chat-suggestions-row">
+        <button class="chat-suggestion" data-question="What services do you offer?">What services do you offer?</button>
+        <button class="chat-suggestion" data-question="How much does it cost?">How much does it cost?</button>
+      </div>
+      <button class="chat-suggestion" data-question="How do I get started?">How do I get started?</button>
+    </div>
+
+    <!-- Input -->
+    <div id="chat-input-area">
+      <textarea id="chat-input" placeholder="Ask a question..." rows="1"></textarea>
+      <button id="chat-send" aria-label="Send message" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Powered by -->
+    <div id="chat-footer">
+      Powered by <strong>Skief Labs AI</strong>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* ===== CHAT TOGGLE BUTTON ===== */
+  #chat-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #001233;
+    color: #F9F6F0;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 18, 51, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  #chat-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(0, 18, 51, 0.4);
+  }
+  #chat-toggle.chat-active {
+    background-color: #001233;
+  }
+
+  /* ===== CHAT WINDOW ===== */
+  #chat-window {
+    position: fixed;
+    bottom: 92px;
+    right: 24px;
+    z-index: 9998;
+    width: 380px;
+    max-height: min(560px, calc(100vh - 100px));
+    max-height: min(560px, calc(100dvh - 100px));
+    border-radius: 16px;
+    background-color: #F9F6F0;
+    border: none;
+    box-shadow: 0 12px 48px rgba(0, 18, 51, 0.18), 0 4px 16px rgba(0, 18, 51, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  }
+  #chat-window.chat-hidden {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+    visibility: hidden;
+    pointer-events: none;
+  }
+  #chat-window.chat-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  /* Mobile / zoomed responsive */
+  @media (max-width: 480px) {
+    #chat-window {
+      width: calc(100vw - 16px);
+      right: 8px;
+      bottom: 80px;
+      max-height: calc(100vh - 100px);
+      max-height: calc(100dvh - 100px);
+      border-radius: 12px;
+    }
+    #chat-toggle {
+      bottom: 16px;
+      right: 16px;
+      width: 50px;
+      height: 50px;
+    }
+  }
+  @media (max-width: 700px) {
+    #chat-window {
+      width: min(380px, calc(100vw - 16px));
+      right: 8px;
+      max-height: calc(100vh - 100px);
+      max-height: calc(100dvh - 100px);
+    }
+  }
+
+  /* ===== HEADER ===== */
+  #chat-header {
+    background-color: #001233;
+    color: #F9F6F0;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  #chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #chat-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  #chat-avatar-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+  #chat-header-name {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+  #chat-header-status {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    opacity: 0.65;
+    letter-spacing: 0.03em;
+  }
+  #chat-close-btn {
+    background: none;
+    border: none;
+    color: #F9F6F0;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  #chat-close-btn:hover {
+    opacity: 1;
+  }
+
+  /* ===== MESSAGES ===== */
+  #chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: min(320px, 45vh);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 18, 51, 0.2) transparent;
+  }
+  #chat-messages::-webkit-scrollbar {
+    width: 4px;
+  }
+  #chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #chat-messages::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 18, 51, 0.2);
+    border-radius: 4px;
+  }
+  .chat-msg {
+    display: flex;
+    max-width: 88%;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .chat-msg-bot {
+    align-self: flex-start;
+  }
+  .chat-msg-user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  /* Small avatar next to bot messages */
+  .chat-msg-avatar-small {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    max-width: 22px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  #skief-chat-widget .chat-msg-avatar-small img {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    object-fit: contain;
+    display: block;
+  }
+  .chat-msg-avatar-user {
+    background-color: #001233;
+    border-radius: 50%;
+  }
+
+  .chat-msg-content {
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .chat-msg-bot .chat-msg-content {
+    background-color: #EDE9E1;
+    color: #001233;
+    border: none;
+    border-bottom-left-radius: 4px;
+  }
+  .chat-msg-user .chat-msg-content {
+    background-color: #001233;
+    color: #F9F6F0;
+    border: none;
+    border-bottom-right-radius: 4px;
+  }
+
+  /* Typing indicator */
+  .chat-typing {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+  }
+  .chat-typing-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #001233;
+    opacity: 0.3;
+    animation: chatTypingBounce 1.2s infinite;
+  }
+  .chat-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+  .chat-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes chatTypingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+    30% { transform: translateY(-5px); opacity: 0.8; }
+  }
+
+  /* ===== SUGGESTIONS ===== */
+  #chat-suggestions {
+    padding: 6px 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .chat-suggestions-row {
+    display: flex;
+    gap: 6px;
+  }
+  .chat-suggestion {
+    background-color: #EDE9E1;
+    color: #001233;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .chat-suggestion:hover {
+    background-color: #001233;
+    color: #F9F6F0;
+  }
+
+  /* ===== INPUT AREA ===== */
+  #chat-input-area {
+    padding: 10px 14px;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    border-top: 1px solid rgba(0, 18, 51, 0.06);
+    flex-shrink: 0;
+  }
+  #chat-input {
+    flex: 1;
+    resize: none;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.4;
+    background-color: #EDE9E1;
+    color: #001233;
+    outline: none;
+    max-height: 80px;
+    transition: background-color 0.2s ease;
+  }
+  #chat-input:focus {
+    background-color: #E5E1D9;
+  }
+  #chat-input::placeholder {
+    color: rgba(0, 18, 51, 0.4);
+  }
+  #chat-send {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background-color: #001233;
+    color: #F9F6F0;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
+  #chat-send:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  #chat-send:not(:disabled):hover {
+    background-color: #0A60FF;
+  }
+
+  /* ===== FOOTER ===== */
+  #chat-footer {
+    text-align: center;
+    padding: 6px 14px 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 10.5px;
+    color: rgba(0, 18, 51, 0.5);
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+  #chat-footer strong {
+    font-weight: 700;
+    color: rgba(0, 18, 51, 0.65);
+  }
+</style>
+
+<script>
+  // Chat Widget Logic
+  const chatToggle = document.getElementById('chat-toggle')!;
+  const chatWindow = document.getElementById('chat-window')!;
+  const chatCloseBtn = document.getElementById('chat-close-btn')!;
+  const chatMessages = document.getElementById('chat-messages')!;
+  const chatInput = document.getElementById('chat-input') as HTMLTextAreaElement;
+  const chatSend = document.getElementById('chat-send') as HTMLButtonElement;
+  const chatSuggestions = document.getElementById('chat-suggestions')!;
+  const iconOpen = document.getElementById('chat-icon-open')!;
+  const iconClose = document.getElementById('chat-icon-close')!;
+
+  let isOpen = false;
+  let isLoading = false;
+  let conversationHistory: { role: string; content: string }[] = [];
+
+  const STORAGE_KEY = 'skief-chat-history';
+  const STORAGE_EXPIRY_KEY = 'skief-chat-expiry';
+  const SESSION_HOURS = 24; // Chat history expires after 24 hours
+
+  // Detect if this is a hard refresh
+  const isRefresh = performance.getEntriesByType('navigation').length > 0 &&
+    (performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming).type === 'reload';
+
+  if (isRefresh) {
+    try {
+      sessionStorage.removeItem(STORAGE_KEY);
+      sessionStorage.removeItem(STORAGE_EXPIRY_KEY);
+    } catch (e) {}
+  }
+
+  // Save chat to sessionStorage
+  function saveChat() {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(conversationHistory));
+      sessionStorage.setItem(STORAGE_EXPIRY_KEY, String(Date.now() + SESSION_HOURS * 60 * 60 * 1000));
+    } catch (e) { /* sessionStorage full or unavailable */ }
+  }
+
+  // Load chat from sessionStorage
+  function loadChat() {
+    try {
+      const expiry = sessionStorage.getItem(STORAGE_EXPIRY_KEY);
+      if (expiry && Date.now() > Number(expiry)) {
+        sessionStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem(STORAGE_EXPIRY_KEY);
+        return;
+      }
+      const saved = sessionStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        conversationHistory = JSON.parse(saved);
+        if (conversationHistory.length > 0) {
+          // Remove the default welcome message
+          chatMessages.innerHTML = '';
+          // Re-render the welcome message
+          addMessageToUI("Hi! I'm the Skief Labs assistant. I can answer questions about our services, pricing, and how we work. What would you like to know?", 'bot');
+          // Re-render all saved messages
+          for (const msg of conversationHistory) {
+            addMessageToUI(msg.content, msg.role === 'user' ? 'user' : 'bot');
+          }
+          // Hide suggestions since conversation already started
+          chatSuggestions.style.display = 'none';
+          // Scroll to bottom
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+      }
+    } catch (e) { /* parse error or unavailable */ }
+  }
+
+  // Add message to UI only (no saving)
+  function addMessageToUI(text: string, sender: 'user' | 'bot') {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `chat-msg chat-msg-${sender}`;
+
+    if (sender === 'bot') {
+      const avatarDiv = document.createElement('div');
+      avatarDiv.className = 'chat-msg-avatar-small';
+      avatarDiv.innerHTML = '<img src="/images/skief-neon-icon.png" alt="" width="22" height="22" />';
+      msgDiv.appendChild(avatarDiv);
+    } else {
+      const avatarDiv = document.createElement('div');
+      avatarDiv.className = 'chat-msg-avatar-small chat-msg-avatar-user';
+      avatarDiv.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F9F6F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+      msgDiv.appendChild(avatarDiv);
+    }
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'chat-msg-content';
+    contentDiv.textContent = text;
+
+    msgDiv.appendChild(contentDiv);
+    chatMessages.appendChild(msgDiv);
+  }
+
+  // Load saved chat on page load
+  loadChat();
+
+  // Toggle chat window
+  function toggleChat() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      chatWindow.classList.remove('chat-hidden');
+      chatWindow.classList.add('chat-visible');
+      chatToggle.classList.add('chat-active');
+      iconOpen.style.display = 'none';
+      iconClose.style.display = 'block';
+      chatInput.focus();
+    } else {
+      chatWindow.classList.remove('chat-visible');
+      chatWindow.classList.add('chat-hidden');
+      chatToggle.classList.remove('chat-active');
+      iconOpen.style.display = 'block';
+      iconClose.style.display = 'none';
+    }
+  }
+
+  chatToggle.addEventListener('click', toggleChat);
+  chatCloseBtn.addEventListener('click', toggleChat);
+
+  // Auto-resize textarea
+  chatInput.addEventListener('input', () => {
+    chatInput.style.height = 'auto';
+    chatInput.style.height = Math.min(chatInput.scrollHeight, 80) + 'px';
+    chatSend.disabled = chatInput.value.trim() === '' || isLoading;
+  });
+
+  // Send message
+  async function sendMessage(text: string) {
+    if (isLoading || !text.trim()) return;
+
+    // Hide suggestions after first message
+    chatSuggestions.style.display = 'none';
+
+    // Add user message to UI
+    addMessage(text, 'user');
+    conversationHistory.push({ role: 'user', content: text });
+    saveChat();
+
+    // Clear input
+    chatInput.value = '';
+    chatInput.style.height = 'auto';
+    chatSend.disabled = true;
+    isLoading = true;
+
+    // Show typing indicator
+    const typingEl = showTyping();
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: conversationHistory }),
+      });
+
+      const data = await response.json();
+
+      // Remove typing indicator
+      typingEl.remove();
+
+      if (response.ok && data.message) {
+        addMessage(data.message, 'bot');
+        conversationHistory.push({ role: 'assistant', content: data.message });
+        saveChat();
+      } else {
+        addMessage("Sorry, I'm having trouble right now. Please try again or reach us at contact@skieflabs.com.", 'bot');
+      }
+    } catch (error) {
+      typingEl.remove();
+      addMessage("Sorry, I couldn't connect. Please try again or email us at contact@skieflabs.com.", 'bot');
+    }
+
+    isLoading = false;
+    chatSend.disabled = chatInput.value.trim() === '';
+  }
+
+  // Add message to chat
+  function addMessage(text: string, sender: 'user' | 'bot') {
+    addMessageToUI(text, sender);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Show typing indicator
+  function showTyping(): HTMLElement {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'chat-msg chat-msg-bot';
+    typingDiv.innerHTML = `
+      <div class="chat-msg-avatar-small">
+        <img src="/images/skief-neon-icon.png" alt="" width="22" height="22" />
+      </div>
+      <div class="chat-msg-content chat-typing">
+        <div class="chat-typing-dot"></div>
+        <div class="chat-typing-dot"></div>
+        <div class="chat-typing-dot"></div>
+      </div>
+    `;
+    chatMessages.appendChild(typingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return typingDiv;
+  }
+
+  // Send button click
+  chatSend.addEventListener('click', () => sendMessage(chatInput.value));
+
+  // Enter to send (Shift+Enter for new line)
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(chatInput.value);
+    }
+  });
+
+  // Suggestion buttons
+  document.querySelectorAll('.chat-suggestion').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const question = (btn as HTMLElement).dataset.question || '';
+      sendMessage(question);
+    });
+  });
+</script>

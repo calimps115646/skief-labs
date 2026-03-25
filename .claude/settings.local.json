@@ -20,7 +20,12 @@
       "WebFetch(domain:www.skieflabs.com)",
       "WebFetch(domain:vetpulse.ai)",
       "Bash(npx --yes sharp-cli -i \"E:/Coding/skief-labs/src/assets/Logos/Icon/Navy.png\" -o \"E:/Coding/skief-labs/public/favicon-navy-32.png\" resize 32 32)",
-      "Bash(npx sharp-cli:*)"
+      "Bash(npx sharp-cli:*)",
+      "Bash(find E:Codingskief-labs -maxdepth 2 -type f \\\\\\(-name vercel.json -o -name .vercelignore -o -name *.json \\\\\\))",
+      "Read(//mnt/e/Coding/skief-labs/public/**)",
+      "Bash(convert sk6.png sk6.jpg)",
+      "Bash(ls -la sk6.*)",
+      "Bash(npx --yes sharp-cli -i \"E:/Coding/skief-labs/public/images/sk6.png\" -o \"E:/Coding/skief-labs/public/images/sk6.jpg\" --format jpeg)"
     ]
   }
 }

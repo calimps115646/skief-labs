@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 
 interface Props {
   title?: string;
@@ -53,6 +54,7 @@ const {
       <slot />
     </main>
     <Footer />
+    <ChatWidget />
     <script>
       const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
       if (!isHome) {
