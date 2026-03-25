@@ -25,7 +25,12 @@
       "Read(//mnt/e/Coding/skief-labs/public/**)",
       "Bash(convert sk6.png sk6.jpg)",
       "Bash(ls -la sk6.*)",
-      "Bash(npx --yes sharp-cli -i \"E:/Coding/skief-labs/public/images/sk6.png\" -o \"E:/Coding/skief-labs/public/images/sk6.jpg\" --format jpeg)"
+      "Bash(npx --yes sharp-cli -i \"E:/Coding/skief-labs/public/images/sk6.png\" -o \"E:/Coding/skief-labs/public/images/sk6.jpg\" --format jpeg)",
+      "Bash(git status:*)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
