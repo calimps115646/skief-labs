@@ -146,6 +146,50 @@ export const knowledgeBase: KBChunk[] = [
     keywords: ["reply", "response", "objection", "handling", "negative", "positive", "interested", "not interested", "timing", "budget"],
     content: `Skief Labs has a sophisticated reply handling system with 13 classification categories. Interested replies (Hot/Warm/Soft) get fast response — Hot within 1 hour, Warm within 4 hours. Common objections are handled with proven frameworks: Timing objections ("not now") get value-based follow-up with permission to reconnect. Budget objections get ROI-focused responses. Competitor objections get differentiation messaging. The system automates classification, suppresses unsubscribes, logs out-of-office return dates, sends Slack alerts for hot leads, and updates CRM. Target: 15-25% positive reply rate, with objection-to-meeting conversion tracked as a key metric.`
   },
+
+  // ===== ABM & DEMAND GENERATION OPERATING SYSTEM =====
+  {
+    id: "abm-demand-gen-foundation",
+    title: "ABM & Demand Generation Operating System",
+    keywords: ["abm", "demand generation", "account based", "account-based", "operating system", "foundation", "framework", "system"],
+    content: `Skief Labs uses a complete ABM & Demand Generation Operating System as its foundation. This is not theoretical — it's a working model used to identify the right accounts, generate demand with them, and convert engagement into pipeline. The core shift: from lead generation to account-based demand generation. This means fewer accounts, deeper understanding, higher conversion. The system has 5 core components executed sequentially: (1) Market Segmentation, (2) Ideal Customer Profile (ICP), (3) Account Segmentation (Tiers), (4) Buying Committee Mapping, (5) Account Intelligence. Everything else — outreach, content, campaigns — depends on this foundation being correct.`
+  },
+  {
+    id: "market-segmentation",
+    title: "Market Segmentation Process",
+    keywords: ["segmentation", "market", "segment", "targeting", "industry", "vertical", "prioritize", "score"],
+    content: `Market Segmentation identifies which segments are worth targeting. Step 1: Define 5-10 candidate segments based on industry, use case, customer type, and geography (e.g., Enterprise SaaS, Construction, Data Centers, Manufacturing). Step 2: Score each segment using a scoring model (0-3 per criteria): Competition (very high=0 to low=3), Segment Size (<500=0 to 10k+=3), Lifecycle (one-off=0 to 5+ yrs=3), LTV (low=0 to high=3), Growth Rate (declining=0 to fast-growing=3). Sum scores, rank all segments. Step 3: Prioritize — select 1-2 primary segments (highest score) and 1 secondary segment. Rule: Focus beats coverage.`
+  },
+  {
+    id: "icp-definition",
+    title: "Ideal Customer Profile (ICP) Definition",
+    keywords: ["icp", "ideal customer", "profile", "perfect customer", "firmographic", "signals", "pain", "buying readiness"],
+    content: `ICP defines what a "perfect customer" looks like, optimized for revenue, retention, and ease of sale. ICP Structure includes: Firmographic Data (industry, company size, revenue, geography), Operational Signals (hiring patterns, tech stack, growth stage, expansion signals), Pain Indicators (inefficiencies, regulatory pressure, scaling challenges), and Buying Readiness Signals (active projects, budget ownership, strategic initiatives). Key Rule: ICP is segment-specific — do NOT create one ICP for all segments. Each segment needs its own ICP definition.`
+  },
+  {
+    id: "account-tiering",
+    title: "Account Segmentation and Tiering",
+    keywords: ["tier", "tiering", "account segmentation", "prioritize", "tier 1", "tier 2", "tier 3", "one-to-one", "one-to-few", "one-to-many", "strategic accounts"],
+    content: `Account Segmentation prioritizes accounts based on revenue potential and effort. Tier Structure: Tier 1 (10-20 accounts, extreme personalization, high budget, 1:1 approach — deep research, highly personalized campaigns), Tier 2 (50-100 accounts, moderate personalization, medium budget, 1:few approach — clustered accounts, semi-personalized), Tier 3 (200+ accounts, light personalization, low budget, 1:many approach — scaled campaigns). Decision Criteria: revenue potential, strategic importance, ease of access, and fit with ICP.`
+  },
+  {
+    id: "buying-committee",
+    title: "Buying Committee Mapping",
+    keywords: ["buying committee", "champion", "decision maker", "influencer", "blocker", "stakeholder", "buying process", "deal"],
+    content: `Buying Committee Mapping identifies who is involved in the buying process. Most deals fail because only one person is targeted. Core Roles: Champion (cares about pain relief, messaging: solve problem quickly), Decision Maker (cares about ROI and risk, messaging: business impact + justification), Influencer (cares about technical fit, messaging: how it works), Blocker (cares about risk and complexity, messaging: reduce risk and disruption). Key Principle: You are not selling to a person. You are influencing a system of people.`
+  },
+  {
+    id: "account-intelligence",
+    title: "Account Intelligence and Signal Types",
+    keywords: ["account intelligence", "signals", "trigger", "intent", "funding", "hiring signal", "buying signal", "timing"],
+    content: `Account Intelligence makes outreach feel inevitable, not cold. Three types of signals: Trigger Signals (High Intent) — funding rounds, new product/facility launch, regulatory changes. Operational Signals (Mid Intent) — hiring specific roles, process or tech changes, job descriptions mentioning pain points. Passive Signals (Low Intent) — content engagement, website visits, LinkedIn activity. Account intelligence enables better timing, better messaging, and higher response rates. This is the final layer that turns strategy into execution.`
+  },
+  {
+    id: "abm-common-mistakes",
+    title: "Common ABM and Demand Gen Mistakes",
+    keywords: ["mistakes", "common mistakes", "error", "wrong", "fail", "failure", "pitfall", "avoid"],
+    content: `Common mistakes in ABM and Demand Generation: (1) Skipping Segmentation — leads to poor targeting. (2) Weak ICP Definition — attracts wrong accounts. (3) No Tiering — wasted resources spread too thin. (4) Single-Person Targeting — deals stall because only one stakeholder is engaged instead of the full buying committee. (5) No Account Intelligence — outreach feels generic and poorly timed. These mistakes compound: skipping segmentation leads to weak ICP, which leads to no tiering, which leads to generic outreach that targets the wrong people.`
+  },
 ];
 
 // Simple keyword-based search for RAG
