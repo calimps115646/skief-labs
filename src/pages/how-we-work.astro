@@ -4,23 +4,128 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="How We Work - Skief Labs" description="Structured work. No chaos. No dependency. Learn how Skief Labs approaches every engagement with clarity and restraint.">
   <!-- HERO -->
-  <section class="bg-linen pt-12 pb-16 md:pt-16 md:pb-20">
+  <section class="bg-linen pt-20 pb-16 md:pt-28 md:pb-20">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <!-- Left: Text -->
         <div>
-          <h1 class="page-hero-title heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-navy-900 mb-8 leading-[1.1] uppercase">
-            Structured work. No chaos. No dependency.
+          <h1 class="page-hero-title heading-serif text-4xl md:text-5xl lg:text-[3.8rem] mb-6 leading-[1.1] uppercase" style="color: #001D52;">
+            Clear process.<br />No chaos.<br />No lock-in.
           </h1>
-          <div class="page-hero-body space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl">
-            <p>Most automation and systems projects fail not because the technology is wrong — but because the process around it is absent.</p>
-            <p>Tools get added before problems are understood. Systems get built without documentation. Clients are left dependent on the people who built them.</p>
-            <p>Our way of working exists to prevent exactly that.</p>
+          <div class="page-hero-body text-black text-sm md:text-base leading-relaxed max-w-xl">
+            <p>
+              Most automation projects fail not because the technology is<br />
+              wrong, but because the process around it is absent. We build<br />
+              systems with structure and documentation — so you're never<br />
+              dependent on us to run them.
+            </p>
           </div>
         </div>
-        <!-- Right: Image -->
-        <div class="page-hero-image relative">
-          <img src="/images/sk5.png" alt="Structured work process" class="w-full rounded-lg object-cover shadow-[8px_8px_0px_0px_#CFFF15]" />
+        <!-- Right: Flowchart graphic (with neon offset shadow) -->
+        <div class="page-hero-image relative flex justify-center">
+          <div class="w-full max-w-[420px] rounded-[10px] shadow-[8px_8px_0px_0px_#CFFF15] flex items-center justify-center p-8 md:p-10" style="background-color: #D9D9D9; aspect-ratio: 16/10;">
+            <svg viewBox="0 0 400 160" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+              <!-- Connector dashed lines -->
+              <line x1="79"  y1="75" x2="150" y2="75" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4,4" stroke-opacity="0.7"/>
+              <line x1="180" y1="75" x2="246" y2="75" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4,4" stroke-opacity="0.7"/>
+              <line x1="284" y1="75" x2="341" y2="75" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4,4" stroke-opacity="0.7"/>
+
+              <!-- TRAVELER — drawn first so shapes render on top -->
+              <g id="hw-traveler-group">
+                <circle class="hw-radar" r="11" fill="none" stroke="#001D52" stroke-width="1.2"/>
+                <circle r="8"   fill="none" stroke="#001D52" stroke-width="2"/>
+                <circle r="3.5" fill="#001D52"/>
+              </g>
+
+              <!-- SHAPES — drawn on top of traveler -->
+              <polygon points="48,60 48,90 78,75" fill="#0A60FF"/>
+              <rect    x="151" y="61" width="28" height="28" fill="#0A60FF"/>
+              <polygon points="265,59 283,75 265,91 247,75" fill="#0A60FF"/>
+              <polygon points="355,60 368,68 368,83 355,90 342,83 342,68" fill="#0A60FF"/>
+
+              <!-- LABELS — only these glow when dot passes -->
+              <text id="hw-lbl-i" x="63"  y="114" fill="#0A60FF" font-size="13" font-family="Nunito, sans-serif" font-weight="600" text-anchor="middle">Input</text>
+              <text id="hw-lbl-p" x="165" y="114" fill="#0A60FF" font-size="13" font-family="Nunito, sans-serif" font-weight="600" text-anchor="middle">Process</text>
+              <text id="hw-lbl-d" x="265" y="114" fill="#0A60FF" font-size="13" font-family="Nunito, sans-serif" font-weight="600" text-anchor="middle">Decision</text>
+              <text id="hw-lbl-o" x="355" y="114" fill="#0A60FF" font-size="13" font-family="Nunito, sans-serif" font-weight="600" text-anchor="middle">Output</text>
+            </svg>
+          </div>
+
+          <style>
+            /*
+              Dot travels x=78→355 continuously with no stops.
+              7s cycle: 0-4% fade in, 4-88% smooth linear travel, 88-93% fade out, 93-100% invisible snap back.
+              Label glow fires when dot is at each node x position.
+                Input  (x≈63):  dot starts here → glow 3–9%
+                Process(x=165): arrives at ~30%  → glow 27–35%
+                Decision(x=265):arrives at ~61%  → glow 58–66%
+                Output (x=355): arrives at ~88%  → glow 85–93%
+            */
+            /*
+              Dot enters from the very left edge (x=0), travels through Input icon,
+              continues to Process → Decision → Output. Label glows as dot crosses each node.
+                Input  (x=63):  dot hits at ~18% → glow 15–23%
+                Process(x=165): dot hits at ~43% → glow 40–48%
+                Decision(x=265):dot hits at ~66% → glow 63–71%
+                Output (x=355): dot hits at ~88% → glow 85–93%
+            */
+            @keyframes hw-dot-journey {
+              0%   { transform: translate(63px, 75px);  opacity: 0; }   /* at Input, hidden */
+              3%   { transform: translate(63px, 75px);  opacity: 1; }   /* appear at Input */
+              88%  { transform: translate(355px, 75px); opacity: 1; }   /* at Output */
+              93%  { transform: translate(355px, 75px); opacity: 0; }   /* fade out */
+              100% { transform: translate(63px, 75px);  opacity: 0; }   /* snap back */
+            }
+            #hw-traveler-group { animation: hw-dot-journey 7s linear 1.3s infinite backwards; }
+
+            /* Continuous radar ring on the dot */
+            @keyframes hw-radar-spin {
+              0%   { transform: scale(1);   opacity: 0.6; }
+              100% { transform: scale(2.0); opacity: 0;   }
+            }
+            .hw-radar {
+              transform-box: fill-box;
+              transform-origin: center;
+              animation: hw-radar-spin 1.4s ease-out 1.3s infinite backwards;
+            }
+
+            /* Label glows only — timed to when dot crosses each node
+               Dot travels x=63→355 over 3%–88%.
+               Input  (x=63):  dot appears here    → glow 1–9%
+               Process(x=165): 3% + 35%*85% ≈ 33% → glow 30–38%
+               Decision(x=265):3% + 69%*85% ≈ 62% → glow 59–67%
+               Output (x=355): arrives at 88%      → glow 85–93%
+            */
+            @keyframes hw-li {
+              0%       { fill: #0A60FF; }
+              3%       { fill: #93d0ff; }
+              10%      { fill: #0A60FF; }
+              100%     { fill: #0A60FF; }
+            }
+            @keyframes hw-lp {
+              0%, 29%  { fill: #0A60FF; }
+              33%      { fill: #93d0ff; }
+              40%      { fill: #0A60FF; }
+              100%     { fill: #0A60FF; }
+            }
+            @keyframes hw-ld {
+              0%, 58%  { fill: #0A60FF; }
+              62%      { fill: #93d0ff; }
+              69%      { fill: #0A60FF; }
+              100%     { fill: #0A60FF; }
+            }
+            @keyframes hw-lo {
+              0%, 84%  { fill: #0A60FF; }
+              88%      { fill: #93d0ff; }
+              95%      { fill: #0A60FF; }
+              100%     { fill: #0A60FF; }
+            }
+            #hw-lbl-i { animation: hw-li 7s linear 1.3s infinite backwards; }
+            #hw-lbl-p { animation: hw-lp 7s linear 1.3s infinite backwards; }
+            #hw-lbl-d { animation: hw-ld 7s linear 1.3s infinite backwards; }
+            #hw-lbl-o { animation: hw-lo 7s linear 1.3s infinite backwards; }
+          </style>
         </div>
       </div>
     </div>
@@ -29,10 +134,10 @@ import Layout from '../layouts/Layout.astro';
   <!-- THE PRINCIPLES — Tree/Flowchart with scroll animation -->
   <section id="principles-section" class="bg-linen py-24 md:py-32 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <!-- Top label -->
-      <div class="flex justify-center mb-0" data-tree="title">
-        <div class="inline-block border-2 border-navy-900 px-8 py-3 rounded shadow-[4px_4px_0px_0px_#001233]">
-          <p class="subhead-condensed text-sm text-navy-900 tracking-[0.2em] text-center">Our Principles</p>
+      <!-- Top label — Beat 4 page-load animation -->
+      <div class="flex justify-center mb-0 page-hero-next">
+        <div class="inline-block border-2 px-8 py-4 rounded shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+          <p class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] tracking-[-0.02em] text-center" style="color: #001D52;">Our Principles</p>
         </div>
       </div>
 
@@ -40,98 +145,98 @@ import Layout from '../layouts/Layout.astro';
       <div class="relative hidden md:block">
         <!-- Principle 1: RIGHT -->
         <div class="relative grid grid-cols-2 gap-0 py-8">
-          <div class="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 tree-vline" data-tree="vline1" style="background-color: #001233; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
-          <div class="absolute left-1/2 top-1/2 w-1/2 h-0.5 -translate-y-1/2 tree-hline" data-tree="hline1" style="background-color: #001233; transform-origin: left; transform: translateY(-50%) scaleX(0);"></div>
+          <div class="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 tree-vline" data-tree="vline1" style="background-color: #001D52; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
+          <div class="absolute left-1/2 top-1/2 w-1/2 h-[2px] -translate-y-1/2 tree-hline" data-tree="hline1" style="background-color: #001D52; transform-origin: left; transform: translateY(-50%) scaleX(0);"></div>
           <div></div>
-          <div class="relative z-10 bg-linen rounded-lg p-6 border text-center max-w-xs ml-auto tree-card" data-tree="card1" style="border-color: #001233; opacity: 0; transform: translateY(10px);">
-            <h3 class="text-navy-900 text-base font-semibold mb-1">Diagnosis before prescription</h3>
-            <p class="text-navy-900/70 text-sm leading-relaxed">We don't recommend solutions before we understand the problem. This sounds obvious. In practice, most vendors skip it.</p>
+          <div class="relative z-10 bg-linen rounded-[10px] p-6 border-2 text-center max-w-xs ml-auto tree-card" data-tree="card1" style="border-color: #001D52; opacity: 0; transform: translateY(10px);">
+            <h3 class="text-black text-base font-semibold mb-1">Diagnosis before prescription</h3>
+            <p class="text-black text-sm leading-relaxed">We don't recommend solutions before we understand the problem. This sounds obvious. In practice, most vendors skip it.</p>
           </div>
         </div>
 
         <!-- Principle 2: LEFT -->
         <div class="relative grid grid-cols-2 gap-0 py-8">
-          <div class="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 tree-vline" data-tree="vline2" style="background-color: #001233; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
-          <div class="absolute right-1/2 top-1/2 w-1/2 h-0.5 -translate-y-1/2 tree-hline" data-tree="hline2" style="background-color: #001233; transform-origin: right; transform: translateY(-50%) scaleX(0);"></div>
-          <div class="relative z-10 bg-linen rounded-lg p-6 border text-center max-w-xs tree-card" data-tree="card2" style="border-color: #001233; opacity: 0; transform: translateY(10px);">
-            <h3 class="text-navy-900 text-base font-semibold mb-1">Judgment before automation</h3>
-            <p class="text-navy-900/70 text-sm leading-relaxed">Not everything should be automated. We're deliberate about what stays human — and why. Restraint is part of what you're hiring.</p>
+          <div class="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 tree-vline" data-tree="vline2" style="background-color: #001D52; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
+          <div class="absolute right-1/2 top-1/2 w-1/2 h-[2px] -translate-y-1/2 tree-hline" data-tree="hline2" style="background-color: #001D52; transform-origin: right; transform: translateY(-50%) scaleX(0);"></div>
+          <div class="relative z-10 bg-linen rounded-[10px] p-6 border-2 text-center max-w-xs tree-card" data-tree="card2" style="border-color: #001D52; opacity: 0; transform: translateY(10px);">
+            <h3 class="text-black text-base font-semibold mb-1">Judgment before automation</h3>
+            <p class="text-black text-sm leading-relaxed">Not everything should be automated. We're deliberate about what stays human — and why. Restraint is part of what you're hiring.</p>
           </div>
           <div></div>
         </div>
 
         <!-- Principle 3: RIGHT -->
         <div class="relative grid grid-cols-2 gap-0 py-8">
-          <div class="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 tree-vline" data-tree="vline3" style="background-color: #001233; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
-          <div class="absolute left-1/2 top-1/2 w-1/2 h-0.5 -translate-y-1/2 tree-hline" data-tree="hline3" style="background-color: #001233; transform-origin: left; transform: translateY(-50%) scaleX(0);"></div>
+          <div class="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 tree-vline" data-tree="vline3" style="background-color: #001D52; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
+          <div class="absolute left-1/2 top-1/2 w-1/2 h-[2px] -translate-y-1/2 tree-hline" data-tree="hline3" style="background-color: #001D52; transform-origin: left; transform: translateY(-50%) scaleX(0);"></div>
           <div></div>
-          <div class="relative z-10 bg-linen rounded-lg p-6 border text-center max-w-xs ml-auto tree-card" data-tree="card3" style="border-color: #001233; opacity: 0; transform: translateY(10px);">
-            <h3 class="text-navy-900 text-base font-semibold mb-1">Clarity over complexity</h3>
-            <p class="text-navy-900/70 text-sm leading-relaxed">If a system can't be explained simply, it isn't finished. Every workflow we build can be understood by the people who use it.</p>
+          <div class="relative z-10 bg-linen rounded-[10px] p-6 border-2 text-center max-w-xs ml-auto tree-card" data-tree="card3" style="border-color: #001D52; opacity: 0; transform: translateY(10px);">
+            <h3 class="text-black text-base font-semibold mb-1">Clarity over complexity</h3>
+            <p class="text-black text-sm leading-relaxed">If a system can't be explained simply, it isn't finished. Every workflow we build can be understood by the people who use it.</p>
           </div>
         </div>
 
         <!-- Principle 4: LEFT -->
         <div class="relative grid grid-cols-2 gap-0 py-8">
-          <div class="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 tree-vline" data-tree="vline4" style="background-color: #001233; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
-          <div class="absolute right-1/2 top-1/2 w-1/2 h-0.5 -translate-y-1/2 tree-hline" data-tree="hline4" style="background-color: #001233; transform-origin: right; transform: translateY(-50%) scaleX(0);"></div>
-          <div class="relative z-10 bg-linen rounded-lg p-6 border text-center max-w-xs tree-card" data-tree="card4" style="border-color: #001233; opacity: 0; transform: translateY(10px);">
-            <h3 class="text-navy-900 text-base font-semibold mb-1">Ownership by design</h3>
-            <p class="text-navy-900/70 text-sm leading-relaxed">Nothing we build should require us to stay involved. Full documentation, clean handoff, zero dependency — by default, not on request.</p>
+          <div class="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 tree-vline" data-tree="vline4" style="background-color: #001D52; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
+          <div class="absolute right-1/2 top-1/2 w-1/2 h-[2px] -translate-y-1/2 tree-hline" data-tree="hline4" style="background-color: #001D52; transform-origin: right; transform: translateY(-50%) scaleX(0);"></div>
+          <div class="relative z-10 bg-linen rounded-[10px] p-6 border-2 text-center max-w-xs tree-card" data-tree="card4" style="border-color: #001D52; opacity: 0; transform: translateY(10px);">
+            <h3 class="text-black text-base font-semibold mb-1">Ownership by design</h3>
+            <p class="text-black text-sm leading-relaxed">Nothing we build should require us to stay involved. Full documentation, clean handoff, zero dependency — by default, not on request.</p>
           </div>
           <div></div>
         </div>
 
         <!-- Principle 5: RIGHT -->
         <div class="relative grid grid-cols-2 gap-0 py-8">
-          <div class="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 tree-vline" data-tree="vline5" style="background-color: #001233; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
-          <div class="absolute left-1/2 top-1/2 w-1/2 h-0.5 -translate-y-1/2 tree-hline" data-tree="hline5" style="background-color: #001233; transform-origin: left; transform: translateY(-50%) scaleX(0);"></div>
+          <div class="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 tree-vline" data-tree="vline5" style="background-color: #001D52; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
+          <div class="absolute left-1/2 top-1/2 w-1/2 h-[2px] -translate-y-1/2 tree-hline" data-tree="hline5" style="background-color: #001D52; transform-origin: left; transform: translateY(-50%) scaleX(0);"></div>
           <div></div>
-          <div class="relative z-10 bg-linen rounded-lg p-6 border text-center max-w-xs ml-auto tree-card" data-tree="card5" style="border-color: #001233; opacity: 0; transform: translateY(10px);">
-            <h3 class="text-navy-900 text-base font-semibold mb-1">Fixed scope. Fixed expectations.</h3>
-            <p class="text-navy-900/70 text-sm leading-relaxed">No drifting projects. No surprise invoices. No open-ended engagements that expand without your consent.</p>
+          <div class="relative z-10 bg-linen rounded-[10px] p-6 border-2 text-center max-w-xs ml-auto tree-card" data-tree="card5" style="border-color: #001D52; opacity: 0; transform: translateY(10px);">
+            <h3 class="text-black text-base font-semibold mb-1">Fixed scope. Fixed expectations.</h3>
+            <p class="text-black text-sm leading-relaxed">No drifting projects. No surprise invoices. No open-ended engagements that expand without your consent.</p>
           </div>
         </div>
 
         <!-- Final vertical line to bottom box -->
         <div class="relative" style="height: 60px;">
-          <div class="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 tree-vline" data-tree="vline6" style="background-color: #001233; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
+          <div class="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 tree-vline" data-tree="vline6" style="background-color: #001D52; transform-origin: top; transform: translateX(-50%) scaleY(0);"></div>
         </div>
       </div>
 
       <!-- ===== MOBILE: Simple stacked cards (hidden on desktop) ===== -->
       <div class="md:hidden space-y-4 mt-8">
-        <div class="bg-linen rounded-lg p-5 border text-center" style="border-color: #001233;">
-          <h3 class="text-navy-900 text-base font-semibold mb-1">Diagnosis before prescription</h3>
-          <p class="text-navy-900/70 text-sm leading-relaxed">We don't recommend solutions before we understand the problem. This sounds obvious. In practice, most vendors skip it.</p>
+        <div class="bg-linen rounded-[10px] p-5 border-2 text-center" style="border-color: #001D52;">
+          <h3 class="text-black text-base font-semibold mb-1">Diagnosis before prescription</h3>
+          <p class="text-black text-sm leading-relaxed">We don't recommend solutions before we understand the problem. This sounds obvious. In practice, most vendors skip it.</p>
         </div>
-        <div class="bg-linen rounded-lg p-5 border text-center" style="border-color: #001233;">
-          <h3 class="text-navy-900 text-base font-semibold mb-1">Judgment before automation</h3>
-          <p class="text-navy-900/70 text-sm leading-relaxed">Not everything should be automated. We're deliberate about what stays human — and why. Restraint is part of what you're hiring.</p>
+        <div class="bg-linen rounded-[10px] p-5 border-2 text-center" style="border-color: #001D52;">
+          <h3 class="text-black text-base font-semibold mb-1">Judgment before automation</h3>
+          <p class="text-black text-sm leading-relaxed">Not everything should be automated. We're deliberate about what stays human — and why. Restraint is part of what you're hiring.</p>
         </div>
-        <div class="bg-linen rounded-lg p-5 border text-center" style="border-color: #001233;">
-          <h3 class="text-navy-900 text-base font-semibold mb-1">Clarity over complexity</h3>
-          <p class="text-navy-900/70 text-sm leading-relaxed">If a system can't be explained simply, it isn't finished. Every workflow we build can be understood by the people who use it.</p>
+        <div class="bg-linen rounded-[10px] p-5 border-2 text-center" style="border-color: #001D52;">
+          <h3 class="text-black text-base font-semibold mb-1">Clarity over complexity</h3>
+          <p class="text-black text-sm leading-relaxed">If a system can't be explained simply, it isn't finished. Every workflow we build can be understood by the people who use it.</p>
         </div>
-        <div class="bg-linen rounded-lg p-5 border text-center" style="border-color: #001233;">
-          <h3 class="text-navy-900 text-base font-semibold mb-1">Ownership by design</h3>
-          <p class="text-navy-900/70 text-sm leading-relaxed">Nothing we build should require us to stay involved. Full documentation, clean handoff, zero dependency — by default, not on request.</p>
+        <div class="bg-linen rounded-[10px] p-5 border-2 text-center" style="border-color: #001D52;">
+          <h3 class="text-black text-base font-semibold mb-1">Ownership by design</h3>
+          <p class="text-black text-sm leading-relaxed">Nothing we build should require us to stay involved. Full documentation, clean handoff, zero dependency — by default, not on request.</p>
         </div>
-        <div class="bg-linen rounded-lg p-5 border text-center" style="border-color: #001233;">
-          <h3 class="text-navy-900 text-base font-semibold mb-1">Fixed scope. Fixed expectations.</h3>
-          <p class="text-navy-900/70 text-sm leading-relaxed">No drifting projects. No surprise invoices. No open-ended engagements that expand without your consent.</p>
+        <div class="bg-linen rounded-[10px] p-5 border-2 text-center" style="border-color: #001D52;">
+          <h3 class="text-black text-base font-semibold mb-1">Fixed scope. Fixed expectations.</h3>
+          <p class="text-black text-sm leading-relaxed">No drifting projects. No surprise invoices. No open-ended engagements that expand without your consent.</p>
         </div>
       </div>
 
       <!-- Bottom summary — desktop: animated, mobile: always visible -->
       <div class="hidden md:flex justify-center mt-0 tree-card" data-tree="summary" style="opacity: 0; transform: translateY(10px);">
-        <div class="inline-block border-2 border-navy-900 px-8 py-3 rounded bg-linen shadow-[4px_4px_0px_0px_#001233]">
-          <p class="text-navy-900/80 text-base text-center italic">These apply to every engagement, regardless of size or service.</p>
+        <div class="inline-block border-2 px-8 py-3 rounded bg-linen shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+          <p class="text-black text-base text-center italic">These apply to every engagement, regardless of size or service.</p>
         </div>
       </div>
       <div class="md:hidden flex justify-center mt-6">
-        <div class="inline-block border-2 border-navy-900 px-6 py-3 rounded bg-linen shadow-[4px_4px_0px_0px_#001233]">
-          <p class="text-navy-900/80 text-sm text-center italic">These apply to every engagement, regardless of size or service.</p>
+        <div class="inline-block border-2 px-6 py-3 rounded bg-linen shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+          <p class="text-black text-sm text-center italic">These apply to every engagement, regardless of size or service.</p>
         </div>
       </div>
     </div>
@@ -141,26 +246,26 @@ import Layout from '../layouts/Layout.astro';
   <section class="bg-linen py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="mb-16">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-4 leading-[1.25] tracking-[-0.02em]">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] mb-4 leading-[1.25] tracking-[-0.02em]" style="color: #001D52;">
           The Engagement
         </h2>
-        <p class="text-navy-900/70 text-base md:text-lg max-w-xl">
+        <p class="text-black text-base md:text-lg whitespace-nowrap">
           Once there's a clear fit, the path differs by service — but the principles are the same.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        <div class="service-card rounded-lg p-8 md:p-10 border-2 bg-linen">
-          <h3 class="subhead-condensed text-sm text-navy-900 tracking-[0.2em] mb-6">For Data Intelligence</h3>
-          <div class="space-y-5 text-navy-900/80 text-base leading-relaxed">
+        <div class="build-card rounded-[10px] p-8 md:p-10 border-2 bg-linen" style="border-color: #001D52;">
+          <h3 class="subhead-condensed text-sm tracking-[0.2em] mb-6 text-black">For Data Intelligence</h3>
+          <div class="space-y-5 text-black text-base leading-relaxed">
             <p>We scope the build based on what the discovery conversation reveals. Work is fixed in scope, time-bound, and fully documented.</p>
             <p>At completion, you own the system entirely — transferred access, clean documentation, logic any competent partner or internal hire could maintain.</p>
             <p>Some clients have us continue operating the system on an ongoing basis. Others take it and run it themselves. Either way is fine. The goal was never dependency.</p>
           </div>
         </div>
-        <div class="service-card rounded-lg p-8 md:p-10 border-2 bg-linen">
-          <h3 class="subhead-condensed text-sm text-navy-900 tracking-[0.2em] mb-6">For Sales Acceleration</h3>
-          <div class="space-y-5 text-navy-900/80 text-base leading-relaxed">
+        <div class="build-card rounded-[10px] p-8 md:p-10 border-2 bg-linen" style="border-color: #001D52;">
+          <h3 class="subhead-condensed text-sm tracking-[0.2em] mb-6 text-black">For Sales Acceleration</h3>
+          <div class="space-y-5 text-black text-base leading-relaxed">
             <p>We start with a pilot — a defined scope and fixed price that builds the system and runs it through the first weeks of live execution.</p>
             <p>Most clients move to an ongoing monthly retainer from there, where we continue running and optimizing the outbound motion.</p>
             <p>There's no obligation to continue beyond the pilot, and no lock-in at any point. The system — and everything in it — remains yours.</p>
@@ -169,14 +274,12 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Footer Note -->
-      <div class="pt-8 mt-10 border-t border-navy-900/10 flex items-center gap-5">
-        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-navy-900/5 shrink-0">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
-            <path d="m9 12 2 2 4-4"/>
-          </svg>
-        </div>
-        <p class="text-lg text-navy-900/50 whitespace-nowrap">
+      <div class="pt-8 mt-10 border-t border-navy/10 flex items-center justify-center gap-3">
+        <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="#001D52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+          <path d="m9 12 2 2 4-4"/>
+        </svg>
+        <p class="text-black text-base text-center">
           In both cases: nothing is built before the scope is clear. No surprises mid-engagement. No invoices for work you didn't agree to.
         </p>
       </div>
@@ -191,65 +294,30 @@ import Layout from '../layouts/Layout.astro';
         <div class="text-center">
           <div class="inline-block">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
-              <p class="subhead-condensed text-xs text-navy-900 tracking-[0.2em]">The Experience</p>
+              <div class="w-12 h-0.5 bg-navy"></div>
+              <p class="subhead-condensed text-xs text-navy tracking-[0.2em]">The Experience</p>
             </div>
-            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-3 leading-[1.25] tracking-[-0.02em] text-center">
+            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-3 leading-[1.25] tracking-[-0.02em] text-center">
               What working with us feels like
             </h2>
             <div class="flex justify-end">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
+              <div class="w-12 h-0.5 bg-navy"></div>
             </div>
           </div>
         </div>
         <div class="mb-10"></div>
 
-        <div class="space-y-6 text-navy-900/70 text-base md:text-lg leading-relaxed text-center">
-          <p class="text-navy-900 font-serif text-xl italic">Clients describe it as calm.</p>
-          <p>There are no status meetings held for the sake of appearances. No performative reporting designed to justify the invoice. No pressure to expand scope beyond what makes sense.</p>
-          <p>You'll always know what we're doing and why. Decisions are explained, not handed down. Progress is visible, not summarized at the end of the month.</p>
+        <div class="space-y-6 text-black text-base md:text-lg leading-relaxed text-center">
+          <p class="text-black italic">Clients describe it as calm.</p>
+          <p>There are no status meetings held for the sake of appearances.<br />No performative reporting designed to justify the invoice. No<br />pressure to expand scope beyond what makes sense.</p>
+          <p>You'll always know what we're doing and why. Decisions<br />are explained, not handed down. Progress is visible, not<br />summarized at the end of the month.</p>
         </div>
 
         <!-- Callout box -->
         <div class="flex items-stretch justify-center gap-4 mt-10">
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-          <p class="text-navy-900/70 text-sm italic leading-relaxed py-1 text-center">We build what needs to exist — and stop.</p>
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="bg-linen py-24 md:py-32">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="cta-box rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-[38%_62%] bg-navy-900">
-        <div class="cta-image-col">
-          <img src="/images/sk3.jpg" alt="Discovery call" class="w-full h-full object-cover" />
-        </div>
-        <div class="flex flex-col justify-center px-8 py-12 md:px-12 md:py-16 text-center">
-          <h2 class="font-serif text-2xl md:text-[1.75rem] lg:text-[2rem] text-linen mb-4 leading-[1.25] tracking-[-0.02em]">
-            <span class="neon-underline">One entry point. Always the same.</span>
-          </h2>
-          <p class="text-linen/80 text-lg md:text-xl leading-relaxed mb-8 italic">
-            A 30-minute discovery call.
-          </p>
-          <p class="text-linen/60 text-base leading-relaxed mb-6">
-            Not a pitch. Not a free audit. Not a commitment.
-          </p>
-          <p class="text-linen/70 text-base leading-relaxed mb-6">
-            A focused conversation to understand where friction is concentrated in your business — and whether we're the right people to remove it.
-          </p>
-          <p class="text-linen/70 text-base leading-relaxed mb-10">
-            Either way, you leave the call with more clarity than you arrived with.
-          </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/contact" class="cta-book-btn btn-primary inline-flex items-center gap-2">
-              Book a 30-minute discovery call
-              <span class="cta-arrow text-lg inline-block transition-transform duration-300">→</span>
-            </a>
-            <p class="text-linen/50 text-sm italic">No pitch. No obligation. Just clarity.</p>
-          </div>
+          <div class="w-0.5 bg-navy rounded-full flex-shrink-0"></div>
+          <p class="text-black text-sm italic leading-relaxed py-1 text-center">We build what needs to exist — and stop.</p>
+          <div class="w-0.5 bg-navy rounded-full flex-shrink-0"></div>
         </div>
       </div>
     </div>
@@ -259,16 +327,7 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .tree-vline, .tree-hline, .tree-card {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  [data-tree="title"] {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  [data-tree="title"].tree-visible {
-    opacity: 1;
-    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .tree-vline.tree-visible {
     transform: translateX(-50%) scaleY(1) !important;
@@ -283,11 +342,10 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <script>
-  // Scroll-driven tree animation for the Principles section (one-way — stays visible once revealed)
+  // Scroll-driven tree animation — sequenced one-at-a-time so lines never skip
   const section = document.getElementById('principles-section');
   if (section) {
     const steps = [
-      'title',
       'vline1', 'hline1', 'card1',
       'vline2', 'hline2', 'card2',
       'vline3', 'hline3', 'card3',
@@ -297,23 +355,42 @@ import Layout from '../layouts/Layout.astro';
     ];
 
     const elements = steps.map(s => section.querySelector(`[data-tree="${s}"]`)).filter(Boolean) as HTMLElement[];
-    let maxRevealed = -1; // Track highest revealed index (never goes back)
+    let maxRevealed = -1;
+    let revealTimer: ReturnType<typeof setTimeout> | null = null;
 
-    function updateTree() {
+    function revealSequence() {
+      const nextIndex = maxRevealed + 1;
+      if (nextIndex >= elements.length) return;
+
       const rect = section!.getBoundingClientRect();
       const viewH = window.innerHeight;
+
+      // Guard: don't start drawing until the section has scrolled well into view.
+      // This prevents tree lines from firing on initial page load before the user scrolls.
+      if (rect.top > viewH * 0.45) {
+        revealTimer = null;
+        return;
+      }
+
       const scrolled = viewH - rect.top;
-      const totalRange = rect.height + viewH * 0.3;
+      const totalRange = rect.height + viewH * 0.4;
       const progress = Math.max(0, Math.min(1, scrolled / totalRange));
       const stepSize = 1 / elements.length;
+      const threshold = nextIndex * stepSize;
 
-      elements.forEach((el, i) => {
-        const threshold = i * stepSize;
-        if (progress > threshold && i > maxRevealed) {
-          maxRevealed = i;
-          el.classList.add('tree-visible');
-        }
-      });
+      if (progress > threshold) {
+        maxRevealed = nextIndex;
+        elements[nextIndex].classList.add('tree-visible');
+        // Each step waits 160ms before revealing the next — smooth cascade even on fast scroll
+        revealTimer = setTimeout(revealSequence, 160);
+      } else {
+        revealTimer = null;
+      }
+    }
+
+    function updateTree() {
+      if (revealTimer) return; // Let the current cascade finish uninterrupted
+      revealSequence();
     }
 
     window.addEventListener('scroll', updateTree, { passive: true });

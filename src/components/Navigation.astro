@@ -12,7 +12,7 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-navy-900/30 backdrop-blur-sm">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-navy">
   <div class="max-w-6xl mx-auto px-6 lg:px-8">
     <div class="flex items-center justify-between h-18 md:h-20">
       <!-- Logo -->
@@ -42,7 +42,7 @@ const currentPath = Astro.url.pathname;
 
       <!-- Book a Call (Right) -->
       <div class="nav-desktop-cta">
-        <a href="/contact" class="btn-primary text-xs !py-2.5 !px-5">
+        <a href="/contact" class="btn-primary text-xs !py-3.5 !px-6">
           Book a Call
         </a>
       </div>
@@ -102,4 +102,11 @@ const currentPath = Astro.url.pathname;
   });
 
   // Nav stays transparent always
+
+  // Blur nav links after click so focus/hover state doesn't stick after navigation
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      (link as HTMLElement).blur();
+    });
+  });
 </script>

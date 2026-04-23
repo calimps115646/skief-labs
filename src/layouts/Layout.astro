@@ -47,6 +47,14 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500;700&family=Barlow+Condensed:wght@300;400&family=Nunito:wght@300;400;600;700&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet" />
     <title>{title}</title>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script is:inline>
+      // Always scroll to top on page load / refresh
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    </script>
   </head>
   <body>
     <Navigation />
@@ -57,13 +65,23 @@ const {
     <ChatWidget />
     <script>
       const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
+      // If the URL has a hash (e.g. coming from the home page to #data-intelligence),
+      // skip the entrance sequence entirely so content is visible immediately at the target.
+      const hasHash = !!window.location.hash && window.location.hash.length > 1;
       if (!isHome) {
-        // Page load animation for hero
+        // Page load animation for hero (skipped when navigating to a hash target)
         const main = document.querySelector('main');
-        if (main) {
+        if (main && !hasHash) {
           main.classList.add('page-animate');
           requestAnimationFrame(() => {
             main.classList.add('page-loaded');
+          });
+        }
+        // When arriving via hash, immediately reveal any page-load-only elements
+        if (hasHash) {
+          document.querySelectorAll('.page-hero-next').forEach((el) => {
+            (el as HTMLElement).style.opacity = '1';
+            (el as HTMLElement).style.transform = 'none';
           });
         }
 
@@ -74,7 +92,8 @@ const {
           section.classList.add('reveal');
         });
 
-        // Scroll reveal observer (same as home page)
+        // Scroll reveal observer — fires when an element's top crosses ~80px into the viewport,
+        // so each section animates in as the user actually reaches it.
         const revealObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -82,9 +101,22 @@ const {
               revealObserver.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12 });
+        }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Only immediately reveal elements that are ALREADY inside the viewport on first paint
+        // (prevents a flash of invisible content for sections already on screen, but leaves
+        //  off-screen sections to animate in when the user scrolls to them).
+        requestAnimationFrame(() => {
+          document.querySelectorAll('.reveal:not(.revealed)').forEach((el) => {
+            const rect = (el as HTMLElement).getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80 && rect.bottom > 0) {
+              el.classList.add('revealed');
+              revealObserver.unobserve(el);
+            }
+          });
+        });
       }
     </script>
   </body>

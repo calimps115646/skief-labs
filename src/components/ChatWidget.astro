@@ -81,22 +81,23 @@
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background-color: #001233;
+    background-color: #001d52;
     color: #F9F6F0;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(0, 18, 51, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 29, 82, 0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   }
   #chat-toggle:hover {
     transform: scale(1.08);
-    box-shadow: 0 6px 28px rgba(0, 18, 51, 0.4);
+    background-color: #001d52;
+    box-shadow: 0 6px 28px rgba(0, 29, 82, 0.4);
   }
   #chat-toggle.chat-active {
-    background-color: #001233;
+    background-color: #001d52;
   }
 
   /* ===== CHAT WINDOW ===== */
@@ -158,7 +159,7 @@
 
   /* ===== HEADER ===== */
   #chat-header {
-    background-color: #001233;
+    background-color: #001d52;
     color: #F9F6F0;
     padding: 16px 18px;
     display: flex;
@@ -273,7 +274,7 @@
     display: block;
   }
   .chat-msg-avatar-user {
-    background-color: #001233;
+    background-color: #001d52;
     border-radius: 50%;
   }
 
@@ -288,12 +289,12 @@
   }
   .chat-msg-bot .chat-msg-content {
     background-color: #EDE9E1;
-    color: #001233;
+    color: #000000;
     border: none;
     border-bottom-left-radius: 4px;
   }
   .chat-msg-user .chat-msg-content {
-    background-color: #001233;
+    background-color: #001d52;
     color: #F9F6F0;
     border: none;
     border-bottom-right-radius: 4px;
@@ -335,7 +336,7 @@
   }
   .chat-suggestion {
     background-color: #EDE9E1;
-    color: #001233;
+    color: #000000;
     border: none;
     border-radius: 20px;
     padding: 6px 14px;
@@ -347,7 +348,7 @@
     white-space: nowrap;
   }
   .chat-suggestion:hover {
-    background-color: #001233;
+    background-color: #001d52;
     color: #F9F6F0;
   }
 
@@ -370,7 +371,7 @@
     font-size: 13.5px;
     line-height: 1.4;
     background-color: #EDE9E1;
-    color: #001233;
+    color: #000000;
     outline: none;
     max-height: 80px;
     transition: background-color 0.2s ease;
@@ -385,7 +386,7 @@
     width: 38px;
     height: 38px;
     border-radius: 10px;
-    background-color: #001233;
+    background-color: #001d52;
     color: #F9F6F0;
     border: none;
     cursor: pointer;
@@ -400,7 +401,7 @@
     cursor: not-allowed;
   }
   #chat-send:not(:disabled):hover {
-    background-color: #0A60FF;
+    background-color: #001d52;
   }
 
   /* ===== FOOTER ===== */
@@ -415,7 +416,7 @@
   }
   #chat-footer strong {
     font-weight: 700;
-    color: rgba(0, 18, 51, 0.65);
+    color: #001d52;
   }
 </style>
 

@@ -4,365 +4,403 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Services - Skief Labs" description="Data Intelligence and Sales Acceleration services for B2B companies. AI-powered outbound systems and automated data pipelines.">
   <!-- HERO -->
-  <section class="bg-linen pt-12 pb-16 md:pt-16 md:pb-20">
+  <section class="bg-linen pt-24 pb-16 md:pt-32 md:pb-20">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <!-- Left: Text -->
         <div>
-          <h1 class="page-hero-title heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-navy-900 mb-6 leading-[1.1] uppercase">
+          <h1 class="page-hero-title heading-serif text-4xl md:text-5xl lg:text-[3.8rem] mb-6 leading-[1.1] uppercase" style="color: #001D52;">
             Two services.<br />Both done<br />seriously.
           </h1>
-          <div class="page-hero-body space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl">
-            <p>Skief Labs works on two specific problems for B2B companies:<br />getting the right data, and building the outbound systems that<br />turn it into pipeline.</p>
-            <p>We don't offer a menu of services. We don't take on work<br />outside these two areas.</p>
-            <p>If either problem is real for your business, it's worth a<br />conversation.</p>
+          <div class="page-hero-body text-black text-sm md:text-base leading-relaxed max-w-xl">
+            <p>
+              Skief Labs works on two specific problems for B2B companies:<br />
+              getting the right data, and building the outbound systems that<br />
+              turn it into pipeline. We don't offer a menu of services — just<br />
+              these two, done seriously. If either problem is real for your<br />
+              business, it's worth a conversation.
+            </p>
           </div>
           <div class="page-hero-cta mt-8">
-            <a href="/contact" class="btn-primary">Book a 30-minute discovery call</a>
+            <a href="/contact" class="btn-primary inline-flex items-center text-xs !py-3.5 !px-6">
+              Book a 30-minute discovery call
+            </a>
           </div>
         </div>
-        <!-- Right: Image -->
-        <div class="page-hero-image relative">
-          <img src="/images/sk4.png" alt="The outbound process" class="w-full rounded-lg object-cover shadow-[8px_8px_0px_0px_#CFFF15]" />
+        <!-- Right: Bar chart graphic (with neon offset shadow) -->
+        <div class="page-hero-image relative flex justify-center">
+          <div class="w-full max-w-[420px] rounded-[10px] shadow-[8px_8px_0px_0px_#CFFF15] flex items-center justify-center p-8 md:p-10" style="background-color: #D9D9D9; aspect-ratio: 16/10;">
+            <svg viewBox="0 0 400 220" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Horizontal grid lines -->
+              <line x1="20" y1="40"  x2="380" y2="40"  stroke="#001D52" stroke-width="1" stroke-opacity="0.25"/>
+              <line x1="20" y1="75"  x2="380" y2="75"  stroke="#001D52" stroke-width="1" stroke-opacity="0.25"/>
+              <line x1="20" y1="110" x2="380" y2="110" stroke="#001D52" stroke-width="1" stroke-opacity="0.25"/>
+              <line x1="20" y1="145" x2="380" y2="145" stroke="#001D52" stroke-width="1" stroke-opacity="0.25"/>
+              <line x1="20" y1="180" x2="380" y2="180" stroke="#001D52" stroke-width="1.5" stroke-opacity="0.45"/>
+
+              <!-- Bars (animated, ascending left to right) -->
+              <rect id="svc-bar1" x="55"  y="135" width="40" height="45"  fill="#0A60FF"/>
+              <rect id="svc-bar2" x="120" y="105" width="40" height="75"  fill="#0A60FF"/>
+              <rect id="svc-bar3" x="185" y="75"  width="40" height="105" fill="#0A60FF"/>
+              <rect id="svc-bar4" x="250" y="50"  width="40" height="130" fill="#0A60FF"/>
+              <rect id="svc-bar5" x="315" y="30"  width="40" height="150" fill="#0A60FF"/>
+            </svg>
+          </div>
         </div>
+
+        <style>
+          /*
+            6s cycle. Each bar rises in its 1s slot then STAYS UP.
+            After bar 5, all bars hold for ~1s, then loop resets all to 0.
+            Slots: bar1 0-1s, bar2 1-2s, bar3 2-3s, bar4 3-4s, bar5 4-5s, pause 5-6s
+          */
+          @keyframes svc-bar1-build {
+            0%   { transform: scaleY(0.03); }
+            12%  { transform: scaleY(1);    }
+            100% { transform: scaleY(1);    }
+          }
+          @keyframes svc-bar2-build {
+            0%   { transform: scaleY(0.03); }
+            17%  { transform: scaleY(0.03); }
+            29%  { transform: scaleY(1);    }
+            100% { transform: scaleY(1);    }
+          }
+          @keyframes svc-bar3-build {
+            0%   { transform: scaleY(0.03); }
+            33%  { transform: scaleY(0.03); }
+            45%  { transform: scaleY(1);    }
+            100% { transform: scaleY(1);    }
+          }
+          @keyframes svc-bar4-build {
+            0%   { transform: scaleY(0.03); }
+            50%  { transform: scaleY(0.03); }
+            62%  { transform: scaleY(1);    }
+            100% { transform: scaleY(1);    }
+          }
+          @keyframes svc-bar5-build {
+            0%   { transform: scaleY(0.03); }
+            67%  { transform: scaleY(0.03); }
+            79%  { transform: scaleY(1);    }
+            100% { transform: scaleY(1);    }
+          }
+          #svc-bar1 { transform-box: fill-box; transform-origin: bottom; animation: svc-bar1-build 6s ease-out 1.3s infinite backwards; }
+          #svc-bar2 { transform-box: fill-box; transform-origin: bottom; animation: svc-bar2-build 6s ease-out 1.3s infinite backwards; }
+          #svc-bar3 { transform-box: fill-box; transform-origin: bottom; animation: svc-bar3-build 6s ease-out 1.3s infinite backwards; }
+          #svc-bar4 { transform-box: fill-box; transform-origin: bottom; animation: svc-bar4-build 6s ease-out 1.3s infinite backwards; }
+          #svc-bar5 { transform-box: fill-box; transform-origin: bottom; animation: svc-bar5-build 6s ease-out 1.3s infinite backwards; }
+        </style>
       </div>
     </div>
   </section>
 
   <!-- SERVICE ONE: DATA INTELLIGENCE -->
-  <section id="data-intelligence" class="bg-linen py-24 md:py-32">
+  <section id="data-intelligence" class="bg-linen pt-8 pb-24 md:pt-12 md:pb-32" style="scroll-margin-top: 120px;">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="mb-20">
-        <div class="inline-block border border-navy-900 text-navy-900 text-[10px] uppercase tracking-[0.2em] font-semibold px-4 py-1.5 rounded shadow-[4px_4px_0px_0px_#001233] mb-6">Service One</div>
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-4 leading-[1.25] tracking-[-0.02em]">
-          Data Intelligence
-        </h2>
-        <p class="text-navy-900/60 text-lg md:text-xl max-w-2xl">
-          The data your team needs — built, enriched, and delivered automatically.
-        </p>
-      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
 
-      <!-- The Problem -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-24">
+        <!-- LEFT: Sticky title + tagline (joins the user as they scroll) -->
         <div class="lg:col-span-4">
-          <div class="lg:sticky lg:top-24">
-            <div class="flex items-center gap-3">
+          <div class="lg:sticky lg:top-32 page-hero-next">
+            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] mb-4 leading-[1.25] tracking-[-0.02em]" style="color: #001D52;">
+              Data Intelligence
+            </h2>
+            <p class="text-black text-sm md:text-base leading-relaxed">
+              The data your team needs — built, enriched,<br />and delivered automatically.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: All subsection content, stacked -->
+        <div class="lg:col-span-8 space-y-16 md:space-y-20">
+
+          <!-- The Problem -->
+          <div class="page-hero-next">
+            <div class="flex items-center gap-3 mb-6">
               <div class="w-1 h-8 bg-neon rounded-full"></div>
-              <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">The Problem</h3>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">The Problem</h3>
+            </div>
+            <div class="space-y-5 text-black text-base md:text-lg leading-relaxed max-w-2xl">
+              <p>Most B2B teams have a data problem they've quietly learned to work around.</p>
+              <ul class="space-y-3 border-l-2 pl-6" style="border-color: rgba(0,29,82,0.3);">
+                <li>Lists that are months out of date before they're used.</li>
+                <li>Research that pulls senior people away from higher-value work.</li>
+                <li>Enrichment that's incomplete, inconsistent, or both.</li>
+                <li>Decisions made on inputs no one fully trusts.</li>
+              </ul>
+              <p class="text-black font-bold">This isn't a tools problem.<br />It's a systems problem.</p>
+              <p>The fix isn't another data subscription. It's a pipeline that finds, enriches, scores, and delivers the right information automatically — so the work stops requiring people.</p>
             </div>
           </div>
-        </div>
-        <div class="lg:col-span-8 space-y-5 text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl">
-          <p>Most B2B teams have a data problem they've quietly learned to work around.</p>
-          <ul class="space-y-3 border-l-2 border-navy-900/20 pl-6">
-            <li>Lists that are months out of date before they're used.</li>
-            <li>Research that pulls senior people away from higher-value work.</li>
-            <li>Enrichment that's incomplete, inconsistent, or both.</li>
-            <li>Decisions made on inputs no one fully trusts.</li>
-          </ul>
-          <p class="text-navy-900 font-bold">This isn't a tools problem.<br />It's a systems problem.</p>
-          <p>The fix isn't another data subscription. It's a pipeline that finds, enriches, scores, and delivers the right information automatically — so the work stops requiring people.</p>
-        </div>
-      </div>
 
-      <!-- What We Build -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-24">
-        <div class="lg:col-span-4">
-          <div class="lg:sticky lg:top-24">
-            <div class="flex items-center gap-3">
+          <!-- What We Build -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
               <div class="w-1 h-8 bg-neon rounded-full"></div>
-              <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">What We Build</h3>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">What We Build</h3>
             </div>
-          </div>
-        </div>
-        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <!-- Card 1: Research & Scraping -->
-          <div class="build-card bg-linen rounded-lg p-7 border-2 group">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-linen flex items-center justify-center text-navy-900 flex-shrink-0">
-                <iconify-icon icon="solar:server-square-update-linear" width="24" height="24"></iconify-icon>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="build-card bg-linen rounded-[10px] p-7 border-2 group shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-[10px] bg-linen flex items-center justify-center text-black flex-shrink-0">
+                    <iconify-icon icon="solar:server-square-update-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h4 class="text-black text-sm font-semibold whitespace-nowrap">Research & Scraping Pipelines</h4>
+                </div>
+                <p class="text-black text-sm leading-relaxed">
+                  The data your team currently sources by hand — contacts, companies, roles, signals — collected automatically from the sources that matter for your specific use case. Continuously refreshed, not exported once and forgotten.
+                </p>
               </div>
-              <h4 class="text-navy-900 text-sm font-semibold whitespace-nowrap">Research & Scraping Pipelines</h4>
-            </div>
-            <p class="text-navy-900/70 text-sm leading-relaxed">
-              The data your team currently sources by hand — contacts, companies, roles, signals — collected automatically from the sources that matter for your specific use case. Continuously refreshed, not exported once and forgotten.
-            </p>
-          </div>
-          <!-- Card 2: AI Enrichment -->
-          <div class="build-card bg-linen rounded-lg p-7 border-2 group">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-linen flex items-center justify-center text-navy-900 flex-shrink-0">
-                <iconify-icon icon="solar:magic-stick-3-linear" width="24" height="24"></iconify-icon>
+              <div class="build-card bg-linen rounded-[10px] p-7 border-2 group shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-[10px] bg-linen flex items-center justify-center text-black flex-shrink-0">
+                    <iconify-icon icon="solar:magic-stick-3-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h4 class="text-black text-sm font-semibold whitespace-nowrap">AI-Powered Enrichment & Scoring</h4>
+                </div>
+                <p class="text-black text-sm leading-relaxed">
+                  Raw data isn't useful. We build enrichment logic that layers context, qualifies records, and scores outputs — so what reaches your team is clean, relevant, and ready to act on.
+                </p>
               </div>
-              <h4 class="text-navy-900 text-sm font-semibold whitespace-nowrap">AI-Powered Enrichment & Scoring</h4>
-            </div>
-            <p class="text-navy-900/70 text-sm leading-relaxed">
-              Raw data isn't useful. We build enrichment logic that layers context, qualifies records, and scores outputs — so what reaches your team is clean, relevant, and ready to act on.
-            </p>
-          </div>
-          <!-- Card 3: Agentic Research -->
-          <div class="build-card bg-linen rounded-lg p-7 border-2 group">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-linen flex items-center justify-center text-navy-900 flex-shrink-0">
-                <iconify-icon icon="solar:cpu-linear" width="24" height="24"></iconify-icon>
+              <div class="build-card bg-linen rounded-[10px] p-7 border-2 group shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-[10px] bg-linen flex items-center justify-center text-black flex-shrink-0">
+                    <iconify-icon icon="solar:cpu-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h4 class="text-black text-sm font-semibold whitespace-nowrap">Agentic Research Workflows</h4>
+                </div>
+                <p class="text-black text-sm leading-relaxed">
+                  For complex research that currently consumes senior time, we build AI agents that gather, structure, and summarize — in the exact format your team uses to make decisions.
+                </p>
               </div>
-              <h4 class="text-navy-900 text-sm font-semibold whitespace-nowrap">Agentic Research Workflows</h4>
-            </div>
-            <p class="text-navy-900/70 text-sm leading-relaxed">
-              For complex research that currently consumes senior time, we build AI agents that gather, structure, and summarize — in the exact format your team uses to make decisions.
-            </p>
-          </div>
-          <!-- Card 4: Signal & Trigger -->
-          <div class="build-card bg-linen rounded-lg p-7 border-2 group">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-linen flex items-center justify-center text-navy-900 flex-shrink-0">
-                <iconify-icon icon="solar:radar-linear" width="24" height="24"></iconify-icon>
+              <div class="build-card bg-linen rounded-[10px] p-7 border-2 group shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-[10px] bg-linen flex items-center justify-center text-black flex-shrink-0">
+                    <iconify-icon icon="solar:radar-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h4 class="text-black text-sm font-semibold whitespace-nowrap">Signal & Trigger Identification</h4>
+                </div>
+                <p class="text-black text-sm leading-relaxed">
+                  Hiring activity. Funding events. Technology changes. Leadership moves. We surface the buying signals relevant to your ICP automatically, so your team acts on fresh intelligence instead of stale assumptions.
+                </p>
               </div>
-              <h4 class="text-navy-900 text-sm font-semibold whitespace-nowrap">Signal & Trigger Identification</h4>
             </div>
-            <p class="text-navy-900/70 text-sm leading-relaxed">
-              Hiring activity. Funding events. Technology changes. Leadership moves. We surface the buying signals relevant to your ICP automatically, so your team acts on fresh intelligence instead of stale assumptions.
-            </p>
           </div>
-        </div>
-      </div>
 
-      <!-- Who This Is For -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-24">
-        <div class="lg:col-span-4">
-          <div class="lg:sticky lg:top-24">
-            <div class="flex items-center gap-3">
+          <!-- Who This Is For -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
               <div class="w-1 h-8 bg-neon rounded-full"></div>
-              <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">Who This Is For</h3>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">Who This Is For</h3>
+            </div>
+            <div class="max-w-2xl text-black text-base md:text-lg leading-relaxed space-y-5">
+              <p>Data Intelligence engagements serve teams where the quality of inputs directly determines the quality of everything downstream.</p>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-xs flex-shrink-0 mt-0.5" style="color: #001D52;">&#10003;</span>
+                  <p><span class="font-bold text-black">Marketing teams</span> using data for account targeting, segmentation, and campaign intelligence.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-xs flex-shrink-0 mt-0.5" style="color: #001D52;">&#10003;</span>
+                  <p><span class="font-bold text-black">HR and talent teams</span> using it for candidate sourcing, market mapping, and competitive research.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-xs flex-shrink-0 mt-0.5" style="color: #001D52;">&#10003;</span>
+                  <p><span class="font-bold text-black">Growth teams</span> using it to feed sales systems with reliable, continuously refreshed data.</p>
+                </div>
+              </div>
+              <div class="rounded-[10px] p-6 md:p-8 mt-6 border-l-4" style="background-color: #f9f6f0; border-left-color: #001D52;">
+                <p class="text-black text-sm leading-relaxed"><span class="font-bold text-black">Not a fit?</span> This is not a fit if you need a quick list or a one-time export. This is for teams with a recurring data need that has outgrown what manual effort or off-the-shelf tools can sustain — and where the cost of bad data is real and measurable.</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="lg:col-span-8 max-w-2xl text-navy-900/80 text-base md:text-lg leading-relaxed space-y-5">
-          <p>Data Intelligence engagements serve teams where the quality of inputs directly determines the quality of everything downstream.</p>
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
-              <p><span class="font-bold text-navy-900">Marketing teams</span> using data for account targeting, segmentation, and campaign intelligence.</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
-              <p><span class="font-bold text-navy-900">HR and talent teams</span> using it for candidate sourcing, market mapping, and competitive research.</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
-              <p><span class="font-bold text-navy-900">Growth teams</span> using it to feed sales systems with reliable, continuously refreshed data.</p>
-            </div>
-          </div>
-          <!-- Not a fit box -->
-          <div class="rounded-xl p-6 md:p-8 mt-6 border-l-4" style="background-color: #f9f6f0; border-left-color: #001233;">
-            <p class="text-navy-900/70 text-sm leading-relaxed"><span class="font-bold text-navy-900">Not a fit?</span> This is not a fit if you need a quick list or a one-time export. This is for teams with a recurring data need that has outgrown what manual effort or off-the-shelf tools can sustain — and where the cost of bad data is real and measurable.</p>
-          </div>
-        </div>
-      </div>
 
-      <!-- What Good Looks Like -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
-        <div>
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-1 h-8 bg-neon rounded-full"></div>
-            <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">What Good Looks Like</h3>
+          <!-- What Good Looks Like -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-1 h-8 bg-neon rounded-full"></div>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">What Good Looks Like</h3>
+            </div>
+            <div class="space-y-8 text-black text-base md:text-lg leading-relaxed max-w-2xl">
+              <p>When a Data Intelligence system is working, your team stops talking about data quality.</p>
+              <!-- Big stat, centered inline (no box) -->
+              <div class="text-center py-6">
+                <p class="font-serif text-6xl md:text-7xl font-bold tracking-tight leading-none" style="color: #001D52;">80–90<span style="color: #CFFF15;">%</span></p>
+                <p class="text-sm md:text-base font-semibold uppercase tracking-widest mt-4" style="color: #001D52;">Reduction in manual data handling</p>
+              </div>
+              <p>They trust the inputs. Decisions get faster. The research backlog disappears. The people who used to spend hours finding information spend that time using it instead.</p>
+            </div>
           </div>
-          <div class="space-y-4 text-navy-900/80 text-base leading-relaxed">
-            <p>When a Data Intelligence system is working, your team stops talking about data quality.</p>
-            <p>They trust the inputs. Decisions get faster. The research backlog<br />disappears. The people who used to spend hours finding<br />information spend that time using it instead.</p>
-          </div>
-        </div>
-        <!-- 80-90% Stat -->
-        <div class="flex items-center justify-center">
-          <div class="rounded-2xl px-10 py-10 text-center w-full" style="background-color: #f9f6f0;">
-            <p class="font-serif text-6xl md:text-7xl font-bold tracking-tight" style="color: #001233;">80–90<span style="color: #CFFF15;">%</span></p>
-            <p class="text-sm md:text-base font-semibold uppercase tracking-widest mt-3 text-black">Reduction in manual data handling</p>
-          </div>
-        </div>
-      </div>
 
-      <!-- How This Engagement Works -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-12">
-        <div>
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-1 h-8 bg-neon rounded-full"></div>
-            <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">How This Engagement Works</h3>
+          <!-- How This Engagement Works -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-1 h-8 bg-neon rounded-full"></div>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">How This Engagement Works</h3>
+            </div>
+            <div class="space-y-4 text-black text-base md:text-lg leading-relaxed max-w-2xl">
+              <p>Every Data Intelligence engagement starts with the discovery call. From there, we scope the work properly before anything is built.</p>
+              <p>We build to a fixed scope with full documentation and handoff at the end.</p>
+              <p>Some clients extend into an ongoing arrangement where we continue running and refreshing the system. Others take it and run it themselves. Either way, you own it completely.</p>
+            </div>
+            <!-- Investment box, centered below the text -->
+            <div class="flex justify-center mt-10">
+              <div class="bg-navy rounded-[10px] p-8 md:p-10 w-full max-w-md">
+                <p class="text-neon text-[10px] uppercase tracking-[0.2em] font-semibold mb-4">Investment</p>
+                <p class="font-serif text-xl md:text-2xl text-linen mb-4 whitespace-nowrap">System builds from <span class="text-neon">$5,000.</span></p>
+                <p class="text-linen/70 text-sm leading-relaxed mb-8">Fixed scope. Full documentation. Handoff at the end. You own it completely.</p>
+                <a href="/contact" class="btn-primary w-full text-center block">Book a 30-minute discovery call</a>
+              </div>
+            </div>
           </div>
-          <div class="space-y-4 text-navy-900/80 text-base leading-relaxed">
-            <p>Every Data Intelligence engagement starts with the discovery call. From there, we scope the work properly before anything is built.</p>
-            <p>We build to a fixed scope with full documentation and handoff<br />at the end.</p>
-            <p>Some clients extend into an ongoing arrangement where we continue running and refreshing the system. Others take it and run it themselves. Either way, you own it completely.</p>
-          </div>
-        </div>
-        <div class="flex items-center justify-center">
-          <div class="bg-navy-900 rounded-2xl p-8 md:p-10 w-full">
-            <p class="text-neon text-[10px] uppercase tracking-[0.2em] font-semibold mb-4">Investment</p>
-            <p class="font-serif text-2xl md:text-3xl text-linen mb-4">System builds from <span class="text-neon">$5,000.</span></p>
-            <p class="text-linen/70 text-sm leading-relaxed mb-8">Fixed scope. Full documentation. Handoff at the end. You own it completely.</p>
-            <a href="/contact" class="btn-primary w-full text-center block">Book a 30-minute discovery call</a>
-          </div>
+
         </div>
       </div>
     </div>
   </section>
 
   <!-- SERVICE TWO: SALES ACCELERATION -->
-  <section id="sales-acceleration" class="bg-linen py-24 md:py-32">
+  <section id="sales-acceleration" class="bg-linen py-24 md:py-32" style="scroll-margin-top: 120px;">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="mb-20">
-        <div class="inline-block border border-navy-900 text-navy-900 text-[10px] uppercase tracking-[0.2em] font-semibold px-4 py-1.5 rounded shadow-[4px_4px_0px_0px_#001233] mb-6">Service Two</div>
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-4 leading-[1.25] tracking-[-0.02em]">
-          Sales Acceleration
-        </h2>
-        <p class="text-navy-900/60 text-lg md:text-xl max-w-2xl">
-          More pipeline. Without more headcount.
-        </p>
-      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
 
-      <!-- The Problem -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-24">
+        <!-- LEFT: Sticky title + tagline (joins the user as they scroll) -->
         <div class="lg:col-span-4">
-          <div class="lg:sticky lg:top-24">
-            <div class="flex items-center gap-3">
+          <div class="lg:sticky lg:top-32 reveal">
+            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] mb-4 leading-[1.25] tracking-[-0.02em]" style="color: #001D52;">
+              Sales Acceleration
+            </h2>
+            <p class="text-black text-sm md:text-base leading-relaxed">
+              More pipeline. Without more headcount.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: All subsection content, stacked -->
+        <div class="lg:col-span-8 space-y-16 md:space-y-20">
+
+          <!-- The Problem -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
               <div class="w-1 h-8 bg-neon rounded-full"></div>
-              <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">The Problem</h3>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">The Problem</h3>
+            </div>
+            <div class="space-y-5 text-black text-base md:text-lg leading-relaxed max-w-2xl">
+              <p>Most B2B outbound fails for a reason that has nothing to do with the product, the market, or the team.</p>
+              <p>It fails because the system underneath is fragile.</p>
+              <p>Manual list building. Inconsistent personalization. Follow-up that depends on someone remembering. No visibility into what's working until it's too late to fix it.</p>
+              <p>The result is a lot of effort producing unpredictable results — and a team that's busy but not productive.</p>
+              <p class="text-black font-bold">We fix the system. Then we run it.</p>
             </div>
           </div>
-        </div>
-        <div class="lg:col-span-8 space-y-5 text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl">
-          <p>Most B2B outbound fails for a reason that has nothing to do with the product, the market, or the team.</p>
-          <p>It fails because the system underneath is fragile.</p>
-          <p>Manual list building. Inconsistent personalization. Follow-up that depends on someone remembering. No visibility into what's working until it's too late to fix it.</p>
-          <p>The result is a lot of effort producing unpredictable results — and a team that's busy but not productive.</p>
-          <p class="text-navy-900 font-bold">We fix the system. Then we run it.</p>
-        </div>
-      </div>
 
-      <!-- What We Do -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-24">
-        <div class="lg:col-span-4">
-          <div class="lg:sticky lg:top-24">
-            <div class="flex items-center gap-3">
+          <!-- What We Do -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
               <div class="w-1 h-8 bg-neon rounded-full"></div>
-              <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">What We Do</h3>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">What We Do</h3>
             </div>
-          </div>
-        </div>
-        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <!-- Card 1: Outbound System Design -->
-          <div class="build-card bg-linen rounded-lg p-7 border-2 group">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-linen flex items-center justify-center text-navy-900 flex-shrink-0">
-                <iconify-icon icon="solar:compass-linear" width="24" height="24"></iconify-icon>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="build-card bg-linen rounded-[10px] p-7 border-2 group shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-[10px] bg-linen flex items-center justify-center text-black flex-shrink-0">
+                    <iconify-icon icon="solar:compass-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h4 class="text-black text-sm font-semibold whitespace-nowrap">Outbound System Design</h4>
+                </div>
+                <p class="text-black text-sm leading-relaxed">
+                  Before a single message is sent, we design the full targeting logic, data sources, personalization framework, and sequence architecture.
+                </p>
               </div>
-              <h4 class="text-navy-900 text-sm font-semibold whitespace-nowrap">Outbound System Design</h4>
-            </div>
-            <p class="text-navy-900/70 text-sm leading-relaxed">
-              Before a single message is sent, we design the full targeting logic, data sources, personalization framework, and sequence architecture.
-            </p>
-          </div>
-          <!-- Card 2: Clay-Powered Targeting -->
-          <div class="build-card bg-linen rounded-lg p-7 border-2 group">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-linen flex items-center justify-center text-navy-900 flex-shrink-0">
-                <iconify-icon icon="solar:target-linear" width="24" height="24"></iconify-icon>
+              <div class="build-card bg-linen rounded-[10px] p-7 border-2 group shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-[10px] bg-linen flex items-center justify-center text-black flex-shrink-0">
+                    <iconify-icon icon="solar:target-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h4 class="text-black text-sm font-semibold whitespace-nowrap">Clay-Powered Targeting</h4>
+                </div>
+                <p class="text-black text-sm leading-relaxed">
+                  We use Clay as the data backbone — building dynamic lead sources, enrichment waterfalls, and scoring logic that ensures every contact your team reaches is the right one.
+                </p>
               </div>
-              <h4 class="text-navy-900 text-sm font-semibold whitespace-nowrap">Clay-Powered Targeting</h4>
-            </div>
-            <p class="text-navy-900/70 text-sm leading-relaxed">
-              We use Clay as the data backbone — building dynamic lead sources, enrichment waterfalls, and scoring logic that ensures every contact your team reaches is the right one.
-            </p>
-          </div>
-          <!-- Card 3: Multi-Channel Sequences -->
-          <div class="build-card bg-linen rounded-lg p-7 border-2 group">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-linen flex items-center justify-center text-navy-900 flex-shrink-0">
-                <iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon>
+              <div class="build-card bg-linen rounded-[10px] p-7 border-2 group shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-[10px] bg-linen flex items-center justify-center text-black flex-shrink-0">
+                    <iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h4 class="text-black text-sm font-semibold whitespace-nowrap">Multi-Channel Sequences</h4>
+                </div>
+                <p class="text-black text-sm leading-relaxed">
+                  Email and LinkedIn, working together. Touchpoints designed around actual buyer behavior and intent signals — not generic cadences copied from a playbook.
+                </p>
               </div>
-              <h4 class="text-navy-900 text-sm font-semibold whitespace-nowrap">Multi-Channel Sequences</h4>
-            </div>
-            <p class="text-navy-900/70 text-sm leading-relaxed">
-              Email and LinkedIn, working together. Touchpoints designed around actual buyer behavior and intent signals — not generic cadences copied from a playbook.
-            </p>
-          </div>
-          <!-- Card 4: Done-For-You Operation -->
-          <div class="build-card bg-linen rounded-lg p-7 border-2 group">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-linen flex items-center justify-center text-navy-900 flex-shrink-0">
-                <iconify-icon icon="solar:rocket-2-linear" width="24" height="24"></iconify-icon>
+              <div class="build-card bg-linen rounded-[10px] p-7 border-2 group shadow-[4px_4px_0px_0px_#001D52]" style="border-color: #001D52;">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-[10px] bg-linen flex items-center justify-center text-black flex-shrink-0">
+                    <iconify-icon icon="solar:rocket-2-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h4 class="text-black text-sm font-semibold whitespace-nowrap">Done-For-You Operation</h4>
+                </div>
+                <p class="text-black text-sm leading-relaxed">
+                  We run the outbound. Research, enrichment, personalization, sequencing, inbox management, and continuous optimization — handled by us. Your team focuses on the conversations.
+                </p>
               </div>
-              <h4 class="text-navy-900 text-sm font-semibold whitespace-nowrap">Done-For-You Operation</h4>
             </div>
-            <p class="text-navy-900/70 text-sm leading-relaxed">
-              We run the outbound. Research, enrichment, personalization, sequencing, inbox management, and continuous optimization — handled by us. Your team focuses on the conversations.
-            </p>
           </div>
-        </div>
-      </div>
 
-      <!-- Who This Is For -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-24">
-        <div class="lg:col-span-4">
-          <div class="lg:sticky lg:top-24">
-            <div class="flex items-center gap-3">
+          <!-- Who This Is For -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
               <div class="w-1 h-8 bg-neon rounded-full"></div>
-              <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">Who This Is For</h3>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">Who This Is For</h3>
+            </div>
+            <div class="max-w-2xl text-black text-base md:text-lg leading-relaxed space-y-5">
+              <p>Sales Acceleration is built for B2B founders, sales leaders, and growth teams who know their outbound should be working harder — and who are honest about the fact that the current approach isn't scaling.</p>
+              <p>We work with a small number of Sales Acceleration clients at a time. That's not a positioning line — it's how we maintain the quality that makes the work effective.</p>
+              <div class="rounded-[10px] p-6 md:p-8 mt-6 border-l-4" style="background-color: #f9f6f0; border-left-color: #001D52;">
+                <p class="text-black text-sm leading-relaxed"><span class="font-bold text-black">Not a fit?</span> This is not a fit for teams looking for a short campaign or a quick blast. This is for teams who want a reliable outbound motion they can build on.</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="lg:col-span-8 max-w-2xl text-navy-900/80 text-base md:text-lg leading-relaxed space-y-5">
-          <p>Sales Acceleration is built for B2B founders, sales leaders, and growth teams who know their outbound should be working harder — and who are honest about the fact that the current approach isn't scaling.</p>
-          <p>We work with a small number of Sales Acceleration clients at a time. That's not a positioning line — it's how we maintain the quality that makes the work effective.</p>
-          <!-- Not a fit box -->
-          <div class="rounded-xl p-6 md:p-8 mt-6 border-l-4" style="background-color: #f9f6f0; border-left-color: #001233;">
-            <p class="text-navy-900/70 text-sm leading-relaxed"><span class="font-bold text-navy-900">Not a fit?</span> This is not a fit for teams looking for a short campaign or a quick blast. This is for teams who want a reliable outbound motion they can build on.</p>
-          </div>
-        </div>
-      </div>
 
-      <!-- What Good Looks Like -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
-        <div>
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-1 h-8 bg-neon rounded-full"></div>
-            <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">What Good Looks Like</h3>
+          <!-- What Good Looks Like -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-1 h-8 bg-neon rounded-full"></div>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">What Good Looks Like</h3>
+            </div>
+            <div class="space-y-8 text-black text-base md:text-lg leading-relaxed max-w-2xl">
+              <p>When Sales Acceleration is running well, outbound stops feeling like a gamble.</p>
+              <!-- Big stat, centered inline (no box) -->
+              <div class="text-center py-6">
+                <p class="font-serif text-6xl md:text-7xl font-bold tracking-tight leading-none" style="color: #001D52;">3–5<span style="color: #CFFF15;">x</span></p>
+                <p class="text-sm md:text-base font-semibold uppercase tracking-widest mt-4" style="color: #001D52;">More outreach capacity, same headcount</p>
+              </div>
+              <p>Your team has consistent conversations in the calendar. The pipeline becomes predictable. The manual research and personalization that used to take hours happens automatically.</p>
+            </div>
           </div>
-          <div class="space-y-4 text-navy-900/80 text-base leading-relaxed">
-            <p>When Sales Acceleration is running well, outbound stops feeling like a gamble.</p>
-            <p>Your team has consistent conversations in the calendar. The pipeline becomes predictable. The manual research and personalization that used to take hours happens automatically.</p>
-          </div>
-        </div>
-        <!-- 3-5x Stat -->
-        <div class="flex items-center justify-center">
-          <div class="rounded-2xl px-10 py-10 text-center w-full" style="background-color: #f9f6f0;">
-            <p class="font-serif text-6xl md:text-7xl font-bold tracking-tight" style="color: #001233;">3–5<span style="color: #CFFF15;">x</span></p>
-            <p class="text-sm md:text-base font-semibold uppercase tracking-widest mt-3 text-black">More outreach capacity, same headcount</p>
-          </div>
-        </div>
-      </div>
 
-      <!-- How This Engagement Works -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-12">
-        <div>
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-1 h-8 bg-neon rounded-full"></div>
-            <h3 class="subhead-condensed text-lg text-navy-900 font-medium tracking-wider">How This Engagement Works</h3>
+          <!-- How This Engagement Works -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-1 h-8 bg-neon rounded-full"></div>
+              <h3 class="subhead-condensed text-lg font-medium tracking-wider text-black">How This Engagement Works</h3>
+            </div>
+            <div class="space-y-4 text-black text-base md:text-lg leading-relaxed max-w-2xl">
+              <p>Sales Acceleration begins with a pilot project — a defined scope, fixed price, and clear deliverable.</p>
+              <p>The pilot covers ICP definition, data sourcing and enrichment via Clay, sequence architecture and copy, system build and launch, and first weeks of live execution.</p>
+              <p>Most clients move to an ongoing monthly retainer after the pilot. There is no obligation to continue beyond the pilot.</p>
+            </div>
+            <!-- Investment box, centered below the text -->
+            <div class="flex justify-center mt-10">
+              <div class="bg-navy rounded-[10px] p-8 md:p-10 w-full max-w-md">
+                <p class="text-neon text-[10px] uppercase tracking-[0.2em] font-semibold mb-4">Investment</p>
+                <p class="font-serif text-xl md:text-2xl text-linen mb-4 whitespace-nowrap">Pilot projects from <span class="text-neon">$10,000.</span></p>
+                <p class="text-linen/70 text-sm leading-relaxed mb-8">Ongoing retainer from $3,000/month. No obligation to continue beyond the pilot.</p>
+                <a href="/contact" class="btn-primary w-full text-center block">Book a 30-minute discovery call</a>
+              </div>
+            </div>
           </div>
-          <div class="space-y-4 text-navy-900/80 text-base leading-relaxed">
-            <p>Sales Acceleration begins with a pilot project — a defined scope, fixed price, and clear deliverable.</p>
-            <p>The pilot covers ICP definition, data sourcing and enrichment via Clay, sequence architecture and copy, system build and launch, and first weeks of live execution.</p>
-            <p>Most clients move to an ongoing monthly retainer after the pilot. There is no obligation to continue beyond the pilot.</p>
-          </div>
-        </div>
-        <div class="flex items-center justify-center">
-          <div class="bg-navy-900 rounded-2xl p-8 md:p-10 w-full">
-            <p class="text-neon text-[10px] uppercase tracking-[0.2em] font-semibold mb-4">Investment</p>
-            <p class="font-serif text-2xl md:text-3xl text-linen mb-4">Pilot projects from <span class="text-neon">$10,000.</span></p>
-            <p class="text-linen/70 text-sm leading-relaxed mb-8">Ongoing retainer from $3,000/month. No obligation to continue beyond the pilot.</p>
-            <a href="/contact" class="btn-primary w-full text-center block">Book a 30-minute discovery call</a>
-          </div>
+
         </div>
       </div>
     </div>
@@ -371,37 +409,37 @@ import Layout from '../layouts/Layout.astro';
   <!-- A NOTE ON AI -->
   <section class="bg-linen py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-xl mx-auto">
+      <div class="max-w-xl mx-auto reveal">
         <!-- Heading block -->
         <div class="text-center">
           <div class="inline-block">
             <!-- Label with line, left-aligned to heading text -->
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
-              <p class="subhead-condensed text-xs text-navy-900 tracking-[0.2em]">Our Approach</p>
+              <div class="w-12 h-0.5" style="background-color: #001D52;"></div>
+              <p class="subhead-condensed text-xs tracking-[0.2em]" style="color: #001D52;">Our Approach</p>
             </div>
-            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-3 leading-[1.25] tracking-[-0.02em] text-center">
+            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] mb-3 leading-[1.25] tracking-[-0.02em] text-center" style="color: #001D52;">
               A note on AI & automation
             </h2>
             <!-- Line right-aligned to heading text -->
             <div class="flex justify-end">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
+              <div class="w-12 h-0.5" style="background-color: #001D52;"></div>
             </div>
           </div>
         </div>
         <div class="mb-10"></div>
 
-        <div class="space-y-6 text-navy-900/70 text-base md:text-lg leading-relaxed text-center">
+        <div class="space-y-6 text-black text-base md:text-lg leading-relaxed text-center">
           <p>You'll notice we don't list AI and automation as a service.<br />That's intentional.</p>
-          <p>AI and automation are how we build — not what we sell. Every Data Intelligence pipeline runs on automation. Every Sales Acceleration system uses AI for enrichment, personalization, and research at scale.</p>
-          <p>We don't offer automation as a standalone product because the technology is never the point. The point is the outcome — cleaner data, more pipeline, less friction for the people doing the work.</p>
+          <p>AI and automation are how we build — not what we sell.<br />Every Data Intelligence pipeline runs on automation.<br />Every Sales Acceleration system uses AI for enrichment,<br />personalization, and research at scale.</p>
+          <p>We don't offer automation as a standalone product<br />because the technology is never the point. The point is<br />the outcome — cleaner data, more pipeline, less friction<br />for the people doing the work.</p>
         </div>
 
         <!-- Callout box -->
         <div class="flex items-stretch gap-4 mt-10">
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-          <p class="text-navy-900/70 text-sm italic leading-relaxed py-1 text-left">If you're looking for a partner who uses automation and AI seriously — embedded in systems designed to solve real problems — we might be exactly right.</p>
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
+          <div class="w-0.5 rounded-full flex-shrink-0" style="background-color: #001D52;"></div>
+          <p class="text-black text-sm italic leading-relaxed py-1 text-left">If you're looking for a partner who uses automation and AI seriously — embedded in<br />systems designed to solve real problems — we might be exactly right.</p>
+          <div class="w-0.5 rounded-full flex-shrink-0" style="background-color: #001D52;"></div>
         </div>
       </div>
     </div>
@@ -410,28 +448,28 @@ import Layout from '../layouts/Layout.astro';
   <!-- WHAT WE DON'T DO -->
   <section class="bg-linen py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-xl mx-auto">
+      <div class="max-w-xl mx-auto reveal">
         <!-- Heading block -->
         <div class="text-center">
           <div class="inline-block">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
-              <p class="subhead-condensed text-xs text-navy-900 tracking-[0.2em]">Clarity First</p>
+              <div class="w-12 h-0.5" style="background-color: #001D52;"></div>
+              <p class="subhead-condensed text-xs tracking-[0.2em]" style="color: #001D52;">Clarity First</p>
             </div>
-            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-3 leading-[1.25] tracking-[-0.02em] text-center">
+            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] mb-3 leading-[1.25] tracking-[-0.02em] text-center" style="color: #001D52;">
               What we don't do
             </h2>
             <div class="flex justify-end">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
+              <div class="w-12 h-0.5" style="background-color: #001D52;"></div>
             </div>
           </div>
         </div>
         <div class="mb-10"></div>
 
-        <p class="text-navy-900/70 text-base md:text-lg leading-relaxed mb-8 text-center">
+        <p class="text-black text-base md:text-lg leading-relaxed mb-8 text-center">
           We think clarity here saves everyone time.
         </p>
-        <ul class="space-y-4 text-navy-900/70 text-base md:text-lg leading-relaxed">
+        <ul class="space-y-4 text-black text-base md:text-lg leading-relaxed">
           <li class="flex items-baseline gap-3"><span class="text-red-500 flex-shrink-0">–</span><span>We don't run one-off campaigns.</span></li>
           <li class="flex items-baseline gap-3"><span class="text-red-500 flex-shrink-0">–</span><span>We don't take on projects where we're one of several vendors being evaluated.</span></li>
           <li class="flex items-baseline gap-3"><span class="text-red-500 flex-shrink-0">–</span><span>We don't offer free audits or speculative work.</span></li>
@@ -440,44 +478,9 @@ import Layout from '../layouts/Layout.astro';
         </ul>
         <!-- Callout box -->
         <div class="flex items-stretch gap-4 mt-10">
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-          <p class="text-navy-900/70 text-sm italic leading-relaxed py-1 text-left">These aren't restrictions designed to sound exclusive. They're the conditions under which our work is actually good.</p>
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="bg-linen py-24 md:py-32">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="cta-box rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-[38%_62%] bg-navy-900">
-        <div class="cta-image-col">
-          <img src="/images/sk3.jpg" alt="Discovery call" class="w-full h-full object-cover" />
-        </div>
-        <div class="flex flex-col justify-center px-8 py-12 md:px-12 md:py-16 text-center">
-          <h2 class="font-serif text-2xl md:text-[1.75rem] lg:text-[2rem] text-linen mb-4 leading-[1.25] tracking-[-0.02em]">
-            <span class="neon-underline">One entry point. Always the same.</span>
-          </h2>
-          <p class="text-linen/80 text-lg md:text-xl leading-relaxed mb-8 italic">
-            A 30-minute discovery call.
-          </p>
-          <p class="text-linen/60 text-base leading-relaxed mb-6">
-            Not a pitch. Not a free audit. Not a commitment.
-          </p>
-          <p class="text-linen/70 text-base leading-relaxed mb-6">
-            A focused conversation to understand where friction is concentrated in your business — and whether we're the right people to remove it.
-          </p>
-          <p class="text-linen/70 text-base leading-relaxed mb-10">
-            Either way, you leave the call with more clarity than you arrived with.
-          </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/contact" class="cta-book-btn btn-primary inline-flex items-center gap-2">
-              Book a 30-minute discovery call
-              <span class="cta-arrow text-lg inline-block transition-transform duration-300">→</span>
-            </a>
-            <p class="text-linen/50 text-sm italic">No pitch. No obligation. Just clarity.</p>
-          </div>
+          <div class="w-0.5 rounded-full flex-shrink-0" style="background-color: #001D52;"></div>
+          <p class="text-black text-sm italic leading-relaxed py-1 text-left">These aren't restrictions designed to sound exclusive. They're the conditions under which our work is actually good.</p>
+          <div class="w-0.5 rounded-full flex-shrink-0" style="background-color: #001D52;"></div>
         </div>
       </div>
     </div>

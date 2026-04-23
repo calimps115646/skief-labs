@@ -13,9 +13,10 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
-    "@astrojs/vercel": "^10.0.2",
+    "@astrojs/netlify": "^7.0.8",
+    "@astrojs/vercel": "^10.0.4",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^6.0.8",
+    "astro": "^6.1.5",
     "tailwindcss": "^4.2.1"
   }
 }

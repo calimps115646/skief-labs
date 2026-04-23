@@ -3,17 +3,20 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <!-- HERO WITH BACKGROUND IMAGE -->
-  <section id="hero-section" class="relative -mt-18 md:-mt-20 hero-section-flex">
-    <!-- Background Image -->
-    <div id="hero-bg" class="absolute inset-0 z-0 transition-opacity duration-700" style="opacity: 1;">
-      <img
-        src="/images/sk1.jpg"
-        alt=""
-        class="w-full h-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-navy-900/60"></div>
+  <!-- HERO -->
+  <section id="hero-section" class="relative -mt-18 md:-mt-20 hero-section-flex overflow-hidden" style="background-color: #001D52;">
+
+    <!-- Neon gradient glow on the right side (aligned with globe at calc(50% - 50px)) -->
+    <div class="absolute top-0 right-0 w-1/2 h-full pointer-events-none" style="background: radial-gradient(ellipse 40% 55% at 100% calc(50% - 50px), rgba(207,255,21,0.22) 0%, rgba(207,255,21,0.07) 35%, transparent 60%);"></div>
+
+    <!-- Decorative rotating wireframe globe, peeking from the right edge of the section -->
+    <canvas id="hero-globe" class="pointer-events-none absolute hidden lg:block" style="top: calc(50% - 50px); right: -280px; transform: translateY(-50%); width: 680px; height: 680px; z-index: 1; opacity: 0.95;"></canvas>
+
+    <!-- Curved bottom edge -->
+    <div class="absolute bottom-0 left-0 right-0 z-10 pointer-events-none" style="line-height: 0;">
+      <svg viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full" style="height: 150px;">
+        <path d="M0,0 Q720,200 1440,0 L1440,200 L0,200 Z" fill="#F9F6F0"/>
+      </svg>
     </div>
 
     <!-- Hero Content -->
@@ -21,69 +24,64 @@ import Layout from '../layouts/Layout.astro';
       <div class="hero-layout items-center">
         <!-- Left: Text -->
         <div id="hero-text">
-          <h1 class="heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-linen mb-8 leading-[1.1]">
+          <h1 class="heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-white mb-8 leading-[1.1]">
             <span id="hero-title-line1" class="hero-text-split inline-block overflow-hidden">More business.</span><br />
             <span id="hero-title-line2" class="hero-text-split text-neon italic inline-block overflow-hidden">Less busyness.</span>
           </h1>
           <!-- Desktop: hardcoded line breaks -->
           <div id="hero-body" class="hero-fade-group" style="opacity: 0; transform: translateY(20px);">
-          <div id="hero-para-desktop" class="text-linen/80 text-[15px] leading-[1.7]" style="white-space: pre-line;">Most growing B2B teams aren't held back by ambition. They're held
-back by friction. Wrong data feeding the wrong people. Outbound
-that depends on discipline instead of systems. Manual work that
-compounds quietly until someone burns out.
-
-Skief Labs removes that friction. We build the data and outbound
-systems that let your team focus on work that actually moves the
-business forward.</div>
+          <div id="hero-para-desktop" class="text-white text-[15px] leading-[1.7]" style="white-space: pre-line;">Growing B2B teams don't have an ambition problem — they have
+a friction problem. Bad data, manual outbound, busywork that
+burns people out. Skief Labs builds the data and outbound
+systems that fix that.</div>
           <!-- Mobile: natural flow (shown only on very small screens) -->
-          <div id="hero-para-mobile" class="text-linen/80 text-sm leading-[1.7]" style="display: none;">
-            <p class="mb-4">Most growing B2B teams aren't held back by ambition. They're held back by friction. Wrong data feeding the wrong people. Outbound that depends on discipline instead of systems. Manual work that compounds quietly until someone burns out.</p>
-            <p>Skief Labs removes that friction. We build the data and outbound systems that let your team focus on work that actually moves the business forward.</p>
+          <div id="hero-para-mobile" class="text-white text-sm leading-[1.7]" style="display: none;">
+            <p>Growing B2B teams don't have an ambition problem — they have a friction problem. Bad data, manual outbound, busywork that burns people out. Skief Labs builds the data and outbound systems that fix that.</p>
           </div>
           <div class="mt-8 flex items-center gap-5 flex-wrap">
-            <a href="/contact" class="btn-primary inline-flex items-center gap-2 !text-[11px] !py-2.5 !px-5">
+            <a href="/contact" class="btn-primary inline-flex items-center gap-2 text-xs !py-3.5 !px-6">
               Book a 30-minute discovery call
               <span class="btn-arrow">&rarr;</span>
             </a>
-            <p class="text-linen/50 text-sm italic">No pitch. No obligation. Just clarity.</p>
+            <p class="text-white/50 text-sm italic">No pitch. No obligation. Just clarity.</p>
           </div>
           </div><!-- end hero-body -->
         </div>
 
         <!-- Right: Visual Flow Cards with SVG arrows overlay -->
-        <div id="hero-cards" class="hero-fade-group hero-cards-wrapper relative" style="opacity: 0; transform: translateY(20px);">
+        <div id="hero-cards" class="hero-cards-wrapper relative">
 
-          <div class="hero-cards-inner relative" style="width: 550px; height: 490px;">
+          <div class="hero-cards-inner relative" style="width: 550px; height: 490px; z-index: 2;">
             <!-- Card 1: Daily Friction -->
-            <div class="absolute bg-linen/95 backdrop-blur-sm rounded-lg px-6 py-4 text-center border border-navy-900/10 shadow-lg" style="width: 280px; height: 80px; top: 0; left: 30px; display: flex; flex-direction: column; justify-content: center;">
-              <p class="font-serif italic text-navy-900 text-2xl tracking-wide"><s>Daily Friction</s></p>
-              <p class="font-sans text-xs text-navy-900/50 mt-1 uppercase tracking-[0.08em] whitespace-nowrap">Fragile &middot; Human-Dependent</p>
+            <div class="hero-card hero-card-1 absolute rounded-[10px] px-6 py-4 text-center shadow-lg" style="width: 280px; height: 80px; top: 0; left: 30px; display: flex; flex-direction: column; justify-content: center; background-color: #F9F6F0;">
+              <p class="font-serif text-2xl tracking-wide text-black/40"><s>Daily Friction</s></p>
+              <p class="font-sans font-semibold text-xs mt-1 uppercase tracking-[0.08em] whitespace-nowrap text-black/60">Fragile &middot; Human-Dependent</p>
             </div>
 
             <!-- Card 2: Built Systems -->
-            <div class="absolute bg-navy-800/90 backdrop-blur-sm rounded-lg px-6 py-4 text-center border border-linen/10 shadow-lg" style="width: 280px; height: 80px; top: 195px; left: 250px; display: flex; flex-direction: column; justify-content: center;">
-              <div class="absolute -top-3 left-4 bg-linen text-navy-900 text-[9px] font-semibold uppercase tracking-[0.1em] rounded text-center leading-none" style="padding: 4px 10px;">Transformation</div>
-              <p class="font-serif text-linen text-2xl tracking-wide">Built Systems</p>
-              <p class="font-sans text-xs text-linen/50 mt-1 uppercase tracking-[0.08em]">Data &middot; Outbound</p>
+            <div class="hero-card hero-card-2 absolute rounded-[10px] px-6 py-4 text-center shadow-lg" style="width: 280px; height: 80px; top: 195px; left: 250px; display: flex; flex-direction: column; justify-content: center; background-color: #CFFF15;">
+              <div class="absolute -top-3 left-4 text-black text-[9px] font-semibold uppercase tracking-[0.1em] rounded-[10px] text-center leading-none" style="padding: 4px 10px; background-color: #F9F6F0;">Transformation</div>
+              <p class="font-serif text-black text-2xl tracking-wide">Built Systems</p>
+              <p class="font-sans font-semibold text-xs mt-1 uppercase tracking-[0.08em] text-black/60">Data &middot; Outbound</p>
             </div>
 
             <!-- Card 3: Business Forward -->
-            <div class="absolute bg-linen/95 backdrop-blur-sm rounded-lg px-6 py-4 text-center border border-navy-900/10 shadow-lg" style="width: 280px; height: 80px; top: 390px; left: 60px; display: flex; flex-direction: column; justify-content: center;">
-              <p class="font-serif text-navy-900 text-2xl tracking-wide whitespace-nowrap">Business Forward</p>
-              <p class="font-sans text-xs text-navy-900/50 mt-1 uppercase tracking-[0.08em]">Focused &middot; Scalable</p>
+            <div class="hero-card hero-card-3 absolute rounded-[10px] px-6 py-4 text-center shadow-lg" style="width: 280px; height: 80px; top: 390px; left: 60px; display: flex; flex-direction: column; justify-content: center; background-color: #F9F6F0;">
+              <p class="font-serif text-black text-2xl tracking-wide whitespace-nowrap">Business Forward</p>
+              <p class="font-sans font-semibold text-xs mt-1 uppercase tracking-[0.08em] text-black/60">Focused &middot; Scalable</p>
             </div>
 
             <!-- SVG Arrows connecting the cards -->
             <svg class="absolute inset-0 pointer-events-none" width="550" height="490" viewBox="0 0 550 490" fill="none" style="z-index: 1;">
-              <line x1="190" y1="82" x2="190" y2="132" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
-              <line x1="190" y1="132" x2="410" y2="132" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
-              <line x1="410" y1="132" x2="410" y2="185" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
-              <polygon points="405,183 410,195 415,183" fill="rgba(249,246,240,0.5)"/>
+              <g class="hero-arrow hero-arrow-1">
+                <path d="M 190 92 L 190 132 L 410 132 L 410 175" stroke="#F9F6F0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/>
+                <polygon points="405,173 410,185 415,173" fill="#F9F6F0"/>
+              </g>
 
-              <line x1="370" y1="277" x2="370" y2="330" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
-              <line x1="370" y1="330" x2="200" y2="330" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
-              <line x1="200" y1="330" x2="200" y2="380" stroke="rgba(249,246,240,0.5)" stroke-width="1.5"/>
-              <polygon points="195,378 200,390 205,378" fill="rgba(249,246,240,0.5)"/>
+              <g class="hero-arrow hero-arrow-2">
+                <path d="M 370 287 L 370 330 L 200 330 L 200 370" stroke="#F9F6F0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/>
+                <polygon points="195,368 200,380 205,368" fill="#F9F6F0"/>
+              </g>
             </svg>
           </div>
 
@@ -100,20 +98,17 @@ business forward.</div>
         The Problem
       </div>
 
-      <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-12 leading-[1.25] tracking-[-0.02em] max-w-3xl mx-auto">
-        Your team is doing work the business<br />should be doing for them.
+      <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-12 leading-[1.25] tracking-[-0.02em] max-w-3xl mx-auto">
+        Your team is doing work the<br /><em class="italic">business should be doing for them.</em>
       </h2>
 
       <!-- Content Card -->
-      <div class="bg-linen border-2 border-navy-900 rounded-lg p-8 md:p-12 text-left shadow-[6px_6px_0px_0px_rgba(0,18,51,1)]">
-        <div class="space-y-5 text-navy-900/80 text-base md:text-lg leading-relaxed">
-          <p>As B2B companies grow, something predictable happens.</p>
-          <p>Tools multiply. Data fragments. Processes that worked at ten people start breaking at thirty. And somewhere along the way, your best people become the glue — manually researching, chasing, reconciling, compensating.</p>
-          <p>It functions. Until it doesn't.</p>
-          <p>The businesses we work with aren't failing. They're growing — and their systems haven't kept up. The cost is real: slower decisions, inconsistent outbound, senior time absorbed by work that shouldn't require senior people.</p>
-          <p class="text-navy-900 font-bold">
-            Adding more software doesn't fix this.<br />
-            Adding more people only delays it.
+      <div class="bg-linen border-2 border-navy rounded-[10px] p-8 md:p-10 text-left shadow-[6px_6px_0px_0px_#001D52]">
+        <div class="space-y-4 text-black/80 text-base leading-relaxed">
+          <p>As B2B companies grow, tools multiply, data fragments, and your best people become the glue — manually researching, chasing, reconciling.</p>
+          <p>The cost is real: slower decisions, inconsistent outbound, senior time absorbed by work that shouldn't require senior people.</p>
+          <p class="text-black font-bold">
+            Adding more software doesn't fix this. Adding more people only delays it.
           </p>
           <p>What changes things is replacing fragile, human-dependent effort with systems that work quietly in the background.</p>
         </div>
@@ -125,100 +120,161 @@ business forward.</div>
   <section class="bg-linen py-24 md:py-32 reveal">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-4 leading-[1.25] tracking-[-0.02em]">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-4 leading-[1.25] tracking-[-0.02em]">
           Two problems. Solved seriously.
         </h2>
-        <p class="text-navy-900/70 text-base md:text-lg leading-relaxed" style="white-space: pre-line;">We don't do operations systems, general automation, or "digital transformation." We
-work on two specific things with the depth that comes from choosing to go narrow
-instead of wide.</p>
+        <p class="text-black text-base md:text-lg leading-relaxed">We work on two specific things. We don't do general automation.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 reveal">
         <!-- Data Intelligence -->
-        <div class="service-card bg-linen rounded-lg p-8 md:p-10 border-2">
-          <div class="flex items-start justify-between mb-6">
-            <div>
-              <p class="subhead-condensed text-xs text-black/70 mb-2">Service One</p>
-              <h3 class="font-serif text-2xl md:text-3xl text-black tracking-[-0.01em]">Data Intelligence</h3>
-            </div>
-            <!-- Database Icon -->
-            <svg class="w-12 h-12 flex-shrink-0 ml-4" viewBox="0 0 48 48" fill="none" stroke="#001233" stroke-width="2">
-              <ellipse cx="24" cy="10" rx="14" ry="5"/>
-              <path d="M10 10v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8"/>
-              <path d="M10 18v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8"/>
-              <path d="M10 26v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8"/>
+        <a href="/services#data-intelligence" class="service-card group bg-linen rounded-[10px] p-6 md:p-8 border-2">
+          <!-- Visual Box -->
+          <div class="rounded-[10px] mb-6 flex items-center justify-center overflow-hidden" style="background-color: #D9D9D9; aspect-ratio: 16/9;">
+            <svg viewBox="0 0 400 220" class="w-[94%] h-auto" fill="none">
+              <!-- 3 Dashed connector lines (from doc right edge to center box left edge) -->
+              <line x1="90" y1="43"  x2="160" y2="110" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <line x1="90" y1="110" x2="160" y2="110" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <line x1="90" y1="177" x2="160" y2="110" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+              <!-- Traveling navy dots (randomized delays + varied durations so they drift, no marching sequence) -->
+              <circle class="di-dot" cx="90" cy="43"  r="5" fill="#001D52" style="--tx: 70px; --ty: 67px;  animation-delay: 0.2s; animation-duration: 2.7s;"/>
+              <circle class="di-dot" cx="90" cy="110" r="5" fill="#001D52" style="--tx: 70px; --ty: 0px;   animation-delay: 1.6s; animation-duration: 3.3s;"/>
+              <circle class="di-dot" cx="90" cy="177" r="5" fill="#001D52" style="--tx: 70px; --ty: -67px; animation-delay: 0.7s; animation-duration: 2.4s;"/>
+
+              <!-- 3 Document boxes (opaque fill so they overlap the dot's left half at the starting edge) -->
+              <rect x="15" y="25" width="75" height="36" rx="4" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <line x1="25" y1="35" x2="80" y2="35" stroke="#0A60FF" stroke-width="1.5"/>
+              <line x1="25" y1="43" x2="75" y2="43" stroke="#0A60FF" stroke-width="1.5"/>
+              <line x1="25" y1="51" x2="65" y2="51" stroke="#0A60FF" stroke-width="1.5"/>
+
+              <rect x="15" y="92" width="75" height="36" rx="4" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <line x1="25" y1="102" x2="80" y2="102" stroke="#0A60FF" stroke-width="1.5"/>
+              <line x1="25" y1="110" x2="75" y2="110" stroke="#0A60FF" stroke-width="1.5"/>
+              <line x1="25" y1="118" x2="65" y2="118" stroke="#0A60FF" stroke-width="1.5"/>
+
+              <rect x="15" y="159" width="75" height="36" rx="4" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <line x1="25" y1="169" x2="80" y2="169" stroke="#0A60FF" stroke-width="1.5"/>
+              <line x1="25" y1="177" x2="75" y2="177" stroke="#0A60FF" stroke-width="1.5"/>
+              <line x1="25" y1="185" x2="65" y2="185" stroke="#0A60FF" stroke-width="1.5"/>
+
+              <!-- Central processor box (landscape rectangle, opaque fill so it overlaps lines/dots behind it) -->
+              <rect x="160" y="78" width="100" height="64" rx="8" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+
+              <!-- Outer circle ring inside the box -->
+              <circle cx="210" cy="110" r="22" fill="none" stroke="#0A60FF" stroke-width="1.5"/>
+
+              <!-- 8 short rays from outer ring outward -->
+              <g stroke="#0A60FF" stroke-width="2" stroke-linecap="round">
+                <line x1="210" y1="88"  x2="210" y2="83"/>
+                <line x1="210" y1="132" x2="210" y2="137"/>
+                <line x1="188" y1="110" x2="183" y2="110"/>
+                <line x1="232" y1="110" x2="237" y2="110"/>
+                <line x1="194" y1="94"  x2="191" y2="91"/>
+                <line x1="226" y1="94"  x2="229" y2="91"/>
+                <line x1="194" y1="126" x2="191" y2="129"/>
+                <line x1="226" y1="126" x2="229" y2="129"/>
+              </g>
+
+              <!-- Inner filled circle -->
+              <circle cx="210" cy="110" r="10" fill="#0A60FF"/>
+
+              <!-- Animated pulse ring (open-close) -->
+              <circle class="di-pulse" cx="210" cy="110" r="10" fill="none" stroke="#0A60FF" stroke-width="2"/>
+
+              <!-- Long arrow from center box to chart box -->
+              <line x1="260" y1="110" x2="297" y2="110" stroke="#0A60FF" stroke-width="2"/>
+              <polygon points="295,105 305,110 295,115" fill="#0A60FF"/>
+
+              <!-- Chart container (landscape rectangle, opaque so it overlaps the arrow tail) -->
+              <rect x="305" y="78" width="85" height="64" rx="8" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+
+              <!-- Bars inside chart (5 ascending) -->
+              <rect x="314" y="122" width="10" height="16" fill="#0A60FF"/>
+              <rect x="329" y="112" width="10" height="26" fill="#0A60FF"/>
+              <rect x="344" y="100" width="10" height="38" fill="#0A60FF"/>
+              <rect x="359" y="88"  width="10" height="50" fill="#0A60FF"/>
+              <rect x="374" y="82"  width="10" height="56" fill="#0A60FF"/>
             </svg>
           </div>
 
-          <p class="text-black/80 text-base leading-relaxed mb-8">
-            The data your team needs — built, enriched, and delivered automatically. We replace manual research with automated pipelines that run continuously in the background.
+          <h3 class="font-serif text-xl md:text-2xl text-navy tracking-[-0.01em] mb-3">Data Intelligence</h3>
+          <p class="text-black/80 text-base leading-relaxed mb-6">
+            The research, enrichment, and data pipelines your team currently does by hand — built as automated systems.
           </p>
 
-          <div class="space-y-6 mb-8">
-            <div>
-              <p class="font-bold text-black text-sm mb-1">Research & Scraping Pipelines</p>
-              <p class="text-black/60 text-sm leading-relaxed">Contacts and companies collected automatically from sources that matter, continuously refreshed.</p>
-            </div>
-            <div>
-              <p class="font-bold text-black text-sm mb-1">AI-Powered Enrichment</p>
-              <p class="text-black/60 text-sm leading-relaxed">Layer context, qualify records, and score outputs so lists are clean and ready to act on.</p>
-            </div>
-            <div>
-              <p class="font-bold text-black text-sm mb-1">Signal & Trigger Identification</p>
-              <p class="text-black/60 text-sm leading-relaxed">Track hiring, funding, and tech changes automatically to surface buying signals.</p>
-            </div>
+          <div class="flex items-center justify-between pt-6 border-t border-navy/20">
+            <span class="service-card-cta subhead-condensed text-xs text-black tracking-[0.2em] transition-colors duration-200">Explore Systems</span>
+            <span class="service-card-arrow" aria-hidden="true">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </span>
           </div>
-
-          <div class="flex items-center justify-between pt-6 border-t border-navy-900/20">
-            <p class="text-black/60 text-xs italic">System builds from $5,000</p>
-            <a href="/services#data-intelligence" class="font-bold text-black text-sm hover:text-blue-500 transition-colors duration-200 discuss-link">Learn more about Data Intelligence <span class="discuss-arrow">&rarr;</span></a>
-          </div>
-        </div>
+        </a>
 
         <!-- Sales Acceleration -->
-        <div class="service-card bg-linen rounded-lg p-8 md:p-10 border-2">
-          <div class="flex items-start justify-between mb-6">
-            <div>
-              <p class="subhead-condensed text-xs text-black/70 mb-2">Service Two</p>
-              <h3 class="font-serif text-2xl md:text-3xl text-black tracking-[-0.01em]">Sales Acceleration</h3>
-            </div>
-            <!-- Rocket Icon -->
-            <svg class="w-12 h-12 flex-shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-              <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+        <a href="/services#sales-acceleration" class="service-card group bg-linen rounded-[10px] p-6 md:p-8 border-2">
+          <!-- Visual Box -->
+          <div class="rounded-[10px] mb-6 flex items-center justify-center overflow-hidden" style="background-color: #D9D9D9; aspect-ratio: 16/9;">
+            <svg viewBox="0 0 400 220" class="w-[92%] h-auto" fill="none">
+              <!-- Dashed connectors from email box edges to 6 outer nodes -->
+              <line x1="170" y1="95"  x2="80"  y2="42"  stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <line x1="230" y1="95"  x2="320" y2="42"  stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <line x1="170" y1="110" x2="45"  y2="110" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <line x1="230" y1="110" x2="355" y2="110" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <line x1="170" y1="125" x2="80"  y2="178" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <line x1="230" y1="125" x2="320" y2="178" stroke="#0A60FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+              <!-- Traveling navy dots (randomized delays + varied durations so they drift, no marching sequence) -->
+              <circle class="sa-dot" cx="170" cy="95"  r="5" fill="#001D52" style="--tx: -90px;  --ty: -53px; animation-delay: 0s;   animation-duration: 3s;"/>
+              <circle class="sa-dot" cx="230" cy="95"  r="5" fill="#001D52" style="--tx:  90px;  --ty: -53px; animation-delay: 1.4s; animation-duration: 2.7s;"/>
+              <circle class="sa-dot" cx="170" cy="110" r="5" fill="#001D52" style="--tx: -125px; --ty: 0px;   animation-delay: 0.6s; animation-duration: 3.4s;"/>
+              <circle class="sa-dot" cx="230" cy="110" r="5" fill="#001D52" style="--tx:  125px; --ty: 0px;   animation-delay: 2.1s; animation-duration: 2.8s;"/>
+              <circle class="sa-dot" cx="170" cy="125" r="5" fill="#001D52" style="--tx: -90px;  --ty: 53px;  animation-delay: 1.0s; animation-duration: 3.2s;"/>
+              <circle class="sa-dot" cx="230" cy="125" r="5" fill="#001D52" style="--tx:  90px;  --ty: 53px;  animation-delay: 0.3s; animation-duration: 2.5s;"/>
+
+              <!-- 6 Outer nodes (opaque fill so dots arriving get overlapped by the ring) -->
+              <circle cx="80"  cy="42"  r="10" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <circle cx="80"  cy="42"  r="4"  fill="#0A60FF"/>
+              <circle cx="320" cy="42"  r="10" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <circle cx="320" cy="42"  r="4"  fill="#0A60FF"/>
+              <circle cx="45"  cy="110" r="10" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <circle cx="45"  cy="110" r="4"  fill="#0A60FF"/>
+              <circle cx="355" cy="110" r="10" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <circle cx="355" cy="110" r="4"  fill="#0A60FF"/>
+              <circle cx="80"  cy="178" r="10" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <circle cx="80"  cy="178" r="4"  fill="#0A60FF"/>
+              <circle cx="320" cy="178" r="10" fill="#D9D9D9" stroke="#0A60FF" stroke-width="2"/>
+              <circle cx="320" cy="178" r="4"  fill="#0A60FF"/>
+
+              <!-- Central email box (opaque, drawn on top so dots emerging from its edges stay hidden inside) -->
+              <rect x="170" y="85" width="60" height="50" rx="8" fill="#0A60FF"/>
+              <rect x="182" y="100" width="36" height="22" rx="2" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+              <path d="M 182 102 L 200 118 L 218 102" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
 
-          <p class="text-black/80 text-base leading-relaxed mb-8">
-            More pipeline. Without more headcount. We fix the outbound system beneath the surface, then run it so your team focuses on conversations.
+          <h3 class="font-serif text-xl md:text-2xl text-navy tracking-[-0.01em] mb-3">Sales Acceleration</h3>
+          <p class="text-black/80 text-base leading-relaxed mb-6">
+            The outbound system your team should already have — designed, built, and operated by us.
           </p>
 
-          <div class="space-y-6 mb-8">
-            <div>
-              <p class="font-bold text-black text-sm mb-1">Outbound System Design</p>
-              <p class="text-black/60 text-sm leading-relaxed">Full targeting logic, data sources, and sequence architecture designed before a single message is sent.</p>
-            </div>
-            <div>
-              <p class="font-bold text-black text-sm mb-1">Done-For-You Operation</p>
-              <p class="text-black/60 text-sm leading-relaxed">Research, enrichment, personalization, sequencing, and inbox management — handled by us.</p>
-            </div>
-            <div>
-              <p class="font-bold text-black text-sm mb-1">Ongoing Optimization</p>
-              <p class="text-black/60 text-sm leading-relaxed">We monitor performance, adjust messaging, and refresh targeting continuously.</p>
-            </div>
+          <div class="flex items-center justify-between pt-6 border-t border-navy/20">
+            <span class="service-card-cta subhead-condensed text-xs text-black tracking-[0.2em] transition-colors duration-200">Explore Systems</span>
+            <span class="service-card-arrow" aria-hidden="true">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </span>
           </div>
-
-          <div class="flex items-center justify-between pt-6 border-t border-navy-900/20">
-            <p class="text-black/60 text-xs italic">Pilots from $10,000</p>
-            <a href="/services#sales-acceleration" class="font-bold text-black text-sm hover:text-blue-500 transition-colors duration-200 discuss-link">Learn more about Sales Acceleration <span class="discuss-arrow">&rarr;</span></a>
-          </div>
-        </div>
+        </a>
       </div>
 
       <!-- A note on AI & Automation -->
-      <div class="max-w-3xl mx-auto mt-16 bg-linen rounded-lg p-8 text-center border-2 border-navy-900 shadow-[6px_6px_0px_0px_#001233]">
+      <div class="max-w-3xl mx-auto mt-16 bg-linen rounded-[10px] p-8 text-center border-2 border-navy shadow-[6px_6px_0px_0px_#001D52]">
         <p class="font-serif text-black text-lg mb-3"><span class="bg-neon px-2 py-0.5">A note on AI &amp; Automation</span></p>
         <p class="text-black/70 text-sm leading-relaxed" style="white-space: pre-line;">You'll notice we don't list AI and automation as a service. That's intentional. AI and automation
 are how we build — not what we sell. The technology is never the point. The point is the outcome.</p>
@@ -231,99 +287,96 @@ are how we build — not what we sell. The technology is never the point. The po
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
-          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-6 leading-[1.25] tracking-[-0.02em]">
+          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-6 leading-[1.25] tracking-[-0.02em]">
             This works best for a specific kind of company.
           </h2>
-          <p class="text-navy-900/80 text-base md:text-lg leading-relaxed mb-8">
+          <p class="text-black text-base md:text-lg leading-relaxed mb-8">
             B2B teams — typically 10 to 200 people — where:
           </p>
-          <ul class="space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed mb-8 reveal reveal-children">
+          <ul class="space-y-4 text-black text-base md:text-lg leading-relaxed mb-8 reveal reveal-children">
             <li class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>Growth has outpaced the systems underneath it</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>Manual effort increases faster than headcount</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>Data lives in spreadsheets, inboxes, and people's heads</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>Leadership wants outcomes, not another tool to manage</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy-900 text-xs flex-shrink-0 mt-0.5">&#10003;</span>
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-neon rounded text-navy text-xs flex-shrink-0 mt-0.5">&#10003;</span>
               <span>There is no internal automation or RevOps function — by choice or reality</span>
             </li>
           </ul>
-          <p class="text-navy-900/60 text-base">
+          <p class="text-black/70 text-base">
             If your people are the glue holding your data or outbound together, that's the pattern we fix.
           </p>
         </div>
         <!-- Image with neon accent shadow -->
-        <div class="relative">
-          <img src="/images/sk2.jpg" alt="Team collaboration" class="w-full rounded-lg object-cover shadow-[8px_8px_0px_0px_#CFFF15]" style="min-height: 500px;" />
+        <div class="relative max-w-sm mx-auto lg:mx-0 lg:ml-auto w-full">
+          <img src="/images/sk2.jpg" alt="Team collaboration" class="w-full rounded-[10px] object-cover shadow-[8px_8px_0px_0px_#CFFF15]" style="aspect-ratio: 4/5;" />
         </div>
       </div>
     </div>
   </section>
 
   <!-- WHY SKIEF LABS -->
-  <section class="bg-linen py-24 md:py-32 reveal">
+  <section class="bg-linen py-16 md:py-20 reveal">
     <div class="max-w-5xl mx-auto px-6 lg:px-8">
       <!-- Header -->
-      <div class="text-center mb-16">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-6 leading-[1.25] tracking-[-0.02em]">
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-4 leading-[1.25] tracking-[-0.02em]">
           Why choose <span class="italic">Skief Labs</span>?
         </h2>
-        <p class="text-navy-900/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-2">
+        <p class="text-black text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-1">
           We are not an agency. Not a consultancy. Not a tool vendor.
         </p>
-        <p class="text-navy-900/70 text-sm md:text-base leading-relaxed mx-auto" style="max-width: 46rem;"><span class="neon-underline">We're a small firm that builds systems — and operates them when that's what the work requires.</span></p>
+        <p class="text-black text-base md:text-lg leading-relaxed mx-auto"><span class="neon-underline">We're a small firm that builds systems — and operates them when that's what the work requires.</span></p>
       </div>
 
-      <!-- Top row: 2 cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 reveal">
+      <!-- All 4 cards in one grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
         <!-- Senior-Led -->
-        <div class="why-card bg-linen rounded-lg p-8 md:p-10 border-2 text-center">
-          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linen mx-auto">
-            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="why-card bg-linen rounded-[10px] p-6 border-2 text-center">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-[10px] bg-linen mx-auto">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
               <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
           </div>
-          <h3 class="font-bold text-lg text-navy-900 mb-3">Senior-Led</h3>
-          <p class="text-navy-900/60 text-base leading-relaxed">
+          <h3 class="font-bold text-base text-black mb-2">Senior-Led</h3>
+          <p class="text-black/70 text-sm leading-relaxed">
             Every engagement is led at a senior level.
           </p>
         </div>
 
         <!-- Fully Documented -->
-        <div class="why-card bg-linen rounded-lg p-8 md:p-10 border-2 text-center">
-          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linen mx-auto">
-            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="why-card bg-linen rounded-[10px] p-6 border-2 text-center">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-[10px] bg-linen mx-auto">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h16z"/>
               <path d="m9 13 2 2 4-4"/>
             </svg>
           </div>
-          <h3 class="font-bold text-lg text-navy-900 mb-3">Fully Documented</h3>
-          <p class="text-navy-900/60 text-base leading-relaxed">
+          <h3 class="font-bold text-base text-black mb-2">Fully Documented</h3>
+          <p class="text-black/70 text-sm leading-relaxed">
             Everything is documented and handed over.
           </p>
         </div>
-      </div>
 
-      <!-- Bottom row: 2 cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-6 lg:mt-8 reveal">
         <!-- Deep Understanding -->
-        <div class="why-card bg-linen rounded-lg p-8 md:p-10 border-2 text-center">
-          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linen mx-auto">
-            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="why-card bg-linen rounded-[10px] p-6 border-2 text-center">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-[10px] bg-linen mx-auto">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 18h8"/>
               <path d="M3 22h18"/>
               <path d="M14 22a7 7 0 1 0 0-14h-1"/>
@@ -332,25 +385,25 @@ are how we build — not what we sell. The technology is never the point. The po
               <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
             </svg>
           </div>
-          <h3 class="font-bold text-lg text-navy-900 mb-3">Deep Understanding</h3>
-          <p class="text-navy-900/60 text-base leading-relaxed">
+          <h3 class="font-bold text-base text-black mb-2">Deep Understanding</h3>
+          <p class="text-black/70 text-sm leading-relaxed">
             Nothing is built before the problem is fully understood.
           </p>
         </div>
 
         <!-- Strategic Restraint -->
-        <div class="why-card bg-linen rounded-lg p-8 md:p-10 border-2 text-center">
-          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linen mx-auto">
-            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="#001233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="why-card bg-linen rounded-[10px] p-6 border-2 text-center">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-[10px] bg-linen mx-auto">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
               <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
               <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
               <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 13"/>
             </svg>
           </div>
-          <h3 class="font-bold text-lg text-navy-900 mb-3">Strategic Restraint</h3>
-          <p class="text-navy-900/60 text-base leading-relaxed">
-            We say no when something shouldn't be built. Restraint is part of the service.
+          <h3 class="font-bold text-base text-black mb-2">Strategic Restraint</h3>
+          <p class="text-black/70 text-sm leading-relaxed">
+            We say no when something shouldn't be built.
           </p>
         </div>
       </div>
@@ -362,10 +415,10 @@ are how we build — not what we sell. The technology is never the point. The po
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="flex items-end justify-between mb-12">
         <div>
-          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 leading-[1.25] tracking-[-0.02em] mb-2">
+          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy leading-[1.25] tracking-[-0.02em] mb-2">
             What our clients said
           </h2>
-          <p class="text-navy-900/60 text-base md:text-lg leading-relaxed">Real feedback from the teams we've worked with.</p>
+          <p class="text-black/70 text-base md:text-lg leading-relaxed">Real feedback from the teams we've worked with.</p>
         </div>
         <div class="flex items-center gap-3">
           <button id="testimonial-prev" class="carousel-arrow" aria-label="Previous">
@@ -385,81 +438,81 @@ are how we build — not what we sell. The technology is never the point. The po
             <!-- Card 1 -->
             <div class="testimonial-slide">
               <div class="testimonial-card">
-                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
-                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs exceeded client's goal of 40 deals, achieving over 60. They efficiently streamlined workflow and collaboration, communicating daily. Constant support and understanding contribute to a successful ongoing partnership.</p>
-                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
-                <div class="border-t border-navy-900/10 pt-3">
-                  <p class="font-bold text-navy-900 text-sm">Oscar Varas</p>
-                  <p class="text-navy-900/50 text-xs mt-0.5">CEO, Simplo Corp</p>
+                <div class="text-navy text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-black/70 text-sm leading-relaxed mb-5">Skief Labs exceeded client's goal of 40 deals, achieving over 60. They efficiently streamlined workflow and collaboration, communicating daily. Constant support and understanding contribute to a successful ongoing partnership.</p>
+                <div class="text-navy text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy/10 pt-3">
+                  <p class="font-bold text-black text-sm">Oscar Varas</p>
+                  <p class="text-black/60 text-xs mt-0.5">CEO, Simplo Corp</p>
                 </div>
               </div>
             </div>
             <!-- Card 2 -->
             <div class="testimonial-slide">
               <div class="testimonial-card">
-                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
-                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs achieved a 94% open rate and booked 9 discovery calls in a 4-week campaign. They impressed the client with their expertise and professionalism through in-person meetings and communication via phone, text, and email.</p>
-                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
-                <div class="border-t border-navy-900/10 pt-3">
-                  <p class="font-bold text-navy-900 text-sm">Business Development Director</p>
+                <div class="text-navy text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-black/70 text-sm leading-relaxed mb-5">Skief Labs achieved a 94% open rate and booked 9 discovery calls in a 4-week campaign. They impressed the client with their expertise and professionalism through in-person meetings and communication via phone, text, and email.</p>
+                <div class="text-navy text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy/10 pt-3">
+                  <p class="font-bold text-black text-sm">Business Development Director</p>
                 </div>
               </div>
             </div>
             <!-- Card 3 -->
             <div class="testimonial-slide">
               <div class="testimonial-card">
-                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
-                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Since Skief Labs has joined the project, the campaign has been generating positive results. The team continuously meets all expectations, making the client satisfied with their performance. They are proactive and always available.</p>
-                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
-                <div class="border-t border-navy-900/10 pt-3">
-                  <p class="font-bold text-navy-900 text-sm">Charles Delibes</p>
-                  <p class="text-navy-900/50 text-xs mt-0.5">Founder, Eat's a de</p>
+                <div class="text-navy text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-black/70 text-sm leading-relaxed mb-5">Since Skief Labs has joined the project, the campaign has been generating positive results. The team continuously meets all expectations, making the client satisfied with their performance. They are proactive and always available.</p>
+                <div class="text-navy text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy/10 pt-3">
+                  <p class="font-bold text-black text-sm">Charles Delibes</p>
+                  <p class="text-black/60 text-xs mt-0.5">Founder, Eat's a de</p>
                 </div>
               </div>
             </div>
             <!-- Card 4 -->
             <div class="testimonial-slide">
               <div class="testimonial-card">
-                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
-                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs exceeded client expectations with increased leads and ROI. Their reliable communication, progress updates, and efficient workflow showcased their result-oriented approach in the partnership.</p>
-                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
-                <div class="border-t border-navy-900/10 pt-3">
-                  <p class="font-bold text-navy-900 text-sm">Antoine Forest</p>
-                  <p class="text-navy-900/50 text-xs mt-0.5">CEO, Marketing Company</p>
+                <div class="text-navy text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-black/70 text-sm leading-relaxed mb-5">Skief Labs exceeded client expectations with increased leads and ROI. Their reliable communication, progress updates, and efficient workflow showcased their result-oriented approach in the partnership.</p>
+                <div class="text-navy text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy/10 pt-3">
+                  <p class="font-bold text-black text-sm">Antoine Forest</p>
+                  <p class="text-black/60 text-xs mt-0.5">CEO, Marketing Company</p>
                 </div>
               </div>
             </div>
             <!-- Card 5 -->
             <div class="testimonial-slide">
               <div class="testimonial-card">
-                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
-                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs impresses client with their professionalism and understanding of project requirements, successfully boosting LinkedIn account and generating increased organic traffic and meetings with potential clients.</p>
-                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
-                <div class="border-t border-navy-900/10 pt-3">
-                  <p class="font-bold text-navy-900 text-sm">CEO</p>
-                  <p class="text-navy-900/50 text-xs mt-0.5">Consulting Firm</p>
+                <div class="text-navy text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-black/70 text-sm leading-relaxed mb-5">Skief Labs impresses client with their professionalism and understanding of project requirements, successfully boosting LinkedIn account and generating increased organic traffic and meetings with potential clients.</p>
+                <div class="text-navy text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy/10 pt-3">
+                  <p class="font-bold text-black text-sm">CEO</p>
+                  <p class="text-black/60 text-xs mt-0.5">Consulting Firm</p>
                 </div>
               </div>
             </div>
             <!-- Card 6 -->
             <div class="testimonial-slide">
               <div class="testimonial-card">
-                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
-                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs stands out in outbound marketing, lead generation, and meeting client expectations. Their friendly and available approach, even across time zones, sets them apart. They excel in communication, responsiveness, and collaboration.</p>
-                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
-                <div class="border-t border-navy-900/10 pt-3">
-                  <p class="font-bold text-navy-900 text-sm">Sales Development Lead</p>
+                <div class="text-navy text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-black/70 text-sm leading-relaxed mb-5">Skief Labs stands out in outbound marketing, lead generation, and meeting client expectations. Their friendly and available approach, even across time zones, sets them apart. They excel in communication, responsiveness, and collaboration.</p>
+                <div class="text-navy text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy/10 pt-3">
+                  <p class="font-bold text-black text-sm">Sales Development Lead</p>
                 </div>
               </div>
             </div>
             <!-- Card 7 -->
             <div class="testimonial-slide">
               <div class="testimonial-card">
-                <div class="text-navy-900 text-3xl font-serif leading-none mb-3">&ldquo;</div>
-                <p class="text-navy-900/70 text-sm leading-relaxed mb-5">Skief Labs' team secured future partnerships with impressive performance and adherence to schedule. They smoothly managed workflow, delivering campaigns weekly, and their thoughtful suggestions and responsiveness stood out.</p>
-                <div class="text-navy-900 text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
-                <div class="border-t border-navy-900/10 pt-3">
-                  <p class="font-bold text-navy-900 text-sm">Principal & Creative Director</p>
+                <div class="text-navy text-3xl font-serif leading-none mb-3">&ldquo;</div>
+                <p class="text-black/70 text-sm leading-relaxed mb-5">Skief Labs' team secured future partnerships with impressive performance and adherence to schedule. They smoothly managed workflow, delivering campaigns weekly, and their thoughtful suggestions and responsiveness stood out.</p>
+                <div class="text-navy text-3xl font-serif leading-none text-right mb-4">&rdquo;</div>
+                <div class="border-t border-navy/10 pt-3">
+                  <p class="font-bold text-black text-sm">Principal & Creative Director</p>
                 </div>
               </div>
             </div>
@@ -470,42 +523,6 @@ are how we build — not what we sell. The technology is never the point. The po
     </div>
   </section>
 
-  <!-- HOW WORK BEGINS -->
-  <section class="bg-linen py-24 md:py-32 reveal">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="cta-box rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-[38%_62%] bg-navy-900">
-        <!-- Left: Image -->
-        <div class="cta-image-col">
-          <img src="/images/sk3.jpg" alt="Discovery call" class="w-full h-full object-cover" />
-        </div>
-        <!-- Right: Content -->
-        <div class="flex flex-col justify-center px-8 py-12 md:px-12 md:py-16 text-center">
-          <h2 class="font-serif text-2xl md:text-[1.75rem] lg:text-[2rem] text-linen mb-4 leading-[1.25] tracking-[-0.02em]">
-            <span class="neon-underline">One entry point. Always the same.</span>
-          </h2>
-          <p class="text-linen/80 text-lg md:text-xl leading-relaxed mb-8 italic">
-            A 30-minute discovery call.
-          </p>
-          <p class="text-linen/60 text-base leading-relaxed mb-6">
-            Not a pitch. Not a free audit. Not a commitment.
-          </p>
-          <p class="text-linen/70 text-base leading-relaxed mb-6">
-            A focused conversation to understand where friction is concentrated in your business — and whether we're the right people to remove it.
-          </p>
-          <p class="text-linen/70 text-base leading-relaxed mb-10">
-            Either way, you leave the call with more clarity than you arrived with.
-          </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/contact" class="cta-book-btn btn-primary inline-flex items-center gap-2">
-              Book a 30-minute discovery call
-              <span class="cta-arrow text-lg inline-block transition-transform duration-300">→</span>
-            </a>
-            <p class="text-linen/50 text-sm italic">No pitch. No obligation. Just clarity.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 </Layout>
 
@@ -656,7 +673,7 @@ are how we build — not what we sell. The technology is never the point. The po
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 
-  // Testimonial carousel — seamless infinite loop, auto-slides every 6s
+  // Testimonial carousel — seamless infinite loop, auto-slides every 4s
   const slider = document.getElementById('testimonial-slider') as HTMLElement | null;
   const prevBtn = document.getElementById('testimonial-prev') as HTMLButtonElement | null;
   const nextBtn = document.getElementById('testimonial-next') as HTMLButtonElement | null;
@@ -740,7 +757,7 @@ are how we build — not what we sell. The technology is never the point. The po
 
     function resetAutoSlide() {
       clearInterval(autoSlideTimer);
-      autoSlideTimer = setInterval(goNext, 6000);
+      autoSlideTimer = setInterval(goNext, 4000);
     }
 
     prevBtn.addEventListener('click', () => {
@@ -770,6 +787,97 @@ are how we build — not what we sell. The technology is never the point. The po
     // Init
     setupClones();
     moveTo(0, false);
-    autoSlideTimer = setInterval(goNext, 6000);
+    autoSlideTimer = setInterval(goNext, 4000);
   }
+</script>
+
+<!-- Rotating hero globe (Three.js loaded in Layout head) -->
+<script is:inline>
+  (function initHeroGlobe() {
+    function start() {
+      const canvas = document.getElementById('hero-globe');
+      if (!canvas || typeof window.THREE === 'undefined') return;
+
+      const THREE = window.THREE;
+      const wrapper = canvas.parentElement;
+
+      const getSize = () => ({
+        w: canvas.clientWidth || wrapper.clientWidth || 550,
+        h: canvas.clientHeight || 490
+      });
+
+      let { w, h } = getSize();
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+      camera.position.z = 6;
+
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(w, h, false);
+
+      const group = new THREE.Group();
+
+      // Wireframe icosahedron (linen)
+      const wireGeo = new THREE.IcosahedronGeometry(1.6, 1);
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: 0xF9F6F0,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.55
+      });
+      const wireMesh = new THREE.Mesh(wireGeo, wireMat);
+      group.add(wireMesh);
+
+      // Dense dots across a slightly larger sphere (linen)
+      const dotsGeo = new THREE.IcosahedronGeometry(1.9, 3);
+      const dotsMat = new THREE.PointsMaterial({
+        size: 0.035,
+        color: 0xF9F6F0,
+        transparent: true,
+        opacity: 0.9
+      });
+      const dots = new THREE.Points(dotsGeo, dotsMat);
+      group.add(dots);
+
+      // Sparse bright neon accent dots orbiting outside
+      const neonGeo = new THREE.IcosahedronGeometry(2.3, 1);
+      const neonMat = new THREE.PointsMaterial({
+        size: 0.08,
+        color: 0xCFFF15,
+        transparent: true,
+        opacity: 0.95
+      });
+      const neonDots = new THREE.Points(neonGeo, neonMat);
+      group.add(neonDots);
+
+      scene.add(group);
+
+      let rafId;
+      function animate() {
+        rafId = requestAnimationFrame(animate);
+        group.rotation.y += 0.0012;
+        group.rotation.x += 0.0003;
+        neonDots.rotation.y -= 0.0008;
+        neonDots.rotation.x += 0.0005;
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      function onResize() {
+        const size = getSize();
+        w = size.w; h = size.h;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h, false);
+      }
+      window.addEventListener('resize', onResize);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else {
+      start();
+    }
+  })();
 </script>

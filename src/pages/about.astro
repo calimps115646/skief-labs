@@ -4,23 +4,143 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="About Us - Skief Labs" description="Built by someone who learned systems out of necessity. Learn about Skief Labs, founder Sardar Azimov, and our approach to B2B systems.">
   <!-- HERO -->
-  <section class="bg-linen pt-12 pb-16 md:pt-16 md:pb-20">
+  <section class="bg-linen pt-20 pb-16 md:pt-28 md:pb-20">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <!-- Left: Text -->
         <div>
-          <h1 class="page-hero-title heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-navy-900 mb-8 leading-[1.1] uppercase">
-            Built by someone who learned systems out of necessity.
+          <h1 class="page-hero-title heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-navy mb-8 leading-[1.1] uppercase">
+            Built from<br>necessity,<br>not theory.
           </h1>
-          <div class="page-hero-body space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed max-w-2xl">
-            <p>Skief Labs exists because growing businesses are routinely held together by people doing work that systems should handle.</p>
-            <p>Manual follow-ups. Copied data. Unclear ownership. Processes that sort of work — until growth breaks them.</p>
-            <p>We've seen this pattern too many times to keep solving it one person at a time.</p>
+          <div class="page-hero-body text-black text-sm md:text-base leading-relaxed max-w-xl">
+            <p>Skief Labs exists because growing businesses are routinely held together by people doing work that systems should handle — manual follow-ups, copied data, unclear ownership. Processes that sort of work, until growth breaks them. We've seen this pattern too many times to keep solving it one person at a time.</p>
           </div>
         </div>
-        <!-- Right: Image -->
-        <div class="page-hero-image relative">
-          <img src="/images/sk7.jpeg" alt="Sardar Azimov" class="w-full rounded-lg object-cover shadow-[8px_8px_0px_0px_#CFFF15]" />
+        <!-- Right: Line chart graphic -->
+        <div class="page-hero-image relative flex justify-center">
+          <div class="w-full max-w-[420px] rounded-[10px] shadow-[8px_8px_0px_0px_#CFFF15] flex items-center justify-center p-8 md:p-10" style="background-color: #D9D9D9; aspect-ratio: 16/10;">
+            <svg viewBox="0 0 400 200" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+              <!-- "L" Axes -->
+              <line x1="58" y1="22"  x2="58"  y2="165" stroke="#001D52" stroke-width="1.5" stroke-opacity="0.55"/>
+              <line x1="58" y1="165" x2="382" y2="165" stroke="#001D52" stroke-width="1.5" stroke-opacity="0.55"/>
+
+              <!-- Axis labels -->
+              <text x="18" y="94" fill="#001D52" font-size="12" font-family="Nunito, sans-serif"
+                    font-weight="700" text-anchor="middle" opacity="0.8" transform="rotate(-90 18 94)">Output</text>
+              <text x="220" y="181" fill="#001D52" font-size="12" font-family="Nunito, sans-serif"
+                    font-weight="700" text-anchor="middle" opacity="0.8">Time</text>
+
+              <!-- Dashed grid lines -->
+              <line x1="58" y1="65"  x2="382" y2="65"  stroke="#001D52" stroke-width="0.8" stroke-dasharray="5,5" stroke-opacity="0.18"/>
+              <line x1="58" y1="105" x2="382" y2="105" stroke="#001D52" stroke-width="0.8" stroke-dasharray="5,5" stroke-opacity="0.18"/>
+              <line x1="58" y1="145" x2="382" y2="145" stroke="#001D52" stroke-width="0.8" stroke-dasharray="5,5" stroke-opacity="0.18"/>
+
+              <!-- Manual Effort path (blue, zigzag) -->
+              <path id="ab-me-line"
+                d="M 58,163 L 78,142 L 96,156 L 116,132 L 135,150 L 154,126 L 173,145 L 192,120 L 211,138 L 231,114 L 250,132 L 269,110 L 287,127 L 306,113 L 325,124 L 344,111 L 363,121 L 381,112"
+                stroke="#0A60FF" stroke-width="1.8" fill="none"
+                pathLength="400" stroke-dasharray="400" stroke-dashoffset="400"/>
+
+              <!-- System Pipeline path (navy, S-curve sigmoid) -->
+              <path id="ab-sp-line"
+                d="M 58,163 C 270,163 270,24 381,24"
+                stroke="#001D52" stroke-width="2.5" fill="none"
+                pathLength="400" stroke-dasharray="400" stroke-dashoffset="400"/>
+
+              <!-- Manual Effort traveling dot (blue) -->
+              <g id="ab-me-dot">
+                <circle class="ab-me-radar" r="9"   fill="none" stroke="#0A60FF" stroke-width="1.2"/>
+                <circle                     r="6.5" fill="none" stroke="#0A60FF" stroke-width="1.8"/>
+                <circle                     r="2.5" fill="#0A60FF"/>
+              </g>
+
+              <!-- System Pipeline traveling dot (navy) -->
+              <g id="ab-sp-dot">
+                <circle class="ab-sp-radar" r="9"   fill="none" stroke="#001D52" stroke-width="1.2"/>
+                <circle                     r="6.5" fill="none" stroke="#001D52" stroke-width="1.8"/>
+                <circle                     r="2.5" fill="#001D52"/>
+              </g>
+
+              <!-- Legend -->
+              <line x1="58"  y1="191" x2="78"  y2="191" stroke="#0A60FF" stroke-width="1.8" stroke-opacity="0.7"/>
+              <text x="83"  y="196" fill="#0A60FF" font-size="11" font-family="Nunito, sans-serif" font-weight="600" opacity="0.85">Manual Effort</text>
+              <line x1="200" y1="191" x2="220" y2="191" stroke="#001D52" stroke-width="2.5"/>
+              <text x="225" y="196" fill="#001D52" font-size="11" font-family="Nunito, sans-serif" font-weight="600">System Pipeline</text>
+            </svg>
+          </div>
+
+          <style>
+            /*
+              6s loop. Both lines draw left→right (dashoffset 400→0) from 4%–80%.
+              Both dots travel their paths simultaneously (offset-distance 0%→100%).
+              At 87% brief pause. 91% fade out. 92% instant invisible reset. 100% restart.
+            */
+
+            /* Line draw animations */
+            @keyframes ab-sp-draw {
+              0%, 2%  { stroke-dashoffset: 400; opacity: 0; }
+              4%      { stroke-dashoffset: 398; opacity: 1; }
+              80%     { stroke-dashoffset: 0;   opacity: 1; }
+              87%     { stroke-dashoffset: 0;   opacity: 1; }
+              91%     { stroke-dashoffset: 0;   opacity: 0; }
+              92%     { stroke-dashoffset: 400; opacity: 0; }
+              100%    { stroke-dashoffset: 400; opacity: 0; }
+            }
+            @keyframes ab-me-draw {
+              0%, 2%  { stroke-dashoffset: 400; opacity: 0; }
+              4%      { stroke-dashoffset: 398; opacity: 1; }
+              80%     { stroke-dashoffset: 0;   opacity: 1; }
+              87%     { stroke-dashoffset: 0;   opacity: 1; }
+              91%     { stroke-dashoffset: 0;   opacity: 0; }
+              92%     { stroke-dashoffset: 400; opacity: 0; }
+              100%    { stroke-dashoffset: 400; opacity: 0; }
+            }
+            #ab-sp-line { animation: ab-sp-draw 6s linear 0.8s infinite backwards; }
+            #ab-me-line { animation: ab-me-draw 6s linear 0.8s infinite backwards; }
+
+            /* Dot motion paths */
+            #ab-sp-dot {
+              offset-path: path('M 58,163 C 270,163 270,24 381,24');
+              offset-rotate: 0deg;
+            }
+            #ab-me-dot {
+              offset-path: path('M 58,163 L 78,142 L 96,156 L 116,132 L 135,150 L 154,126 L 173,145 L 192,120 L 211,138 L 231,114 L 250,132 L 269,110 L 287,127 L 306,113 L 325,124 L 344,111 L 363,121 L 381,112');
+              offset-rotate: 0deg;
+            }
+
+            /* Dot travel animations */
+            @keyframes ab-sp-travel {
+              0%, 2%    { offset-distance: 0%;   opacity: 0; }
+              4%        { offset-distance: 0%;   opacity: 1; }
+              80%       { offset-distance: 100%; opacity: 1; }
+              87%       { offset-distance: 100%; opacity: 1; }
+              91%       { offset-distance: 100%; opacity: 0; }
+              92%, 100% { offset-distance: 0%;   opacity: 0; }
+            }
+            @keyframes ab-me-travel {
+              0%, 2%    { offset-distance: 0%;   opacity: 0; }
+              4%        { offset-distance: 0%;   opacity: 1; }
+              80%       { offset-distance: 100%; opacity: 1; }
+              87%       { offset-distance: 100%; opacity: 1; }
+              91%       { offset-distance: 100%; opacity: 0; }
+              92%, 100% { offset-distance: 0%;   opacity: 0; }
+            }
+            #ab-sp-dot { animation: ab-sp-travel 6s linear 0.8s infinite backwards; }
+            #ab-me-dot { animation: ab-me-travel 6s linear 0.8s infinite backwards; }
+
+            /* Continuous radar rings on both dots */
+            .ab-sp-radar, .ab-me-radar {
+              transform-box: fill-box;
+              transform-origin: center;
+            }
+            @keyframes ab-radar {
+              0%   { transform: scale(1);   opacity: 0.65; }
+              100% { transform: scale(2.4); opacity: 0;    }
+            }
+            .ab-sp-radar { animation: ab-radar 1.4s ease-out 0.8s infinite backwards; }
+            .ab-me-radar { animation: ab-radar 1.4s ease-out 0.8s infinite backwards; }
+          </style>
         </div>
       </div>
     </div>
@@ -29,15 +149,15 @@ import Layout from '../layouts/Layout.astro';
   <!-- OUR POINT OF VIEW -->
   <section class="bg-linen py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <div class="page-hero-next grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 leading-[1.25] tracking-[-0.02em] border-l-4 border-neon pl-4">
+          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] leading-[1.25] tracking-[-0.02em]" style="color: #001D52;">
             Our point of view
           </h2>
         </div>
-        <div class="lg:col-span-7 space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed">
+        <div class="lg:col-span-7 space-y-4 text-black text-base md:text-lg leading-relaxed">
           <p>Most B2B companies don't stall because of bad strategy or bad people.</p>
-          <p class="font-semibold text-navy-900">They stall because their systems never evolved as the business did.</p>
+          <p class="font-semibold text-black">They stall because their systems never evolved as the business did.</p>
           <p>As teams grow, tools multiply, data fragments, responsibility blurs, and humans quietly become the connective tissue holding everything together. That works — until it becomes fragile.</p>
           <p>Our work is about replacing that fragility with systems that operate reliably — whether or not anyone is watching.</p>
         </div>
@@ -48,44 +168,47 @@ import Layout from '../layouts/Layout.astro';
   <!-- THE FOUNDER -->
   <section class="bg-linen py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="rounded-2xl overflow-hidden shadow-[8px_8px_0px_0px_#CFFF15]">
-        <div class="grid grid-cols-1 md:grid-cols-[40%_60%]">
-          <!-- Left: Image -->
-          <div class="relative min-h-[400px] md:min-h-[600px]">
-            <img src="/images/sk8.jpeg" alt="Sardar Azimov" class="w-full h-full object-cover" />
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6 md:p-8 pt-16 md:pt-24">
-              <p class="font-serif text-xl md:text-2xl text-linen tracking-[-0.02em] text-center">Founder & Principal</p>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-[38%_62%] gap-12 lg:gap-16 items-center">
+        <!-- Left: Image -->
+        <div>
+          <img src="/images/sk8.jpeg" alt="Sardar Azimov" class="block mx-auto" style="max-height: 520px; width: auto; border-radius: 10px;" />
+        </div>
+        <!-- Right: Content -->
+        <div class="flex flex-col justify-center space-y-5">
+          <h3 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] leading-[1.2] tracking-[-0.02em]" style="color: #001D52;">
+            Rooted in business, not just code.
+          </h3>
+          <p class="text-black text-base leading-relaxed">Sardar mastered automation and AI out of necessity — to scale output without burning<br>teams out.</p>
+          <p class="text-black text-base leading-relaxed">Every system designed starts with business impact, asking:</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0 mt-1.5" style="background-color: #CFFF15;"></span>
+              <span class="text-black text-base leading-relaxed">Where is human effort being wasted on work that shouldn't require humans?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0 mt-1.5" style="background-color: #CFFF15;"></span>
+              <span class="text-black text-base leading-relaxed">Where is risk hiding inside a manual step?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0 mt-1.5" style="background-color: #CFFF15;"></span>
+              <span class="text-black text-base leading-relaxed">What should stay human — and why?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0 mt-1.5" style="background-color: #CFFF15;"></span>
+              <span class="text-black text-base leading-relaxed">What should never be automated?</span>
+            </li>
+          </ul>
+          <!-- Quote line -->
+          <div class="flex items-stretch gap-3">
+            <div class="w-[3px] rounded-full shrink-0" style="background-color: #001D52;"></div>
+            <p class="text-black text-base leading-relaxed">Judgment comes before technology. Always.</p>
           </div>
-          <!-- Right: Content -->
-          <div class="bg-navy-900 p-8 md:p-12 flex flex-col justify-center">
-            <h3 class="font-serif text-xl md:text-2xl text-linen leading-[1.25] tracking-[-0.02em] border-l-4 border-neon pl-4 mb-8">
-              The Founder
-            </h3>
-            <div class="space-y-4 text-linen/80 text-base leading-relaxed">
-              <p>Sardar's background is in business, marketing, and sales — not in engineering or computer science. He learned automation, AI, and systems design out of necessity: building ways to scale commercial output without endlessly hiring or burning teams out. <strong class="text-linen">That origin matters.</strong></p>
-              <p>It means every system Skief Labs designs starts with business questions, not technical ones.</p>
-              <ul class="space-y-3 my-2">
-                <li class="flex items-start gap-3">
-                  <span class="w-2.5 h-2.5 rounded-full bg-neon mt-1.5 shrink-0"></span>
-                  <span>Where is human effort being wasted on work that shouldn't require humans?</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="w-2.5 h-2.5 rounded-full bg-neon mt-1.5 shrink-0"></span>
-                  <span>Where is risk hiding inside a manual step?</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="w-2.5 h-2.5 rounded-full bg-neon mt-1.5 shrink-0"></span>
-                  <span>What should stay human — and why?</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="w-2.5 h-2.5 rounded-full bg-neon mt-1.5 shrink-0"></span>
-                  <span>What should never be automated?</span>
-                </li>
-              </ul>
-              <p class="text-linen font-semibold">Judgment comes before technology. Always.</p>
-              <p>Sardar leads every Skief Labs engagement at the architecture level — ensuring solutions stay grounded in business reality rather than technical novelty.</p>
-            </div>
+          <p class="text-black text-base leading-relaxed">Leading at the architecture level to ensure solutions stay grounded in business reality,<br>rather than technical novelty.</p>
+          <!-- Name & title -->
+          <div class="flex items-center gap-3 pt-2">
+            <span class="font-bold text-black">Sardar Azimov</span>
+            <span class="w-2 h-2 rounded-full shrink-0" style="background-color: #001D52;"></span>
+            <span class="font-bold text-black">Founder &amp; Principal</span>
           </div>
         </div>
       </div>
@@ -100,33 +223,33 @@ import Layout from '../layouts/Layout.astro';
         <div class="text-center">
           <div class="inline-block">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
-              <p class="subhead-condensed text-xs text-navy-900 tracking-[0.2em]">The Studio</p>
+              <div class="w-12 h-0.5 bg-navy"></div>
+              <p class="subhead-condensed text-xs text-navy tracking-[0.2em]">The Studio</p>
             </div>
-            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-3 leading-[1.25] tracking-[-0.02em] text-center">
+            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-3 leading-[1.25] tracking-[-0.02em] text-center">
               How the team works
             </h2>
             <div class="flex justify-end">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
+              <div class="w-12 h-0.5 bg-navy"></div>
             </div>
           </div>
         </div>
         <div class="mb-10"></div>
 
-        <div class="space-y-6 text-navy-900/70 text-base md:text-lg leading-relaxed text-center">
-          <p class="text-navy-900 text-xl md:text-2xl font-serif italic">
-            Skief Labs operates as a studio — deliberately small, deliberately senior.
+        <div class="space-y-6 text-black text-base md:text-lg leading-relaxed text-center">
+          <p class="text-black italic">
+            Skief Labs operates as a studio — deliberately small,<br>deliberately senior.
           </p>
-          <p>Projects are architected at a senior level and executed by trusted specialists in data engineering, automation, and AI systems. Every engagement is reviewed for clarity, stability, and ownership before it's delivered.</p>
-          <p class="text-navy-900 font-semibold">There are no junior handoffs. No hidden subcontracting. No black boxes.</p>
-          <p>Clients always know who is responsible for what — and why decisions are being made.</p>
+          <p>Projects are architected at a senior level and executed by<br>trusted specialists in data engineering, automation, and AI<br>systems. Every engagement is reviewed for clarity,<br>stability, and ownership before it's delivered.</p>
+          <p class="text-black font-semibold">There are no junior handoffs. No hidden subcontracting.<br>No black boxes.</p>
+          <p>Clients always know who is responsible for what — and<br>why decisions are being made.</p>
         </div>
 
         <!-- Callout box -->
         <div class="flex items-stretch gap-4 mt-10">
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-          <p class="text-navy-900/70 text-sm italic leading-relaxed py-1 text-left">Every system we deliver is fully documented and handed over — so your team never depends on us to understand what was built or why.</p>
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
+          <div class="w-0.5 bg-navy rounded-full flex-shrink-0"></div>
+          <p class="text-black text-sm italic leading-relaxed py-1 text-left">Every system we deliver is fully documented and handed over — so your team never<br>depends on us to understand what was built or why.</p>
+          <div class="w-0.5 bg-navy rounded-full flex-shrink-0"></div>
         </div>
       </div>
     </div>
@@ -135,72 +258,37 @@ import Layout from '../layouts/Layout.astro';
   <!-- WHAT MAKES US DIFFERENT -->
   <section class="bg-linen py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-xl mx-auto">
+      <div class="max-w-xl mx-auto reveal">
         <!-- Heading block -->
         <div class="text-center">
           <div class="inline-block">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
-              <p class="subhead-condensed text-xs text-navy-900 tracking-[0.2em]">The Edge</p>
+              <div class="w-12 h-0.5 bg-navy"></div>
+              <p class="subhead-condensed text-xs text-navy tracking-[0.2em]">The Edge</p>
             </div>
-            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-3 leading-[1.25] tracking-[-0.02em] text-center">
+            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-3 leading-[1.25] tracking-[-0.02em] text-center">
               What makes us different
             </h2>
             <div class="flex justify-end">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
+              <div class="w-12 h-0.5 bg-navy"></div>
             </div>
           </div>
         </div>
         <div class="mb-10"></div>
 
-        <div class="space-y-6 text-navy-900/70 text-base md:text-lg leading-relaxed text-center">
+        <div class="space-y-6 text-black text-base md:text-lg leading-relaxed text-center">
           <p>We are not an agency.<br>We are not freelancers.<br>We are not traditional consultants.</p>
-          <p class="text-navy-900 font-semibold">We build systems — two specific kinds — with deliberate restraint.</p>
-          <p>We work on problems we're genuinely equipped to solve. We don't take on engagements to fill capacity. We say no when something shouldn't be built.</p>
-          <p>We document everything so clients never need to come back for something they already paid for.</p>
-          <p>We measure success by how little our clients need us over time — not by how much they do.</p>
+          <p class="text-black font-semibold">We build systems — two specific kinds — with deliberate restraint.</p>
+          <p>We work on problems we're genuinely equipped to solve.<br>We don't take on engagements to fill capacity. We say no<br>when something shouldn't be built.</p>
+          <p>We document everything so clients never need to come<br>back for something they already paid for.</p>
+          <p>We measure success by how little our clients need us<br>over time — not by how much they do.</p>
         </div>
 
         <!-- Callout box -->
         <div class="flex items-stretch gap-4 mt-10">
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-          <p class="text-navy-900/70 text-sm italic leading-relaxed py-1 text-left">That last point is the most important one. Dependency is easy to create and profitable to maintain. We've chosen not to.</p>
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="bg-linen py-24 md:py-32">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="cta-box rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-[38%_62%] bg-navy-900">
-        <div class="cta-image-col">
-          <img src="/images/sk3.jpg" alt="Discovery call" class="w-full h-full object-cover" />
-        </div>
-        <div class="flex flex-col justify-center px-8 py-12 md:px-12 md:py-16 text-center">
-          <h2 class="font-serif text-2xl md:text-[1.75rem] lg:text-[2rem] text-linen mb-4 leading-[1.25] tracking-[-0.02em]">
-            <span class="neon-underline">One entry point. Always the same.</span>
-          </h2>
-          <p class="text-linen/80 text-lg md:text-xl leading-relaxed mb-8 italic">
-            A 30-minute discovery call.
-          </p>
-          <p class="text-linen/60 text-base leading-relaxed mb-6">
-            Not a pitch. Not a free audit. Not a commitment.
-          </p>
-          <p class="text-linen/70 text-base leading-relaxed mb-6">
-            A focused conversation to understand where friction is concentrated in your business — and whether we're the right people to remove it.
-          </p>
-          <p class="text-linen/70 text-base leading-relaxed mb-10">
-            Either way, you leave the call with more clarity than you arrived with.
-          </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/contact" class="cta-book-btn btn-primary inline-flex items-center gap-2">
-              Book a 30-minute discovery call
-              <span class="cta-arrow text-lg inline-block transition-transform duration-300">→</span>
-            </a>
-            <p class="text-linen/50 text-sm italic">No pitch. No obligation. Just clarity.</p>
-          </div>
+          <div class="w-0.5 bg-navy rounded-full flex-shrink-0"></div>
+          <p class="text-black text-sm italic leading-relaxed py-1 text-left">That last point is the most important one. Dependency is easy to create and profitable<br>to maintain. We've chosen not to.</p>
+          <div class="w-0.5 bg-navy rounded-full flex-shrink-0"></div>
         </div>
       </div>
     </div>

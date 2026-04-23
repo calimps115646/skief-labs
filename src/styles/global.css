@@ -2,10 +2,9 @@
 
 /* Brand Colors as CSS Custom Properties */
 :root {
-  --navy-900: #001233;
-  --navy-800: #001D52;
-  --blue-600: #0040B8;
-  --blue-500: #0A60FF;
+  --navy: #001D52;
+  --blue: #0A60FF;
+  --gray: #D9D9D9;
   --linen: #F9F6F0;
   --neon: #CFFF15;
   --white: #FFFFFF;
@@ -14,12 +13,13 @@
 
 /* Tailwind v4 theme */
 @theme {
-  --color-navy-900: #001233;
-  --color-navy-800: #001D52;
-  --color-blue-600: #0040B8;
-  --color-blue-500: #0A60FF;
+  --color-navy: #001D52;
+  --color-blue: #0A60FF;
+  --color-gray: #D9D9D9;
   --color-linen: #F9F6F0;
   --color-neon: #CFFF15;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
 
   --font-serif: 'Libre Bodoni', 'Georgia', serif;
   --font-sans: 'Nunito', system-ui, sans-serif;
@@ -36,20 +36,20 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   background-color: var(--color-linen);
-  color: var(--color-navy-900);
+  color: var(--color-navy);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Section theme classes */
 .section-dark {
-  background-color: var(--color-navy-900);
+  background-color: var(--color-navy);
   color: var(--color-linen);
 }
 
 .section-linen {
   background-color: var(--color-linen);
-  color: var(--color-navy-900);
+  color: var(--color-navy);
 }
 
 /* Typography utilities */
@@ -78,10 +78,10 @@ body {
 /* Button styles */
 .btn-primary {
   display: inline-block;
-  background-color: var(--color-blue-500);
+  background-color: var(--color-blue);
   color: var(--color-linen);
   padding: 0.75rem 1.75rem;
-  border-radius: 0.375rem;
+  border-radius: 10px;
   font-family: var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -94,7 +94,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: var(--color-blue-600);
+  background-color: var(--color-blue);
   box-shadow: 0 4px 12px rgba(10, 96, 255, 0.35);
 }
 
@@ -112,7 +112,7 @@ body {
   border: 1px solid currentColor;
   color: inherit;
   padding: 0.875rem 2rem;
-  border-radius: 0.375rem;
+  border-radius: 10px;
   font-family: var(--font-button);
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -131,6 +131,14 @@ body {
 .nav-link {
   position: relative;
   padding-bottom: 4px;
+  text-decoration: none;
+}
+
+.nav-link:focus,
+.nav-link:visited,
+.nav-link:active {
+  text-decoration: none;
+  outline: none;
 }
 
 .nav-link::after {
@@ -138,18 +146,17 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 1px;
   background-color: var(--color-linen);
-  transition: width 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s ease;
 }
 
-.nav-link:hover::after {
-  width: 100%;
-}
-
+.nav-link:hover::after,
 .nav-link-active::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 
 /* Navigation responsive - uses 900px breakpoint instead of Tailwind lg (1024px) so zoom doesn't break it */
@@ -163,7 +170,7 @@ body {
   display: block;
 }
 .nav-mobile-menu {
-  background-color: #001233;
+  background-color: #001D52;
   min-height: 100vh;
 }
 
@@ -252,28 +259,66 @@ body {
   }
 }
 
-/* Service card hover shadow */
+/* Service card — float-on-hover (tactile-card pattern) */
 .service-card {
-  box-shadow: none;
-  border-color: rgba(0, 18, 51, 0.15);
-  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+  box-shadow: 0 10px 40px -20px rgba(0, 29, 82, 0.10);
+  border-color: #001D52;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease;
+  cursor: pointer;
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .service-card:hover {
-  border-color: #001233;
-  box-shadow: 8px 8px 0px 0px #001233;
+  transform: translateY(-8px);
+  border-color: #001D52;
+  box-shadow: 0 30px 60px -20px rgba(0, 29, 82, 0.28);
+}
+
+/* Circle-wrapped arrow on the service card footer */
+.service-card-arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: #F9F6F0;
+  color: #001D52;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.service-card-arrow svg {
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-card-arrow {
+  background-color: #0A60FF;
+  color: #F9F6F0;
+}
+
+.service-card:hover .service-card-arrow svg {
+  transform: translate(3px, -3px);
+}
+
+.service-card:hover .service-card-cta {
+  color: #0A60FF;
 }
 
 /* Why card hover (same logic as service cards) */
 .why-card {
   box-shadow: none;
-  border-color: rgba(0, 18, 51, 0.15);
+  border-color: #001D52;
   transition: box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 .why-card:hover {
-  border-color: #001233;
-  box-shadow: 8px 8px 0px 0px #001233;
+  border-color: #001D52;
+  box-shadow: 8px 8px 0px 0px #001D52;
 }
 
 /* Build card hover (services page - What We Build boxes) */
@@ -284,8 +329,8 @@ body {
 }
 
 .build-card:hover {
-  border-color: #001233;
-  box-shadow: 8px 8px 0px 0px #001233;
+  border-color: #001D52;
+  box-shadow: 8px 8px 0px 0px #001D52;
 }
 
 /* Neon underline highlight */
@@ -339,7 +384,7 @@ body {
 .carousel-arrow {
   background: none;
   border: none;
-  color: var(--color-navy-900);
+  color: var(--color-navy);
   cursor: pointer;
   padding: 0.25rem;
   transition: color 0.2s ease, transform 0.2s ease;
@@ -359,18 +404,18 @@ body {
   transform: translateX(5px);
 }
 
-/* CTA box with image */
-.cta-box {
-  min-height: 500px;
+/* CTA dome — rounded arch at the top, subtle rounding at the bottom */
+.cta-dome {
+  border-top-left-radius: 50% 40%;
+  border-top-right-radius: 50% 40%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.cta-image-col {
-  min-height: 300px;
-}
-
-@media (min-width: 768px) {
-  .cta-image-col {
-    min-height: 500px;
+@media (max-width: 767px) {
+  .cta-dome {
+    border-top-left-radius: 50% 25%;
+    border-top-right-radius: 50% 25%;
   }
 }
 
@@ -424,6 +469,103 @@ body {
   width: 0.3em;
 }
 
+/* Service card visual animations (Data Intelligence & Sales Acceleration) */
+@keyframes diDotTravel {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  12%  { opacity: 1; }
+  75%  { transform: translate(var(--tx), var(--ty)); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+}
+
+.di-dot {
+  animation: diDotTravel 2.8s ease-in-out infinite;
+  transform-box: fill-box;
+}
+
+@keyframes diPulseRing {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+.di-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: diPulseRing 1.8s ease-out infinite;
+}
+
+@keyframes saDotTravel {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  80%  { transform: translate(var(--tx), var(--ty)); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+}
+
+.sa-dot {
+  animation: saDotTravel 3s ease-in-out infinite;
+  transform-box: fill-box;
+}
+
+/* Hero flow diagram — sequenced card + arrow animation */
+@keyframes heroCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroLineDraw {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hero-card {
+  opacity: 0;
+  animation: heroCardIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Timeline (after hero text animates ~1.6s):
+   4. Daily Friction card   → 1.8s
+   5. Arrow 1 draws          → 2.5s
+   6. Built Systems card     → 3.1s
+   7. Arrow 2 draws          → 3.8s
+   8. Business Forward card  → 4.4s
+*/
+.hero-card-1 { animation-delay: 1.8s; }
+.hero-card-2 { animation-delay: 3.1s; }
+.hero-card-3 { animation-delay: 4.4s; }
+
+.hero-arrow path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.hero-arrow polygon {
+  opacity: 0;
+}
+
+.hero-arrow-1 path {
+  animation: heroLineDraw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 2.5s forwards;
+}
+.hero-arrow-1 polygon {
+  animation: heroFadeIn 0.25s ease-out 3.35s forwards;
+}
+
+.hero-arrow-2 path {
+  animation: heroLineDraw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 3.8s forwards;
+}
+.hero-arrow-2 polygon {
+  animation: heroFadeIn 0.25s ease-out 4.65s forwards;
+}
+
 /* Hero body + cards fade in together */
 .hero-fade-group {
   opacity: 0 !important;
@@ -438,7 +580,10 @@ body {
   transform: translateY(0) !important;
 }
 
-/* Page load animations (non-home pages) */
+/* Page load animations (non-home pages) — 3-beat sequence:
+   Beat 1: title
+   Beat 2: body + CTA (together)
+   Beat 3: image (slides in from the right) */
 @keyframes pageFadeInUp {
   from {
     opacity: 0;
@@ -450,38 +595,75 @@ body {
   }
 }
 
+@keyframes pageFadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .page-animate {
   opacity: 0;
 }
 
+/* Beat 1 — title */
 .page-animate.page-loaded .page-hero-title {
-  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.1s;
+  animation: pageFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.05s;
   opacity: 0;
 }
 
 .page-animate.page-loaded .page-hero-subtitle {
-  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: pageFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.15s;
+  opacity: 0;
+}
+
+/* Beat 2 — body + CTA (rise together, identical delay) */
+.page-animate.page-loaded .page-hero-body,
+.page-animate.page-loaded .page-hero-cta {
+  animation: pageFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.3s;
   opacity: 0;
 }
 
-.page-animate.page-loaded .page-hero-body {
-  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.5s;
-  opacity: 0;
-}
-
-.page-animate.page-loaded .page-hero-cta {
-  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.7s;
-  opacity: 0;
-}
-
+/* Beat 3 — image slides in from the right */
 .page-animate.page-loaded .page-hero-image {
-  animation: pageFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.6s;
+  animation: pageFadeInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.55s;
   opacity: 0;
+}
+
+/* Beat 4 — next section (Data Intelligence sticky title + first subsection) */
+.page-animate .page-hero-next {
+  opacity: 0;
+}
+.page-animate.page-loaded .page-hero-next {
+  animation: pageFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.95s;
+  opacity: 0;
+}
+
+/* Beat 4 connector — vertical line that grows down from OUR PRINCIPLES box.
+   translateX(-50%) is carried through every transform so the animation
+   never overrides the centering from the -translate-x-1/2 Tailwind class. */
+.page-animate .page-hero-vline {
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+}
+.page-animate.page-loaded .page-hero-vline {
+  animation: pageGrowDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1.05s;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+}
+@keyframes pageGrowDown {
+  from { transform: translateX(-50%) scaleY(0); }
+  to   { transform: translateX(-50%) scaleY(1); }
 }
 
 .page-animate.page-loaded {

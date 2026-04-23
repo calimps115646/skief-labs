@@ -31,7 +31,14 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:uc.zone)",
+      "Bash(find src:*)",
+      "Bash(node -e \"const fs=require\\('fs'\\); const p='src/pages/index.astro'; let s=fs.readFileSync\\(p,'utf8'\\); const before=s; s=s.replace\\(/stroke=\\\\\"#001233\\\\\"/g,'stroke=\\\\\"#001D52\\\\\"'\\); console.log\\('icon stroke replacements:', \\(before.match\\(/stroke=\\\\\"#001233\\\\\"/g\\)||[]\\).length\\); fs.writeFileSync\\(p,s\\);\")",
+      "Bash(node -e \"const fs=require\\('fs'\\); const p='src/pages/index.astro'; let s=fs.readFileSync\\(p,'utf8'\\); const titles=\\(s.match\\(/font-bold text-base text-navy mb-2/g\\)||[]\\).length; const descs=\\(s.match\\(/text-navy\\\\/60 text-sm leading-relaxed/g\\)||[]\\).length; s=s.replace\\(/font-bold text-base text-navy mb-2/g,'font-bold text-base text-black mb-2'\\); s=s.replace\\(/text-navy\\\\/60 text-sm leading-relaxed/g,'text-black/70 text-sm leading-relaxed'\\); console.log\\('card titles:', titles, 'card descriptions:', descs\\); fs.writeFileSync\\(p,s\\);\")",
+      "Bash(node -e \"const fs=require\\('fs'\\); const p='src/pages/index.astro'; let s=fs.readFileSync\\(p,'utf8'\\); const before=\\(s.match\\(/stroke=\\\\\"#001D52\\\\\"/g\\)||[]\\).length; s=s.replace\\(/stroke=\\\\\"#001D52\\\\\"/g,'stroke=\\\\\"#000000\\\\\"'\\); console.log\\('icon stroke changes:', before\\); fs.writeFileSync\\(p,s\\);\")",
+      "Bash(node -e ':*)",
+      "Bash(npm list *)"
     ]
   }
 }

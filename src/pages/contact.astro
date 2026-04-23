@@ -8,20 +8,20 @@ import Layout from '../layouts/Layout.astro';
     <!-- Background image -->
     <div class="absolute inset-0">
       <img src="/images/sk9.jpg" alt="Discovery call" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-navy-900/40"></div>
+      <div class="absolute inset-0 bg-navy/70"></div>
     </div>
     <!-- Content -->
     <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-24 md:py-36 text-center w-full">
       <h1 class="page-hero-title heading-serif text-4xl md:text-5xl lg:text-[3.8rem] text-linen mb-8 leading-[1.1] uppercase">
-        If the friction is real, it's worth a conversation.
+        If the friction is real,<br>it's worth a conversation.
       </h1>
       <p class="page-hero-body text-linen/80 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10">
         Most teams reach out when something that used to work has stopped working at scale — and the manual workarounds are no longer sustainable. If that's where you are, this is the right next step.
       </p>
-      <div class="page-hero-cta flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#book" class="cta-book-btn btn-primary inline-flex items-center gap-2">
+      <div class="page-hero-cta flex items-center justify-center gap-5">
+        <a href="#book" class="cta-book-btn btn-primary inline-flex items-center gap-2 text-xs !py-3.5 !px-6">
           Book a 30-minute discovery call
-          <span class="cta-arrow text-lg inline-block transition-transform duration-300">→</span>
+          <span class="btn-arrow">&rarr;</span>
         </a>
         <p class="text-linen/60 text-sm italic">No pitch. No obligation. Just clarity.</p>
       </div>
@@ -33,12 +33,12 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 leading-[1.25] tracking-[-0.02em] border-l-4 border-neon pl-4">
+          <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy leading-[1.25] tracking-[-0.02em]">
             What this conversation is
           </h2>
         </div>
-        <div class="lg:col-span-7 space-y-4 text-navy-900/80 text-base md:text-lg leading-relaxed">
-          <p class="text-navy-900 text-xl font-serif italic">It's a diagnostic, not a demo.</p>
+        <div class="lg:col-span-7 space-y-4 text-black text-base md:text-lg leading-relaxed">
+          <p class="text-black text-xl font-serif italic">It's a diagnostic, not a demo.</p>
           <p>We won't walk you through our capabilities or show you what we've built for other people. We'll ask questions about your specific situation — how your business operates, where effort is concentrated, what's breaking — and tell you honestly whether we think we can help.</p>
           <p>Sometimes the answer is no. We're comfortable with that.</p>
           <p>Either way, you leave with a clearer picture of what's worth fixing — and what isn't.</p>
@@ -52,9 +52,9 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         <!-- Left card: Good fit -->
-        <div class="rounded-xl border border-navy-900/15 p-8 md:p-10 transition-all duration-300 hover:border-navy-900 hover:shadow-[6px_6px_0px_0px_#001233]">
-          <h3 class="subhead-condensed text-sm text-navy-900 mb-8 tracking-[0.15em] text-center">This conversation makes sense if you are</h3>
-          <ul class="space-y-5 text-navy-900/80 text-base leading-relaxed">
+        <div class="rounded-[10px] border-2 border-[#001d52] shadow-[6px_6px_0px_0px_#001d52] p-8 md:p-10">
+          <h3 class="subhead-condensed text-sm text-black mb-8 tracking-[0.15em] text-center">This conversation makes sense if you are</h3>
+          <ul class="space-y-5 text-black text-base leading-relaxed">
             <li class="flex items-start gap-3">
               <span class="w-2 h-2 rounded-full bg-neon mt-2 shrink-0"></span>
               <span>A founder, operator, or senior leader at a B2B company</span>
@@ -74,9 +74,9 @@ import Layout from '../layouts/Layout.astro';
           </ul>
         </div>
         <!-- Right card: Not a fit -->
-        <div class="rounded-xl border border-navy-900/15 p-8 md:p-10 transition-all duration-300 hover:border-navy-900 hover:shadow-[6px_6px_0px_0px_#001233]">
-          <h3 class="subhead-condensed text-sm text-navy-900/60 mb-8 tracking-[0.15em] text-center">It's probably not worth your time  if you are</h3>
-          <ul class="space-y-5 text-navy-900/70 text-base leading-relaxed">
+        <div class="rounded-[10px] border-2 border-[#001d52] shadow-[6px_6px_0px_0px_#001d52] p-8 md:p-10">
+          <h3 class="subhead-condensed text-sm text-black mb-8 tracking-[0.15em] text-center">It's probably not worth your time if you are</h3>
+          <ul class="space-y-5 text-black text-base leading-relaxed">
             <li class="flex items-start gap-3">
               <span class="w-4 h-0.5 bg-red-500 mt-3 shrink-0"></span>
               <span>Running an RFP or comparing vendors on price</span>
@@ -103,30 +103,30 @@ import Layout from '../layouts/Layout.astro';
         <div class="text-center">
           <div class="inline-block">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
-              <p class="subhead-condensed text-xs text-navy-900 tracking-[0.2em]">Next Steps</p>
+              <div class="w-12 h-0.5 bg-navy"></div>
+              <p class="subhead-condensed text-xs text-navy tracking-[0.2em]">Next Steps</p>
             </div>
-            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-3 leading-[1.25] tracking-[-0.02em] text-center">
+            <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-3 leading-[1.25] tracking-[-0.02em] text-center">
               What happens after the call
             </h2>
             <div class="flex justify-end">
-              <div class="w-12 h-0.5 bg-navy-900"></div>
+              <div class="w-12 h-0.5 bg-navy"></div>
             </div>
           </div>
         </div>
         <div class="mb-10"></div>
 
-        <div class="space-y-6 text-navy-900/70 text-base md:text-lg leading-relaxed text-center">
-          <p>If there's a fit, we'll outline a clear next step — either a scoped Data Intelligence build or a Sales Acceleration pilot, depending on where the problem lies.</p>
-          <p>If there isn't a fit, we'll say so directly — and often point you toward something more useful.</p>
-          <p class="text-navy-900 font-semibold">There's no obligation either way.</p>
+        <div class="space-y-6 text-black text-base md:text-lg leading-relaxed text-center">
+          <p>If there's a fit, we'll outline a clear next step — either a<br>scoped Data Intelligence build or a Sales Acceleration<br>pilot, depending on where the problem lies.</p>
+          <p>If there isn't a fit, we'll say so directly — and often point<br>you toward something more useful.</p>
+          <p class="text-black font-semibold">There's no obligation either way.</p>
         </div>
 
         <!-- Callout box -->
         <div class="flex items-stretch gap-4 mt-10">
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
-          <p class="text-navy-900/70 text-sm italic leading-relaxed py-1 text-left">We'd rather have a short, honest conversation that goes nowhere than a long one that leads somewhere it shouldn't.</p>
-          <div class="w-0.5 bg-navy-900 rounded-full flex-shrink-0"></div>
+          <div class="w-0.5 bg-navy rounded-full flex-shrink-0"></div>
+          <p class="text-black text-sm italic leading-relaxed py-1 text-left">We'd rather have a short, honest conversation that goes nowhere than a long one<br>that leads somewhere it shouldn't.</p>
+          <div class="w-0.5 bg-navy rounded-full flex-shrink-0"></div>
         </div>
       </div>
     </div>
@@ -135,28 +135,32 @@ import Layout from '../layouts/Layout.astro';
   <!-- CALENDLY / CTA -->
   <section id="book" class="py-24 md:py-32" style="background-color:#f9f6f0;">
     <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
-      <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy-900 mb-8 leading-[1.25] tracking-[-0.02em]">
+      <h2 class="font-serif text-2xl md:text-3xl lg:text-[2.2rem] text-navy mb-8 leading-[1.25] tracking-[-0.02em]">
         Book your discovery call
       </h2>
-      <p class="text-navy-900/70 text-base md:text-lg mb-10 max-w-xl mx-auto">
+      <p class="text-black text-base md:text-lg mb-10 max-w-xl mx-auto">
         Choose a time that works for you. The call takes 30 minutes.
       </p>
 
       <!-- Cal.com inline embed -->
-      <div id="my-cal-inline" class="max-w-4xl mx-auto mb-10 rounded-lg border-2 border-navy-900 shadow-[6px_6px_0px_0px_rgba(0,18,51,1)]" style="min-width:320px;height:750px;overflow:auto;background-color:#f9f6f0;"></div>
+      <div class="max-w-4xl mx-auto mb-10 rounded-[10px] border-2 border-navy shadow-[6px_6px_0px_0px_#001D52]" style="overflow:hidden;position:relative;">
+        <div id="my-cal-inline" style="min-width:320px;background-color:#f9f6f0;"></div>
+        <!-- Overlay to hide Cal.com branding bar -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:46px;background-color:#f9f6f0;z-index:10;pointer-events:none;"></div>
+      </div>
       <script type="text/javascript">
         (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://cal.eu/embed/embed.js", "init");
         Cal("init", {origin:"https://cal.eu"});
         Cal("inline", {
           elementOrSelector:"#my-cal-inline",
           calLink: "skief/intro",
-          layout: "column_view"
+          layout: "month_view"
         });
-        Cal("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-bg":"#f9f6f0","cal-bg-emphasis":"#f0ebe3","cal-bg-subtle":"#f9f6f0","cal-bg-muted":"#f9f6f0","cal-bg-inverted":"#001233","cal-border":"#d9d0c4","cal-border-subtle":"#e5ded4","cal-border-booker":"#d9d0c4","cal-text-emphasis":"#001233","cal-bg-info":"#f9f6f0"}},"styles":{"branding":{"brandColor":"#3366FF"}},"hideEventTypeDetails":false,"layout":"column_view"});
+        Cal("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-bg":"#f9f6f0","cal-bg-emphasis":"#f0ebe3","cal-bg-subtle":"#f9f6f0","cal-bg-muted":"#f9f6f0","cal-bg-inverted":"#001233","cal-border":"#f9f6f0","cal-border-subtle":"#f9f6f0","cal-border-booker":"#f9f6f0","cal-text-emphasis":"#001233","cal-bg-info":"#f9f6f0"}},"styles":{"branding":{"brandColor":"#3366FF"}},"hideEventTypeDetails":false,"layout":"month_view"});
       </script>
 
-      <p class="text-navy-900/60 text-base">
-        Or reach us directly: <a href="mailto:contact@skieflabs.com" class="text-blue-500 hover:text-blue-600 transition-colors duration-200">contact@skieflabs.com</a>
+      <p class="text-black text-base">
+        Or reach us directly: <a href="mailto:contact@skieflabs.com" class="text-blue hover:text-blue transition-colors duration-200">contact@skieflabs.com</a>
       </p>
     </div>
   </section>
