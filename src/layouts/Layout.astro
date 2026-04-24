@@ -63,6 +63,63 @@ const {
     </main>
     <Footer />
     <ChatWidget />
+
+    <!-- Scroll to top button -->
+    <button id="scroll-top-btn" aria-label="Scroll to top" title="Back to top">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+
+    <style>
+      #scroll-top-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 88px;
+        z-index: 9997;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background-color: #001d52;
+        color: #F9F6F0;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0, 29, 82, 0.3);
+        opacity: 0;
+        transform: translateY(12px) scale(0.9);
+        visibility: hidden;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        pointer-events: none;
+      }
+      #scroll-top-btn.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        visibility: visible;
+        pointer-events: all;
+      }
+      #scroll-top-btn:hover {
+        transform: scale(1.08);
+        background-color: #001d52;
+      }
+    </style>
+
+    <script>
+      const scrollBtn = document.getElementById('scroll-top-btn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollBtn?.classList.add('visible');
+        } else {
+          scrollBtn?.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      scrollBtn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
     <script>
       const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
       // If the URL has a hash (e.g. coming from the home page to #data-intelligence),
